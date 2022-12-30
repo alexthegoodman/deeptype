@@ -1,0 +1,28 @@
+@import "../variables.scss";
+
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+
+  .editorWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .editor {
+    width: 60%;
+
+    .editorField {
+    }
+  }
+  .intelSidebar {
+    width: 40%;
+    height: 100vh;
+    overflow: scroll;
+
+    .intelSidebarInner {
+    }
+  }
+}

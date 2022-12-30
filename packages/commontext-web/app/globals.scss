@@ -1,0 +1,14 @@
+@import "reset.scss";
+
+*::selection {
+  background-color: rgba(55, 135, 76, 0.2);
+}
+
+div.ql-container.ql-snow {
+  border: none !important;
+
+  .ql-editor {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

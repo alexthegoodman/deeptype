@@ -1,0 +1,14 @@
+@import "../../app/variables.scss";
+
+.homeHeader {
+  width: 100%;
+  background: $lightGreenGrey;
+
+  .homeHeaderInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 16px;
+  }
+}

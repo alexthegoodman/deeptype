@@ -1,0 +1,15 @@
+.profileMenu {
+  .profileMenuInner {
+    .menuTrigger {
+      display: flex;
+      align-items: center;
+
+      img {
+        display: block;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+    }
+  }
+}

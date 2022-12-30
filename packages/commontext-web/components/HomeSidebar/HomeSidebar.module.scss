@@ -1,0 +1,23 @@
+@import "../../app/variables.scss";
+
+.homeSidebar {
+  border-right: 2px $lightGrey solid;
+  width: 300px;
+  height: calc(100vh - 300px);
+
+  .homeSidebarInner {
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 17px;
+
+        a {
+          font-size: 18px;
+          color: black;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
