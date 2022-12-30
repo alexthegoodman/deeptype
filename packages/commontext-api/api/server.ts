@@ -45,4 +45,5 @@ export const server = new ApolloServer({
   //   csrfPrevention: true,
 });
 
+// use ./index.ts to start server instead
 // const { url } = await startStandaloneServer(server);
