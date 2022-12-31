@@ -9,6 +9,12 @@ import "react-quill/dist/quill.snow.css";
 
 import { EditorInnerFieldProps } from "./EditorInnerField.d";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
+import { Noto_Sans } from "@next/font/google";
+
+const notoSans = Noto_Sans({
+  subsets: ["latin"],
+  weight: ["100", "300", "400"],
+});
 
 const CustomToolbar = () => (
   <div className={styles.toolbar} id="toolbar">
@@ -36,7 +42,11 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   icons["link"] = `<i class="ph-link-thin"></i>`;
 
   const editorRef = React.useRef();
-  const [state, dispatch] = useEditorContext();
+  const [{ editorPlaintext }, dispatch] = useEditorContext();
+
+  const totalWords = editorPlaintext
+    ? editorPlaintext.match(/(\w+)/g)?.length
+    : 0;
 
   const onFieldChange = (html: any, delta: any) => {
     const plaintext = html.replace(/<(.|\n)*?>/g, "");
@@ -55,9 +65,17 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     <>
       <section className={styles.quillField}>
         <div className={styles.quillFieldInner}>
-          <CustomToolbar />
+          <section className={styles.toolbarWrapper}>
+            <CustomToolbar />
+            <div className={styles.counter}>
+              <span>{totalWords} Words</span>
+              <span>{editorPlaintext.length} Characters</span>
+            </div>
+          </section>
+
           <ReactQuill.default
             ref={editorRef}
+            className={notoSans.className}
             theme="snow"
             onChange={onFieldChange}
             modules={{

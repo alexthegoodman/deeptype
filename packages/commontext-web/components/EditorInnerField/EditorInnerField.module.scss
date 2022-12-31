@@ -1,9 +1,32 @@
+@import "../../app/variables.scss";
+
 .quillField {
   .quillFieldInner {
     padding: 70px 100px;
 
-    .toolbar {
+    .toolbarWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 30px;
+
+      .counter {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          text-align: right;
+          color: $darkGrey;
+
+          &:first-of-type {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    .toolbar {
       border: none;
       padding: 0;
 

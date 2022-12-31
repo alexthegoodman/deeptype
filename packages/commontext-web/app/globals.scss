@@ -6,9 +6,39 @@
 
 div.ql-container.ql-snow {
   border: none !important;
+  font-family: inherit;
 
   .ql-editor {
     font-size: 18px;
     line-height: 28px;
+    padding: 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: block;
+      margin: 20px 0px 15px 0px;
+      font-weight: 400;
+    }
+    p {
+      display: block;
+      margin-bottom: 5px;
+
+      strong,
+      strong em {
+        font-weight: 600;
+      }
+    }
+    ul,
+    ol {
+      display: block;
+      margin: 15px 0;
+    }
+  }
+  .ql-editor.ql-blank::before {
+    left: 0;
   }
 }
