@@ -31,14 +31,6 @@ export default class Helpers {
     }
   }
 
-  parseAuthHeader(str) {
-    console.info("parseAuthHeader", str);
-    const credentials = Buffer.from(str.split("Basic ")[1], "base64").toString(
-      "ascii"
-    );
-    return credentials.split(":");
-  }
-
   createAuthHeader(str) {
     const authPayload = Buffer.from(`${str}`, "utf8").toString("base64");
     return `Basic ${authPayload}`;
