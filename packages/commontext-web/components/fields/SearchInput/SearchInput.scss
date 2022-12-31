@@ -1,0 +1,28 @@
+.searchForm {
+  .searchFormInner {
+    .form {
+      position: relative;
+
+      .searchButton {
+        position: absolute;
+        top: 24px;
+        left: 20px;
+      }
+      .formInput {
+        width: 100%;
+
+        input {
+          text-align: center;
+          background: $lightBlue;
+          color: $darkBlue;
+          font-weight: 400;
+          font-size: 20px;
+
+          &::placeholder {
+            color: $darkBlue;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.formMessage {
+  margin-bottom: 25px;
+
+  &.error {
+    color: red;
+  }
+
+  .formMessageInner {
+    .messageContent {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+}

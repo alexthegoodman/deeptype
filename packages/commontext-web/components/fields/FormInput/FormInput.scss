@@ -1,0 +1,24 @@
+.formInput {
+  width: 100%;
+  margin-bottom: 15px;
+
+  input {
+    width: 100%;
+    height: 60px;
+    background-color: $inputGrey;
+    border: none;
+    border-bottom: 4px $purple solid;
+    color: black;
+    font-size: 16px;
+
+    padding: 0 20px;
+
+    &::placeholder {
+      color: black;
+    }
+  }
+  .formInputWarning {
+    display: block;
+    margin-top: 8px;
+  }
+}

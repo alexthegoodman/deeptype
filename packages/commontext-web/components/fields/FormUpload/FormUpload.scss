@@ -1,0 +1,16 @@
+.formUpload {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 7px;
+  }
+  input {
+    padding: 20px;
+    height: auto;
+    background: $inputGrey;
+    color: black;
+    font-size: 16px;
+    width: 100%;
+  }
+}
