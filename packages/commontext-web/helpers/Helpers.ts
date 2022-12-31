@@ -35,12 +35,4 @@ export default class Helpers {
     const authPayload = Buffer.from(`${str}`, "utf8").toString("base64");
     return `Basic ${authPayload}`;
   }
-
-  emailToUsername(email) {
-    const emailUsername = email.split("@")[0];
-    const pin = nanoid(10);
-    const generatedUsername = emailUsername + "-" + pin;
-
-    return generatedUsername;
-  }
 }

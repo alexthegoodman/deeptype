@@ -8,16 +8,19 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid()) @unique
+  id String @id @unique @default(uuid())
 
-  email String @unique
+  email    String @unique
+  password String
+
+  role     String @default("")
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
 
 model Document {
-  id    String @id @default(uuid()) @unique
+  id String @id @unique @default(uuid())
 
   title   String
   content Json?

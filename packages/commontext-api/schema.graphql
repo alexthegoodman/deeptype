@@ -24,8 +24,10 @@ type Link {
 
 type Mutation {
   newDocument: Document
+  registerUser: String!
 }
 
 type Query {
+  authenticate: String
   documents: [Document]
 }

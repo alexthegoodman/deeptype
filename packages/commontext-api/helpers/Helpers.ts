@@ -36,4 +36,14 @@ export default class Helpers {
 
     return token;
   }
+
+  async emailToUsername(email) {
+    const { nanoid } = await import("nanoid");
+
+    const emailUsername = email.split("@")[0];
+    const pin = nanoid(10);
+    const generatedUsername = emailUsername + "-" + pin;
+
+    return generatedUsername;
+  }
 }

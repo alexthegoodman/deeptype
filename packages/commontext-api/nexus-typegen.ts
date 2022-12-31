@@ -85,8 +85,10 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     newDocument: NexusGenRootTypes['Document'] | null; // Document
+    registerUser: string; // String!
   }
   Query: { // field return type
+    authenticate: string | null; // String
     documents: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
 }
@@ -102,8 +104,10 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     newDocument: 'Document'
+    registerUser: 'String'
   }
   Query: { // field return type name
+    authenticate: 'String'
     documents: 'Document'
   }
 }

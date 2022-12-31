@@ -19,7 +19,7 @@ export const startApolloServer = async () => {
     bodyParser.json(),
     expressMiddleware(server, {
       context: async ({ req, res }) => {
-        return { ...context };
+        return { req, ...context };
       },
     })
   );
