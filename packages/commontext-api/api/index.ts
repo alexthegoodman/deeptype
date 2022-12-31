@@ -1,6 +1,8 @@
 import express from "express";
 import { expressMiddleware } from "@apollo/server/express4";
 import bodyParser from "body-parser";
+import cors from "cors";
+
 import { server } from "./server";
 import { context } from "./context";
 
@@ -13,6 +15,7 @@ export const startApolloServer = async () => {
   // https://www.apollographql.com/docs/apollo-server/api/express-middleware/#context
   app.use(
     "/graphql",
+    cors<cors.CorsRequest>(),
     bodyParser.json(),
     expressMiddleware(server, {
       context: async ({ req, res }) => {

@@ -31,7 +31,7 @@ const EditorHeader: React.FC<EditorHeaderProps> = () => {
     <header className={styles.editorHeader}>
       <div className={styles.editorHeaderInner}>
         <div className={styles.left}>
-          <Link href="/" className={styles.headerBack}>
+          <Link href="/browse" className={styles.headerBack}>
             <i className="ph-arrow-circle-left-thin"></i>
           </Link>
         </div>

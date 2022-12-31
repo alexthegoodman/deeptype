@@ -17,10 +17,15 @@
       justify-content: center;
       align-items: center;
       background-color: $darkGreen;
+      text-decoration: none;
 
       svg {
         width: 35px;
         height: 35px;
+        color: white;
+      }
+      i {
+        font-size: 32px;
         color: white;
       }
     }

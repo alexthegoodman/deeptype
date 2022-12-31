@@ -7,7 +7,7 @@ import styles from "./page.module.scss";
 export default function Browse() {
   const openNewDocument = async () => {
     const { newDocument } = await request(
-      "http://localhost:3000/api/graphql",
+      "http://localhost:4000/graphql",
       newDocumentMutation
     );
 
