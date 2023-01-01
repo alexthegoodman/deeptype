@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 import MixpanelClient from "../helpers/mixpanel";
 import { Request } from "express";
 
@@ -9,7 +9,7 @@ export interface Context {
   prisma: PrismaClient;
   mixpanel: MixpanelClient;
   req: Request;
-  // currentUser: User;
+  currentUser: User;
 }
 
 export const context = {

@@ -15,6 +15,8 @@ model User {
 
   role     String @default("")
 
+  documents Document[]
+
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
@@ -24,6 +26,9 @@ model Document {
 
   title   String
   content Json?
+
+  creator     User @relation(fields: [creatorId], references: [id])
+  creatorId   String 
 
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())

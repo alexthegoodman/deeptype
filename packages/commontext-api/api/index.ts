@@ -5,6 +5,10 @@ import cors from "cors";
 
 import { server } from "./server";
 import { context } from "./context";
+import { PrismaClient } from "@prisma/client";
+import jwt from "jsonwebtoken";
+
+const prisma = new PrismaClient();
 
 export const startApolloServer = async () => {
   await server.start();
@@ -19,7 +23,38 @@ export const startApolloServer = async () => {
     bodyParser.json(),
     expressMiddleware(server, {
       context: async ({ req, res }) => {
-        return { req, ...context };
+        const tokenHeaderKey = process.env.TOKEN_HEADER_KEY as string;
+        const jwtSecretKey = process.env.JWT_SECRET_KEY;
+        let currentUser;
+
+        try {
+          const tokenHeader = req.header(tokenHeaderKey);
+          const token = tokenHeader?.split("Bearer ")[1];
+
+          const verified = jwt.verify(token, jwtSecretKey);
+
+          if (verified) {
+            currentUser = await prisma.user.findFirst({
+              where: {
+                id: verified.userId,
+              },
+            });
+
+            console.info(
+              "Verified Token",
+              verified,
+              "currentUser",
+              currentUser
+            );
+          } else {
+            console.warn("Token Not Verified 1");
+          }
+        } catch (error) {
+          // ex. if token is not provided
+          console.warn("Token Not Verified 2");
+        }
+
+        return { req, currentUser, ...context };
       },
     })
   );

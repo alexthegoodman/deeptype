@@ -7,9 +7,11 @@ export const DocumentQuery = extendType({
     t.list.field("documents", {
       type: "Document",
       args: {},
-      resolve: async (_, {}, { prisma }: Context, x) => {
+      resolve: async (_, {}, { prisma, currentUser }: Context, x) => {
         // TODO: tie to auth
-        const documents = await prisma.document.findMany();
+        const documents = await prisma.document.findMany({
+          where: {},
+        });
 
         return documents;
       },

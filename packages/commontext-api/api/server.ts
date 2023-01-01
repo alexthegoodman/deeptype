@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { ApolloServer } from "@apollo/server";
-import { schema } from "./schema";
+import { protectedSchema } from "./schema";
 import { Context, context } from "./context";
 // import jwt from "jsonwebtoken";
 import { startStandaloneServer } from "@apollo/server/standalone";
@@ -8,7 +8,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 // const prisma = new PrismaClient();
 
 export const server = new ApolloServer({
-  schema,
+  schema: protectedSchema,
   // context: async ({ req, res }) => {
   //   //   const tokenHeaderKey = process.env.TOKEN_HEADER_KEY as string;
   //   //   const jwtSecretKey = process.env.JWT_SECRET_KEY;
