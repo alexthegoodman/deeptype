@@ -7,3 +7,20 @@ export const newDocumentMutation = gql`
     }
   }
 `;
+
+export const myDocumentsQuery = gql`
+  query Documents {
+    myDocuments {
+      id
+      title
+
+      creator {
+        email
+        role
+      }
+
+      updatedAt
+      createdAt
+    }
+  }
+`;

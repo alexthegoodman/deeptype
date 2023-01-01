@@ -1,15 +1,16 @@
 import { GraphQLClient } from "graphql-request";
+import { graphqlUrl } from "../defs/urls";
 
 export class GQLClient {
-  client;
-  token;
-  url;
+  client: GraphQLClient | null = null;
+  token: string = "";
+  url: string = "";
 
-  constructor(url) {
+  constructor(url: string) {
     this.url = url;
   }
 
-  setupClient(token) {
+  setupClient(token: string) {
     const self = this;
     this.token = token;
     this.client = new GraphQLClient(this.url, {
@@ -22,3 +23,7 @@ export class GQLClient {
     return self;
   }
 }
+
+const graphClient = new GQLClient(graphqlUrl);
+
+export default graphClient;
