@@ -1,13 +1,15 @@
+"use client";
+
 import request from "graphql-request";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 const { DateTime } = require("luxon");
 // import LogRocket from "logrocket";
 
-import { authenticateQuery } from "../../../graphql/queries/user";
-import { registerMutation } from "../../../graphql/mutations/user";
+import { authenticateQuery } from "../../../graphql/user";
+import { registerMutation } from "../../../graphql/user";
 import FormInput from "../../fields/FormInput/FormInput";
 import FormMessage from "../../fields/FormMessage/FormMessage";
 

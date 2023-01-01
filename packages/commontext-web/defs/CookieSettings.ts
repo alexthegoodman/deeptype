@@ -1,3 +1,5 @@
+import { cookieDomain } from "./urls";
+
 export const CookieSettings = {
   sameSite: "strict" as "strict",
   domain: cookieDomain,
