@@ -44,6 +44,10 @@ export default function Browse() {
     router.push(`/editor/${newDocument.id}`);
   };
 
+  const openDocument = (documentId: string) => {
+    router.push(`/editor/${documentId}`);
+  };
+
   return (
     <section className={styles.documentGrid}>
       <div className={styles.documentGridInner}>
@@ -59,7 +63,11 @@ export default function Browse() {
           <>
             {data.map((document, i) => {
               return (
-                <div key={document.id} className={styles.document}>
+                <div
+                  key={document.id}
+                  className={styles.document}
+                  onClick={() => openDocument(document.id)}
+                >
                   <div className={styles.documentPreview}></div>
                   <span>{document.title}</span>
                 </div>
