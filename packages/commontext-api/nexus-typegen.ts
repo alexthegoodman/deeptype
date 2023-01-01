@@ -53,15 +53,27 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Document: { // root type
+    content?: string | null; // String
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     id?: string | null; // String
+    title?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   Link: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     description?: string | null; // String
     title?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
     url?: string | null; // String
   }
   Mutation: {};
   Query: {};
+  User: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    email?: string | null; // String
+    role?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -76,11 +88,18 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Document: { // field return type
+    content: string | null; // String
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    creator: NexusGenRootTypes['User'] | null; // User
     id: string | null; // String
+    title: string | null; // String
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
   Link: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     description: string | null; // String
     title: string | null; // String
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
     url: string | null; // String
   }
   Mutation: { // field return type
@@ -89,17 +108,31 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     authenticate: string | null; // String
+    myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
+  }
+  User: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     documents: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
+    email: string | null; // String
+    role: string | null; // String
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Document: { // field return type name
+    content: 'String'
+    createdAt: 'DateTime'
+    creator: 'User'
     id: 'String'
+    title: 'String'
+    updatedAt: 'DateTime'
   }
   Link: { // field return type name
+    createdAt: 'DateTime'
     description: 'String'
     title: 'String'
+    updatedAt: 'DateTime'
     url: 'String'
   }
   Mutation: { // field return type name
@@ -108,7 +141,14 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     authenticate: 'String'
+    myDocuments: 'Document'
+  }
+  User: { // field return type name
+    createdAt: 'DateTime'
     documents: 'Document'
+    email: 'String'
+    role: 'String'
+    updatedAt: 'DateTime'
   }
 }
 

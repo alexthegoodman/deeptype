@@ -8,7 +8,12 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Document {
+  content: String
+  createdAt: DateTime
+  creator: User
   id: String
+  title: String
+  updatedAt: DateTime
 }
 
 """
@@ -17,8 +22,10 @@ The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](
 scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type Link {
+  createdAt: DateTime
   description: String
   title: String
+  updatedAt: DateTime
   url: String
 }
 
@@ -29,5 +36,13 @@ type Mutation {
 
 type Query {
   authenticate: String
+  myDocuments: [Document]
+}
+
+type User {
+  createdAt: DateTime
   documents: [Document]
+  email: String
+  role: String
+  updatedAt: DateTime
 }
