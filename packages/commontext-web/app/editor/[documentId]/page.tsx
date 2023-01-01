@@ -1,14 +1,14 @@
 "use client";
 
 import { useReducer } from "react";
-import EditorField from "../../components/EditorField/EditorField";
-import EditorHeader from "../../components/EditorHeader/EditorHeader";
-import Information from "../../components/Information/Information";
+import EditorField from "../../../components/EditorField/EditorField";
+import EditorHeader from "../../../components/EditorHeader/EditorHeader";
+import Information from "../../../components/Information/Information";
 import {
   EditorContext,
   EditorContextReducer,
   EditorContextState,
-} from "../../context/EditorContext/EditorContext";
+} from "../../../context/EditorContext/EditorContext";
 import styles from "./page.module.scss";
 
 export default function Editor() {

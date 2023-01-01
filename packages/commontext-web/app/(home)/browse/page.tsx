@@ -9,7 +9,9 @@ import {
   newDocumentMutation,
 } from "../../../graphql/document";
 import graphClient from "../../../helpers/GQLClient";
+import { graphqlUrl } from "../../../defs/urls";
 import styles from "./page.module.scss";
+import { useRouter } from "next/navigation";
 
 const getDocumentsData = async (token: string) => {
   graphClient.setupClient(token);
@@ -20,8 +22,11 @@ const getDocumentsData = async (token: string) => {
 };
 
 export default function Browse() {
+  const router = useRouter();
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
+
+  graphClient.setupClient(token);
 
   const { data, error, isLoading, mutate } = useSWR("browseKey", () =>
     getDocumentsData(token)
@@ -30,12 +35,13 @@ export default function Browse() {
   console.info("data", data, isLoading, error);
 
   const openNewDocument = async () => {
-    const { newDocument } = await request(
-      "http://localhost:4000/graphql",
+    const { newDocument } = await graphClient.client?.request(
       newDocumentMutation
     );
 
     console.info("newDocument", newDocument);
+
+    router.push(`/editor/${newDocument.id}`);
   };
 
   return (
