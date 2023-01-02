@@ -24,10 +24,6 @@ export const searchQuery = gql`
         topicClassification {
           name
         }
-        media {
-          url
-          type
-        }
         url
       }
     }
