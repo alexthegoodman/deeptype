@@ -73,6 +73,9 @@ const Information: React.FC<InformationProps> = () => {
                     <div className={styles.itemBody}>
                       <p>{item.summary}</p>
                     </div>
+                    {item.media.map((item, x) => {
+                      return (<img width="50" src={item.url} />)
+                    })}
                     <div className={styles.itemFooter}>
                       <div className={styles.left}>
                         <a href="#!" target="_blank">

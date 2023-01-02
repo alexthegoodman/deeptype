@@ -13,6 +13,7 @@ export const searchQuery = gql`
     ) {
       contextKeywords
       keywords
+
       results {
         metaTitle
         metaDescription
@@ -22,6 +23,10 @@ export const searchQuery = gql`
         topicScore
         topicClassification {
           name
+        }
+        media {
+          url
+          type
         }
         url
       }

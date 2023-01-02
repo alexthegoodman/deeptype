@@ -4,6 +4,10 @@ export interface PageResult {
   };
   summary: string;
   url: string;
+  media: {
+    url: string;
+    type: string;
+  }[]
 }
 
 export interface ResultData {
