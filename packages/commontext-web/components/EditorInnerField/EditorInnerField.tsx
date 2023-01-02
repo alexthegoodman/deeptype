@@ -10,6 +10,7 @@ import "react-quill/dist/quill.snow.css";
 import { EditorInnerFieldProps } from "./EditorInnerField.d";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import { Noto_Sans } from "@next/font/google";
+import EditorDescriptor from "../EditorDescriptor/EditorDescriptor";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -65,6 +66,8 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     <>
       <section className={styles.quillField}>
         <div className={styles.quillFieldInner}>
+          <EditorDescriptor />
+
           <section className={styles.toolbarWrapper}>
             <CustomToolbar />
             <div className={styles.counter}>

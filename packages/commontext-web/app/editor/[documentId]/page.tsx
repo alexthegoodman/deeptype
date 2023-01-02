@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducer } from "react";
+import EditorDescriptor from "../../../components/EditorDescriptor/EditorDescriptor";
 import EditorField from "../../../components/EditorField/EditorField";
 import EditorHeader from "../../../components/EditorHeader/EditorHeader";
 import Information from "../../../components/Information/Information";
@@ -22,6 +23,7 @@ export default function Editor() {
           <section className={styles.editor}>
             <div>
               <section className={styles.editorField}>
+                
                 <EditorField />
               </section>
             </div>

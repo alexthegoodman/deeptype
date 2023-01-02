@@ -13,7 +13,8 @@ import DebugPanel from "../DebugPanel/DebugPanel";
 import { ResultData } from "../../defs/resultData";
 
 const Information: React.FC<InformationProps> = () => {
-  const [{ editorPlaintext }, dispatch] = useEditorContext();
+  const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
+  const debouncedDescriptor = useDebounce(editorDescriptor, 500);
   const debouncedPlaintext = useDebounce(editorPlaintext, 500);
 
   const [isSearching, setIsSearching] = React.useState(false);
@@ -29,15 +30,16 @@ const Information: React.FC<InformationProps> = () => {
 
   React.useEffect(
     () => {
-      if (debouncedPlaintext && debouncedPlaintext !== "") {
+      if (debouncedDescriptor && debouncedDescriptor !== "") {
         const fullText = debouncedPlaintext;
         const recentText = debouncedPlaintext.substring(
           debouncedPlaintext.length - 50
         );
 
         setIsSearching(true);
-        request("http://localhost:4000/graphql", searchQuery, {
-          contextQuery: fullText,
+        request("http://localhost:4001/graphql", searchQuery, {
+          // contextQuery: fullText,
+          contextQuery: debouncedDescriptor,
           query: recentText,
         }).then((data) => {
           console.info("data", data);
@@ -49,13 +51,13 @@ const Information: React.FC<InformationProps> = () => {
         setIsSearching(false);
       }
     },
-    [debouncedPlaintext] // Only call effect if debounced search term changes
+    [debouncedPlaintext, debouncedDescriptor] // Only call effect if debounced search term changes
   );
 
   return (
     <section className={styles.information}>
       <div className={styles.informationInner}>
-        {/* <DebugPanel resultData={resultData} /> */}
+        <DebugPanel resultData={resultData} />
 
         {/* <h2>Information</h2> */}
 
