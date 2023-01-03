@@ -19,9 +19,11 @@
         margin-right: 80px;
         align-self: flex-end;
 
-        span {
+        a {
+          text-decoration: none;
           font-size: 36px;
           font-weight: 500;
+          color: $blackish;
         }
       }
       .navigation {

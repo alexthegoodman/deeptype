@@ -17,13 +17,13 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
       <div className={styles.siteHeaderInner}>
         <div className={styles.left}>
           <div className={`${styles.brand}`}>
-            <span>CommonText</span>
+            <Link href="/">CommonText</Link>
           </div>
           <nav className={styles.navigation}>
             <ul>
-              <li>
+              {/* <li>
                 <Link href="/how-it-works">How it Works</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/pricing">Pricing</Link>
               </li>

@@ -4,6 +4,12 @@ import styles from "./SiteFooter.module.scss";
 
 import { SiteFooterProps } from "./SiteFooter.d";
 import Link from "next/link";
+import { IBM_Plex_Mono } from "@next/font/google";
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
 
 const SiteFooter: React.FC<SiteFooterProps> = () => {
   return (
@@ -11,15 +17,18 @@ const SiteFooter: React.FC<SiteFooterProps> = () => {
       <div className={styles.siteFooterInner}>
         <div className={styles.left}>
           <div className={styles.brand}>
-            <span>CommonText</span>
+            <Link href="/" className={ibmPlexMono.className}>
+              CommonText
+            </Link>
           </div>
+          <span>&copy; Common 2023</span>
         </div>
         <div className={styles.right}>
           <nav className={styles.navigation}>
             <ul>
-              <li>
+              {/* <li>
                 <Link href="/how-it-works">How it Works</Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/pricing">Pricing</Link>
               </li>

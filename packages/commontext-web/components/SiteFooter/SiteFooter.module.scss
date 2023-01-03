@@ -1,1 +1,48 @@
-/** Styles **/
+@import "../../app/variables.scss";
+
+.siteFooter {
+  .siteFooterInner {
+    width: $desktop;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px 0 90px 0;
+
+    .left {
+      .brand {
+        margin-bottom: 25px;
+
+        a {
+          font-size: 32px;
+          text-decoration: none;
+          color: $blackish;
+        }
+      }
+    }
+    .right {
+      .navigation {
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+
+          li {
+            margin-right: 15px;
+
+            &:last-of-type {
+              margin: 0;
+            }
+
+            a {
+              text-decoration: none;
+              color: $blackish;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
