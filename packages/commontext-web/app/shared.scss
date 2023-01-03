@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $green1;
+  color: white;
+  text-decoration: none;
+  min-width: 200px;
+  height: 60px;
+  font-size: 20px;
+}

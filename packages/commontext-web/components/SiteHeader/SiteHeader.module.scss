@@ -1,0 +1,53 @@
+@import "../../app/variables.scss";
+@import "../../app/shared.scss";
+
+.siteHeader {
+  margin-top: 35px;
+
+  .siteHeaderInner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: $desktop;
+    margin: 0 auto;
+
+    .left {
+      display: flex;
+      flex-direction: row;
+
+      .brand {
+        margin-right: 80px;
+        align-self: flex-end;
+
+        span {
+          font-size: 36px;
+          font-weight: 500;
+        }
+      }
+      .navigation {
+        align-self: flex-end;
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: row;
+
+          li {
+            margin-right: 60px;
+
+            a {
+              text-decoration: none;
+              color: $blackish;
+              font-weight: 400;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+    .right {
+    }
+  }
+}

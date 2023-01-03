@@ -1,0 +1,55 @@
+@import "../app/variables.scss";
+
+.siteHero {
+  .siteHeroInner {
+    width: $desktop;
+    margin: 0 auto;
+    padding: 90px 0 0 0;
+
+    h1 {
+      font-size: 64px;
+      line-height: 94px;
+      text-align: center;
+      width: 90%;
+      margin: 0 auto 45px auto;
+
+      span {
+        font-weight: 500;
+        color: $green1;
+      }
+    }
+    .heroVideo {
+      video {
+        width: 100%;
+        background-color: $lightGrey;
+      }
+    }
+
+    .heroFeatures {
+      .feature {
+        i {
+        }
+        span {
+        }
+        p {
+        }
+      }
+    }
+  }
+  .featureWrapper {
+    position: relative;
+    background-color: $lightGreenGrey;
+
+    &:before {
+      content: " ";
+      display: block;
+      height: 300px;
+      position: absolute;
+      top: -300px;
+      left: 0;
+      background-color: $lightGreenGrey;
+      width: 100vw;
+      z-index: -3;
+    }
+  }
+}

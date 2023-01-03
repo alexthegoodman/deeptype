@@ -1,6 +1,6 @@
 import "./globals.scss";
 
-import { Lato, Source_Sans_Pro, Noto_Sans } from "@next/font/google";
+import { Noto_Sans } from "@next/font/google";
 
 // const lato = Lato({ subsets: ["latin"], weight: ["100", "300", "400"] });
 // const ssp = Source_Sans_Pro({ subsets: ["latin"], weight: ["300", "400"] });
