@@ -5,6 +5,7 @@ import styles from "./SiteHeader.module.scss";
 
 import { SiteHeaderProps } from "./SiteHeader.d";
 import Link from "next/link";
+import { cookies } from "next/headers";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -12,6 +13,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const SiteHeader: React.FC<SiteHeaderProps> = () => {
+  const nextCookies = cookies();
+  const coUserToken = nextCookies.get("coUserToken");
+
   return (
     <header className={`${ibmPlexMono.className} ${styles.siteHeader}`}>
       <div className={styles.siteHeaderInner}>
@@ -31,9 +35,15 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
           </nav>
         </div>
         <div className={styles.right}>
-          <Link href="/sign-in" className={styles.btn}>
-            Try Beta
-          </Link>
+          {coUserToken ? (
+            <Link href="/browse" className={styles.btn}>
+              Go to App
+            </Link>
+          ) : (
+            <Link href="/sign-in" className={styles.btn}>
+              Try Beta
+            </Link>
+          )}
         </div>
       </div>
     </header>

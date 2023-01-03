@@ -14,9 +14,6 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export default function Home() {
-  const nextCookies = cookies();
-  const coUserToken = nextCookies.get("coUserToken");
-
   return (
     <>
       <SiteHeader />
