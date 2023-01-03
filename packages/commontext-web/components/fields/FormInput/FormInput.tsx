@@ -3,6 +3,8 @@ import * as React from "react";
 import { FormInputProps } from "./FormInput.d";
 import SimpleErrorMessage from "../SimpleErrorMessage/SimpleErrorMessage";
 
+import styles from "./FormInput.module.scss";
+
 const FormInput: React.FC<FormInputProps> = ({
   //   name = "",
   //   type = "text",
@@ -12,7 +14,7 @@ const FormInput: React.FC<FormInputProps> = ({
   ...fieldProps
 }) => {
   return (
-    <div className="formInput">
+    <div className={styles.formInput}>
       <input {...fieldProps} {...register(fieldProps.name, validation)} />
       <SimpleErrorMessage errors={errors} fieldProps={fieldProps} />
     </div>

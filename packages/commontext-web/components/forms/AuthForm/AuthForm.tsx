@@ -18,8 +18,17 @@ import { AuthFormProps } from "./AuthForm.d";
 import { fullDomain, graphqlUrl } from "../../../defs/urls";
 import Helpers from "../../../helpers/Helpers";
 import { CookieSettings } from "../../../defs/CookieSettings";
+
+import styles from "./AuthForm.module.scss";
+import { IBM_Plex_Mono } from "@next/font/google";
+import Link from "next/link";
+
 // import { useTranslation } from "next-i18next";
 // import MixpanelBrowser from "../../../helpers/MixpanelBrowser";
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
 
 const AuthForm: React.FC<AuthFormProps> = ({
   onClick = (e) => console.info("Click AuthForm"),
@@ -129,40 +138,60 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   const onError = (error: any) => console.error(error);
 
+  const headline = type === "sign-in" ? "Sign In" : "Sign Up";
   let submitButtonText = type === "sign-in" ? "Sign In" : "Sign Up";
 
   if (submitLoading) submitButtonText = "Loading...";
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormMessage type="error" message={formErrorMessage} />
+    <section className={styles.authForm}>
+      <div className={styles.authFormInner}>
+        <h1 className={ibmPlexMono.className}>{headline}</h1>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit(onSubmit, onError)}
+        >
+          <FormMessage type="error" message={formErrorMessage} />
 
-      <FormInput
-        type="email"
-        name="email"
-        placeholder={"Email"}
-        register={register}
-        errors={errors}
-        validation={{
-          required: "Email Required",
-        }}
-      />
+          <FormInput
+            type="email"
+            name="email"
+            placeholder={"Email"}
+            register={register}
+            errors={errors}
+            validation={{
+              required: "Email Required",
+            }}
+          />
 
-      <FormInput
-        type="password"
-        name="password"
-        placeholder={"Password"}
-        register={register}
-        errors={errors}
-        validation={{
-          required: "Password Required",
-        }}
-      />
+          <FormInput
+            type="password"
+            name="password"
+            placeholder={"Password"}
+            register={register}
+            errors={errors}
+            validation={{
+              required: "Password Required",
+            }}
+          />
 
-      <button className="circleButton" type="submit" disabled={submitLoading}>
-        {submitButtonText}
-      </button>
-    </form>
+          <button className={styles.btn} type="submit" disabled={submitLoading}>
+            {submitButtonText}
+          </button>
+        </form>
+        <div className={styles.addtActions}>
+          {type === "sign-in" ? (
+            <span>
+              Or you may <Link href="sign-up">Sign Up</Link> instead
+            </span>
+          ) : (
+            <span>
+              Or you may <Link href="sign-in">Sign In</Link> instead
+            </span>
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
 

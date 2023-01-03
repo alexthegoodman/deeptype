@@ -1,0 +1,24 @@
+@import "../../../app/variables.scss";
+@import "../../../app/shared.scss";
+
+.authForm {
+  background-color: $lightGreenGrey;
+  width: $small;
+  margin: 50px auto;
+
+  .authFormInner {
+    padding: 50px;
+
+    h1 {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 25px;
+    }
+    .btn {
+      margin-top: 25px;
+    }
+    .addtActions {
+      margin-top: 25px;
+    }
+  }
+}
