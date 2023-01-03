@@ -26,12 +26,26 @@
     }
 
     .heroFeatures {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 60px;
+
       .feature {
         i {
+          display: block;
+          font-size: 64px;
+          margin-bottom: 15px;
         }
         span {
+          display: block;
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 15px;
         }
         p {
+          font-size: 18px;
+          line-height: 30px;
+          font-weight: 300;
         }
       }
     }
@@ -39,6 +53,10 @@
   .featureWrapper {
     position: relative;
     background-color: $lightGreenGrey;
+
+    .siteHeroInner {
+      padding: 60px 0 90px 0;
+    }
 
     &:before {
       content: " ";

@@ -32,7 +32,9 @@ export default function Home() {
           </div>
           <div className={styles.featureWrapper}>
             <div className={styles.siteHeroInner}>
-              <div className={styles.heroFeatures}>
+              <div
+                className={`${ibmPlexMono.className} ${styles.heroFeatures}`}
+              >
                 <div className={styles.feature}>
                   <i className="ph-flow-arrow-thin"></i>
                   <span>Improve your flow</span>
