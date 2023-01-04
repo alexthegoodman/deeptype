@@ -21,7 +21,7 @@ const EditorDescriptor: React.FC<EditorDescriptorProps> = ({
         type="text"
         placeholder="Enter 1-3 Words About This Content"
         onInput={descriptorInput}
-        defaultValue={documentData.descriptor}
+        defaultValue={documentData?.descriptor}
       />
     </>
   );

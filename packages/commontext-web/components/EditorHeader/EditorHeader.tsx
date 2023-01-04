@@ -16,6 +16,7 @@ const { DateTime } = require("luxon");
 const EditorHeader: React.FC<EditorHeaderProps> = ({
   documentId = "",
   documentData = null,
+  refetchDocument = () => console.info("refetchDocument"),
 }) => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
@@ -42,6 +43,8 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
     setLastSaved(currentTime);
 
     console.info("updatedDocument", updateDocument);
+
+    refetchDocument();
   };
 
   React.useEffect(() => {

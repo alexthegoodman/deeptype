@@ -11,6 +11,7 @@ import EditorInnerField from "../EditorInnerField/EditorInnerField";
 const EditorField: React.FC<EditorFieldProps> = ({
   documentId = "",
   documentData = null,
+  refetch = () => console.info("refetch"),
 }) => {
   const [Quill, setQuill] = React.useState<any>(null);
   const [ReactQuill, setReactQuill] = React.useState<any>(null);
@@ -35,6 +36,7 @@ const EditorField: React.FC<EditorFieldProps> = ({
           <EditorInnerField
             documentId={documentId}
             documentData={documentData}
+            refetch={refetch}
             Quill={Quill}
             ReactQuill={ReactQuill}
           />

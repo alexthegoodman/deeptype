@@ -33,6 +33,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   ReactQuill = null,
   documentId = "",
   documentData = null,
+  refetch = () => console.info("refetch"),
 }) => {
   console.info("Quill", Quill.default);
   var icons = Quill.default.import("ui/icons");
@@ -58,12 +59,18 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     dispatch({ type: "editorValue", payload: html });
     dispatch({ type: "editorJson", payload: instance.getContents() });
     dispatch({ type: "editorPlaintext", payload: plaintext });
+
+    // refetch(); // need to refetch after doc update, not on field change
   };
 
   React.useEffect(() => {
     console.info("editorRef", editorRef.current);
     editorRef.current.focus();
   }, [editorRef.current]);
+
+  React.useEffect(() => {
+    console.info("documentData?.content", documentData?.content);
+  }, [documentData?.content]);
 
   return (
     <>
@@ -90,7 +97,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
               },
             }}
             placeholder="Begin typing here..."
-            defaultValue={documentData.content}
+            defaultValue={documentData?.content}
           />
         </div>
       </section>

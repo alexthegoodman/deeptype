@@ -33,17 +33,30 @@ export default function Editor({ params }) {
 
   const { data, error, isLoading, mutate } = useSWR(
     "documentKey" + documentId,
-    () => getDocumentData(token, documentId)
+    () => getDocumentData(token, documentId),
+    {
+      revalidateOnMount: true,
+    }
   );
 
-  // console.info("document data", documentId, data, error, isLoading);
+  const refetch = async () => {
+    const newData = await getDocumentData(token, documentId);
+    console.info("refetch document data", newData);
+    mutate(newData);
+  };
+
+  console.info("document data", documentId, data, error, isLoading);
 
   return (
     <EditorContext.Provider
       value={useReducer(EditorContextReducer, EditorContextState)}
     >
       <main className={styles.editorContainer}>
-        <EditorHeader documentId={documentId} documentData={data} />
+        <EditorHeader
+          documentId={documentId}
+          documentData={data}
+          refetchDocument={refetch}
+        />
         <div className={styles.editorWrapper}>
           <section className={styles.editor}>
             <div>
