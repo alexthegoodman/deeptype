@@ -8,20 +8,55 @@ import Link from "next/link";
 import ProfileMenu from "../ProfileMenu/ProfileMenu";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import { useDebounce } from "../../hooks/useDebounce";
+import { useCookies } from "react-cookie";
+import graphClient from "../../helpers/GQLClient";
+import { updateDocumentMutation } from "../../graphql/document";
 
-const EditorHeader: React.FC<EditorHeaderProps> = () => {
-  const [{ editorJson, editorTitle }, dispatch] = useEditorContext();
+const EditorHeader: React.FC<EditorHeaderProps> = ({
+  documentId = "",
+  documentData = null,
+}) => {
+  const [cookies, setCookie] = useCookies(["coUserToken"]);
+  const token = cookies.coUserToken;
+
+  graphClient.setupClient(token);
+
+  const [{ editorJson, editorTitle, editorDescriptor }, dispatch] =
+    useEditorContext();
   const debouncedTitle = useDebounce(editorTitle, 500);
   const debouncedJson = useDebounce(editorJson, 500);
+  const debouncedDescriptor = useDebounce(editorDescriptor, 500);
+
+  const updateDocument = async (args: any) => {
+    const { updateDocument } = await graphClient.client?.request(
+      updateDocumentMutation,
+      {
+        documentId,
+        ...args,
+      }
+    );
+
+    console.info("updatedDocument", updateDocument);
+  };
 
   React.useEffect(() => {
     if (debouncedTitle) {
-      // TODO: save only title
+      updateDocument({ title: debouncedTitle });
     }
-    if (debouncedTitle && debouncedJson) {
-      // TODO: save json and title
+  }, [debouncedTitle]);
+
+  React.useEffect(() => {
+    if (debouncedJson) {
+      // TODO: verify json over graphql
+      updateDocument({ content: debouncedJson });
     }
-  }, [debouncedTitle, debouncedJson]);
+  }, [debouncedJson]);
+
+  React.useEffect(() => {
+    if (debouncedDescriptor) {
+      updateDocument({ descriptor: debouncedDescriptor });
+    }
+  }, [debouncedDescriptor]);
 
   const onTitleChange = (e: any) => {
     dispatch({ type: "editorTitle", payload: e.target.outerText });
@@ -41,7 +76,9 @@ const EditorHeader: React.FC<EditorHeaderProps> = () => {
               className={styles.docTitle}
               contentEditable={true}
               onInput={onTitleChange}
-            ></span>
+            >
+              {documentData?.title}
+            </span>
             <span className={styles.savedDate}>Autosaved on 12/12/12</span>
           </div>
         </div>

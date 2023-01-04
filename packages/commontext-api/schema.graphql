@@ -11,6 +11,7 @@ type Document {
   content: String
   createdAt: DateTime
   creator: User
+  descriptor: String
   id: String
   title: String
   updatedAt: DateTime
@@ -32,10 +33,12 @@ type Link {
 type Mutation {
   newDocument: Document
   registerUser: String!
+  updateDocument(content: String, descriptor: String, documentId: String!, title: String): Document
 }
 
 type Query {
   authenticate: String
+  document(documentId: String!): Document
   myDocuments: [Document]
 }
 

@@ -55,6 +55,7 @@ export interface NexusGenObjects {
   Document: { // root type
     content?: string | null; // String
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    descriptor?: string | null; // String
     id?: string | null; // String
     title?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
@@ -91,6 +92,7 @@ export interface NexusGenFieldTypes {
     content: string | null; // String
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     creator: NexusGenRootTypes['User'] | null; // User
+    descriptor: string | null; // String
     id: string | null; // String
     title: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
@@ -105,9 +107,11 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     newDocument: NexusGenRootTypes['Document'] | null; // Document
     registerUser: string; // String!
+    updateDocument: NexusGenRootTypes['Document'] | null; // Document
   }
   Query: { // field return type
     authenticate: string | null; // String
+    document: NexusGenRootTypes['Document'] | null; // Document
     myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
   User: { // field return type
@@ -124,6 +128,7 @@ export interface NexusGenFieldTypeNames {
     content: 'String'
     createdAt: 'DateTime'
     creator: 'User'
+    descriptor: 'String'
     id: 'String'
     title: 'String'
     updatedAt: 'DateTime'
@@ -138,9 +143,11 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     newDocument: 'Document'
     registerUser: 'String'
+    updateDocument: 'Document'
   }
   Query: { // field return type name
     authenticate: 'String'
+    document: 'Document'
     myDocuments: 'Document'
   }
   User: { // field return type name
@@ -153,6 +160,19 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    updateDocument: { // args
+      content?: string | null; // String
+      descriptor?: string | null; // String
+      documentId: string; // String!
+      title?: string | null; // String
+    }
+  }
+  Query: {
+    document: { // args
+      documentId: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {

@@ -27,6 +27,8 @@ model Document {
   title   String
   content Json?
 
+  descriptor String @default("")
+
   creator     User @relation(fields: [creatorId], references: [id])
   creatorId   String 
 
