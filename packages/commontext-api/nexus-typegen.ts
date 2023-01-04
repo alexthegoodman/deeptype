@@ -53,7 +53,7 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Document: { // root type
-    content?: string | null; // String
+    content?: NexusGenScalars['JSONObject'] | null; // JSONObject
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     descriptor?: string | null; // String
     id?: string | null; // String
@@ -89,7 +89,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Document: { // field return type
-    content: string | null; // String
+    content: NexusGenScalars['JSONObject'] | null; // JSONObject
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     creator: NexusGenRootTypes['User'] | null; // User
     descriptor: string | null; // String
@@ -125,7 +125,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Document: { // field return type name
-    content: 'String'
+    content: 'JSONObject'
     createdAt: 'DateTime'
     creator: 'User'
     descriptor: 'String'

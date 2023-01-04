@@ -36,7 +36,7 @@ export default function Editor({ params }) {
     () => getDocumentData(token, documentId)
   );
 
-  console.info("document data", documentId, data, error, isLoading);
+  // console.info("document data", documentId, data, error, isLoading);
 
   return (
     <EditorContext.Provider
@@ -48,7 +48,7 @@ export default function Editor({ params }) {
           <section className={styles.editor}>
             <div>
               <section className={styles.editorField}>
-                <EditorField />
+                <EditorField documentId={documentId} documentData={data} />
               </section>
             </div>
           </section>

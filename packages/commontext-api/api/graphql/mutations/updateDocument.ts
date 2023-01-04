@@ -22,7 +22,8 @@ export const UpdateDocumentMutation = extendType({
 
         if (title) updateData = { ...updateData, title };
         if (descriptor) updateData = { ...updateData, descriptor };
-        if (content) updateData = { ...updateData, content };
+        if (content)
+          updateData = { ...updateData, content: JSON.parse(content) };
 
         const updatedDocument = await prisma.document.update({
           where: {

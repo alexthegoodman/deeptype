@@ -8,7 +8,10 @@ import styles from "./EditorField.module.scss";
 import { EditorFieldProps } from "./EditorField.d";
 import EditorInnerField from "../EditorInnerField/EditorInnerField";
 
-const EditorField: React.FC<EditorFieldProps> = () => {
+const EditorField: React.FC<EditorFieldProps> = ({
+  documentId = "",
+  documentData = null,
+}) => {
   const [Quill, setQuill] = React.useState<any>(null);
   const [ReactQuill, setReactQuill] = React.useState<any>(null);
 
@@ -29,7 +32,12 @@ const EditorField: React.FC<EditorFieldProps> = () => {
     <section>
       <div>
         {ReactQuill ? (
-          <EditorInnerField Quill={Quill} ReactQuill={ReactQuill} />
+          <EditorInnerField
+            documentId={documentId}
+            documentData={documentData}
+            Quill={Quill}
+            ReactQuill={ReactQuill}
+          />
         ) : (
           <></>
         )}

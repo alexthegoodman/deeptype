@@ -31,6 +31,8 @@ const CustomToolbar = () => (
 const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   Quill = null,
   ReactQuill = null,
+  documentId = "",
+  documentData = null,
 }) => {
   console.info("Quill", Quill.default);
   var icons = Quill.default.import("ui/icons");
@@ -49,11 +51,12 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     ? editorPlaintext.match(/(\w+)/g)?.length
     : 0;
 
-  const onFieldChange = (html: any, delta: any) => {
+  const onFieldChange = (html: any, delta: any, x: any, instance: any) => {
+    console.info("field change", html, delta, instance.getContents());
     const plaintext = html.replace(/<(.|\n)*?>/g, "");
 
     dispatch({ type: "editorValue", payload: html });
-    dispatch({ type: "editorJson", payload: delta });
+    dispatch({ type: "editorJson", payload: instance.getContents() });
     dispatch({ type: "editorPlaintext", payload: plaintext });
   };
 
@@ -66,7 +69,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     <>
       <section className={styles.quillField}>
         <div className={styles.quillFieldInner}>
-          <EditorDescriptor />
+          <EditorDescriptor documentData={documentData} />
 
           <section className={styles.toolbarWrapper}>
             <CustomToolbar />
@@ -87,6 +90,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
               },
             }}
             placeholder="Begin typing here..."
+            defaultValue={documentData.content}
           />
         </div>
       </section>

@@ -48,6 +48,8 @@ export const documentQuery = gql`
     document(documentId: $documentId) {
       id
       title
+      content
+      descriptor
 
       creator {
         email

@@ -11,6 +11,7 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { useCookies } from "react-cookie";
 import graphClient from "../../helpers/GQLClient";
 import { updateDocumentMutation } from "../../graphql/document";
+const { DateTime } = require("luxon");
 
 const EditorHeader: React.FC<EditorHeaderProps> = ({
   documentId = "",
@@ -26,6 +27,7 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
   const debouncedTitle = useDebounce(editorTitle, 500);
   const debouncedJson = useDebounce(editorJson, 500);
   const debouncedDescriptor = useDebounce(editorDescriptor, 500);
+  const [lastSaved, setLastSaved] = React.useState<string | null>(null);
 
   const updateDocument = async (args: any) => {
     const { updateDocument } = await graphClient.client?.request(
@@ -35,6 +37,9 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
         ...args,
       }
     );
+
+    const currentTime = new Date().toISOString();
+    setLastSaved(currentTime);
 
     console.info("updatedDocument", updateDocument);
   };
@@ -48,7 +53,8 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
   React.useEffect(() => {
     if (debouncedJson) {
       // TODO: verify json over graphql
-      updateDocument({ content: debouncedJson });
+      console.info("debouncedJson", debouncedJson);
+      updateDocument({ content: JSON.stringify(debouncedJson) });
     }
   }, [debouncedJson]);
 
@@ -79,7 +85,12 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
             >
               {documentData?.title}
             </span>
-            <span className={styles.savedDate}>Autosaved on 12/12/12</span>
+            <span className={styles.savedDate}>
+              Autosaved on{" "}
+              {DateTime.fromISO(lastSaved).toLocaleString(
+                DateTime.DATETIME_FULL
+              )}
+            </span>
           </div>
         </div>
         <div className={styles.right}>

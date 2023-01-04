@@ -6,7 +6,7 @@ export const DocumentType = objectType({
   definition(t) {
     t.field("id", { type: "String" });
     t.field("title", { type: "String" });
-    t.field("content", { type: "String" });
+    t.field("content", { type: "JSONObject" });
     t.field("descriptor", { type: "String" });
 
     t.field("creator", {

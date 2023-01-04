@@ -26,7 +26,7 @@ const Information: React.FC<InformationProps> = () => {
     setResultData(initialData);
   }, []);
 
-  console.info("resultData", resultData);
+  // console.info("resultData", resultData);
 
   React.useEffect(
     () => {
