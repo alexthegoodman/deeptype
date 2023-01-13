@@ -19,9 +19,12 @@
       }
     }
     .heroVideo {
-      video {
+      video,
+      iframe {
         width: 100%;
         background-color: $lightGrey;
+        aspect-ratio: 16/9;
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
       }
     }
 

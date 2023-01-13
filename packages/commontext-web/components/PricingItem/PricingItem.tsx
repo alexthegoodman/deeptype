@@ -3,6 +3,7 @@ import * as React from "react";
 import styles from "./PricingItem.module.scss";
 
 import { PricingItemProps } from "./PricingItem.d";
+import Link from "next/link";
 
 const PricingItem: React.FC<PricingItemProps> = ({
   price = 0,
@@ -27,9 +28,9 @@ const PricingItem: React.FC<PricingItemProps> = ({
             <span>Customer Support</span>
           </li>
         </ul>
-        <a href="#!" className={styles.btn}>
+        <Link href="/sign-up/" className={styles.btn}>
           Start Now
-        </a>
+        </Link>
       </div>
     </section>
   );
