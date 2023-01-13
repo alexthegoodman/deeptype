@@ -21,7 +21,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
       <div className={styles.siteHeaderInner}>
         <div className={styles.left}>
           <div className={`${styles.brand}`}>
-            <Link href="/">CommonText</Link>
+            <Link href="/">DeepType</Link>
           </div>
           <nav className={styles.navigation}>
             <ul>

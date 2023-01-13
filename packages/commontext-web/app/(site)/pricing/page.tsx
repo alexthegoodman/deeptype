@@ -1,28 +1,37 @@
-import InfoSection from "../../../components/InfoSection/InfoSection";
+import PricingItem from "../../../components/PricingItem/PricingItem";
 import SiteFooter from "../../../components/SiteFooter/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader/SiteHeader";
+
+import styles from "./page.module.scss";
+
+import { IBM_Plex_Mono } from "@next/font/google";
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
 
 export default function Pricing() {
   return (
     <>
       <SiteHeader />
-      <main>
-        <InfoSection>
-          <>
-            <h1>Pricing</h1>
-            <p>
-              During the private alpha stage, CommonText is completely free to
-              use. This is to ensure that we can fix the most glaring bugs and
-              get your valuable feedback early on.
-            </p>
-            <p>
-              Come time for the public beta, we plan on charging $19/mo. This
-              price is based mainly on the relative value of the product and the
-              cost of delivering it to you. This price may be adjusted in the
-              future.
-            </p>
-          </>
-        </InfoSection>
+      <main className={ibmPlexMono.className}>
+        <section className={styles.introHero}>
+          <div className={styles.introHeroInner}>
+            <h1>Simple Pricing</h1>
+            <h2>Two Options</h2>
+          </div>
+        </section>
+        <section className={styles.pricingInfo}>
+          <div className={styles.pricingInfoInner}>
+            <div className={styles.left}>
+              <PricingItem price={19} frequency="Monthly" />
+            </div>
+            <div className={styles.right}>
+              <PricingItem price={12} frequency="Annually" />
+            </div>
+          </div>
+        </section>
       </main>
       <SiteFooter />
     </>
