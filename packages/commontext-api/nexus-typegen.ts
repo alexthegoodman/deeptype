@@ -105,6 +105,7 @@ export interface NexusGenFieldTypes {
     url: string | null; // String
   }
   Mutation: { // field return type
+    newCheckout: string | null; // String
     newDocument: NexusGenRootTypes['Document'] | null; // Document
     registerUser: string; // String!
     updateDocument: NexusGenRootTypes['Document'] | null; // Document
@@ -141,6 +142,7 @@ export interface NexusGenFieldTypeNames {
     url: 'String'
   }
   Mutation: { // field return type name
+    newCheckout: 'String'
     newDocument: 'Document'
     registerUser: 'String'
     updateDocument: 'Document'
@@ -161,6 +163,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    newCheckout: { // args
+      frequency: string; // String!
+    }
     updateDocument: { // args
       content?: string | null; // String
       descriptor?: string | null; // String
