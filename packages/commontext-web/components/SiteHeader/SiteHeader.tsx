@@ -42,8 +42,8 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
               Go to App
             </Link>
           ) : (
-            <Link href="/sign-in" className={styles.btn}>
-              Try Beta
+            <Link href="/sign-up" className={styles.btn}>
+              Try Now
             </Link>
           )}
         </div>

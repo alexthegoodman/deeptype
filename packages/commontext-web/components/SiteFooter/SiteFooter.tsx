@@ -33,7 +33,7 @@ const SiteFooter: React.FC<SiteFooterProps> = () => {
                 <Link href="/pricing">Pricing</Link>
               </li>
               <li>
-                <Link href="/sign-in">Try Private Beta</Link>
+                <Link href="/sign-up">Try Now</Link>
               </li>
             </ul>
           </nav>
