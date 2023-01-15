@@ -24,6 +24,18 @@
           font-size: 36px;
           font-weight: 500;
           color: $blackish;
+
+          span {
+            font-size: 20px;
+            background-color: $blackish;
+            display: inline-block;
+            padding: 4px;
+            color: white;
+            border-radius: 5px;
+            margin-left: 10px;
+            position: relative;
+            top: -3px;
+          }
         }
       }
       .navigation {

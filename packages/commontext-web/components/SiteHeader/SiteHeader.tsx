@@ -21,7 +21,9 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
       <div className={styles.siteHeaderInner}>
         <div className={styles.left}>
           <div className={`${styles.brand}`}>
-            <Link href="/">DeepType</Link>
+            <Link href="/">
+              DeepType<span>Beta</span>
+            </Link>
           </div>
           <nav className={styles.navigation}>
             <ul>
