@@ -8,6 +8,11 @@ import Link from "next/link";
 const PricingItem: React.FC<PricingItemProps> = ({
   price = 0,
   frequency = "",
+  btn = (
+    <Link href="/sign-up/" className={styles.btn}>
+      Start Now
+    </Link>
+  ),
 }) => {
   return (
     <section className={styles.pricingItem}>
@@ -28,9 +33,7 @@ const PricingItem: React.FC<PricingItemProps> = ({
             <span>Customer Support</span>
           </li>
         </ul>
-        <Link href="/sign-up/" className={styles.btn}>
-          Start Now
-        </Link>
+        {btn}
       </div>
     </section>
   );

@@ -5,6 +5,8 @@ import SiteHeader from "../../../components/SiteHeader/SiteHeader";
 import styles from "./page.module.scss";
 
 import { IBM_Plex_Mono } from "@next/font/google";
+import PricingInfo from "../../../components/PricingInfo/PricingInfo";
+import IntroHero from "../../../components/IntroHero/IntroHero";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -16,22 +18,8 @@ export default function Pricing() {
     <>
       <SiteHeader />
       <main className={ibmPlexMono.className}>
-        <section className={styles.introHero}>
-          <div className={styles.introHeroInner}>
-            <h1>Simple Pricing</h1>
-            <h2>Two Options</h2>
-          </div>
-        </section>
-        <section className={styles.pricingInfo}>
-          <div className={styles.pricingInfoInner}>
-            <div className={styles.left}>
-              <PricingItem price={19} frequency="Monthly" />
-            </div>
-            <div className={styles.right}>
-              <PricingItem price={12} frequency="Annually" />
-            </div>
-          </div>
-        </section>
+        <IntroHero headline="Simple Pricing" subHeadline="Two Options" />
+        <PricingInfo />
       </main>
       <SiteFooter />
     </>

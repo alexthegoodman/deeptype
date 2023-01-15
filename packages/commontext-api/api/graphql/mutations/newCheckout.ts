@@ -30,8 +30,8 @@ export const NewCheckoutMutation = extendType({
             },
           ],
           mode: "subscription",
-          success_url: `${process.env.WEBAPP_DOMAIN}?success=true`,
-          cancel_url: `${process.env.WEBAPP_DOMAIN}?canceled=true`,
+          success_url: `${process.env.WEBAPP_DOMAIN}/subscribe-success?stripeSessionId={CHECKOUT_SESSION_ID}&userSubscriptionToken=${currentUser.subscriptionToken}`,
+          cancel_url: `${process.env.WEBAPP_DOMAIN}?subscribeCancelled=true`,
           automatic_tax: { enabled: true },
         });
 

@@ -1,7 +1,18 @@
+@import "../../app/variables.scss";
+@import "../../app/shared.scss";
+
 .homeLayout {
   .homeBody {
     display: flex;
     flex-direction: row;
     padding-top: 40px;
+    width: 100%;
+
+    justify-content: center;
+    // align-items: center;
+
+    > div {
+      width: 100%;
+    }
   }
 }

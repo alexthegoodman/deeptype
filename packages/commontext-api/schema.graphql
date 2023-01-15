@@ -31,6 +31,7 @@ type Link {
 }
 
 type Mutation {
+  confirmSubscription(sessionId: String!, token: String!): User
   newCheckout(frequency: String!): String
   newDocument: Document
   registerUser: String!
@@ -40,6 +41,7 @@ type Mutation {
 type Query {
   authenticate: String
   document(documentId: String!): Document
+  getCurrentUser: User
   myDocuments: [Document]
 }
 
@@ -47,6 +49,8 @@ type User {
   createdAt: DateTime
   documents: [Document]
   email: String
+  frequency: String
   role: String
+  subscription: String
   updatedAt: DateTime
 }

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
+import { v4 as uuidv4 } from "uuid";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +13,9 @@ export default async function seedUsers() {
       email,
       role: "USER",
       password: "$2a$12$QG3qjuizq4bb24Gl2hhhSegdv7XHpv0nJrc1Fw/920gOMNSzn80A.", // testing
+      subscriptionToken: uuidv4(),
+      subscription: "NONE",
+      frequency: "",
     };
   };
 

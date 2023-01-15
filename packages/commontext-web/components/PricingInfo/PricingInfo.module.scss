@@ -1,0 +1,47 @@
+@import "../../app/variables.scss";
+@import "../../app/shared.scss";
+
+.pricingInfo {
+  margin-bottom: 90px;
+
+  .pricingInfoInner {
+    display: flex;
+    flex-direction: row;
+    width: $desktop;
+    margin: 0 auto;
+
+    .left,
+    .right {
+      text-align: center;
+    }
+
+    .left {
+      padding: 65px 80px;
+      background-color: $lightGreenGrey;
+      width: 50%;
+
+      a {
+        background: $blackish;
+        margin-top: 50px;
+      }
+    }
+    .right {
+      padding: 90px 80px 65px 80px;
+      background-color: $green1;
+      margin-top: -25px;
+      margin-bottom: -25px;
+      width: calc(50% + 100px);
+
+      h3,
+      h4,
+      ul li {
+        color: white;
+      }
+      a {
+        background: white;
+        color: black;
+        margin-top: 50px;
+      }
+    }
+  }
+}

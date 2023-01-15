@@ -4,8 +4,12 @@ import { Context } from "../../context";
 export const UserType = objectType({
   name: "User",
   definition(t) {
+    // PRIVATE: subscriptionToken, id, password
     t.field("email", { type: "String" });
     t.field("role", { type: "String" });
+
+    t.field("subscription", { type: "String" });
+    t.field("frequency", { type: "String" });
 
     t.list.field("documents", {
       type: "Document",
