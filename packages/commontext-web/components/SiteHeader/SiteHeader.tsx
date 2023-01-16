@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 import { IBM_Plex_Mono } from "@next/font/google";
@@ -5,7 +7,8 @@ import styles from "./SiteHeader.module.scss";
 
 import { SiteHeaderProps } from "./SiteHeader.d";
 import Link from "next/link";
-import { cookies } from "next/headers";
+import { useCookies } from "react-cookie";
+// import { cookies } from "next/headers";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
@@ -13,11 +16,28 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 const SiteHeader: React.FC<SiteHeaderProps> = () => {
-  const nextCookies = cookies();
-  const coUserToken = nextCookies.get("coUserToken");
+  // const nextCookies = cookies();
+  // const coUserToken = nextCookies.get("coUserToken");
+  const [cookies, setCookie] = useCookies(["coUserToken"]);
+  const token = cookies.coUserToken;
+
+  const [showMobile, setShowMobile] = React.useState(false);
+
+  const closeMenus = () => {
+    setShowMobile(false);
+  };
 
   return (
-    <header className={`${ibmPlexMono.className} ${styles.siteHeader}`}>
+    <header
+      className={`${ibmPlexMono.className} ${styles.siteHeader}  ${
+        showMobile ? styles.showMobile : styles.hideMobile
+      }`}
+    >
+      <div className={styles.mobileButtonContainer}>
+        <a href="#!" onClick={() => setShowMobile(!showMobile)}>
+          <i className="ph-list"></i>
+        </a>
+      </div>
       <div className={styles.siteHeaderInner}>
         <div className={styles.left}>
           <div className={`${styles.brand}`}>
@@ -37,7 +57,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
           </nav>
         </div>
         <div className={styles.right}>
-          {coUserToken ? (
+          {token ? (
             <Link href="/browse" className={styles.btn}>
               Go to App
             </Link>
@@ -46,6 +66,22 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
               Try Now
             </Link>
           )}
+        </div>
+      </div>
+      <div className={styles.mobileHeader}>
+        <div className={styles.mobileHeaderInner}>
+          <div className={styles.brandContainer}>
+            <h1 className={styles.brand}>
+              <Link href="/">
+                DeepType<span>Beta</span>
+              </Link>
+            </h1>
+          </div>
+          <div className={styles.buttonContainer}>
+            <a href="#!" onClick={() => setShowMobile(!showMobile)}>
+              <i className="ph-list"></i>
+            </a>
+          </div>
         </div>
       </div>
     </header>

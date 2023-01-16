@@ -1,8 +1,57 @@
 @import "../../app/variables.scss";
 @import "../../app/shared.scss";
+@import "../../app/mixins.scss";
 
 .siteHeader {
   margin-top: 35px;
+
+  .mobileButtonContainer {
+    display: none;
+
+    position: absolute;
+    // top: $gap;
+
+    right: $gap;
+    z-index: 20;
+  }
+
+  .mobileButtonContainer,
+  .buttonContainer {
+    position: absolute;
+    right: $gap;
+    top: 15px;
+
+    a {
+      font-weight: 700;
+      font-size: 42px;
+      color: $blackish;
+      text-decoration: none;
+    }
+  }
+
+  .brand {
+    margin-right: 80px;
+    align-self: flex-end;
+
+    a {
+      text-decoration: none;
+      font-size: 36px;
+      font-weight: 500;
+      color: $blackish;
+
+      span {
+        font-size: 20px;
+        background-color: $blackish;
+        display: inline-block;
+        padding: 4px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 10px;
+        position: relative;
+        top: -3px;
+      }
+    }
+  }
 
   .siteHeaderInner {
     display: flex;
@@ -15,29 +64,6 @@
       display: flex;
       flex-direction: row;
 
-      .brand {
-        margin-right: 80px;
-        align-self: flex-end;
-
-        a {
-          text-decoration: none;
-          font-size: 36px;
-          font-weight: 500;
-          color: $blackish;
-
-          span {
-            font-size: 20px;
-            background-color: $blackish;
-            display: inline-block;
-            padding: 4px;
-            color: white;
-            border-radius: 5px;
-            margin-left: 10px;
-            position: relative;
-            top: -3px;
-          }
-        }
-      }
       .navigation {
         align-self: flex-end;
 
@@ -62,6 +88,81 @@
       }
     }
     .right {
+    }
+  }
+
+  .mobileHeader {
+    display: none;
+
+    width: 100%;
+
+    .mobileHeaderInner {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: $gap;
+
+      .brand {
+        position: absolute;
+        top: 20px;
+        left: $gap;
+
+        a {
+          font-size: 28px;
+
+          span {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  @include desktopDown {
+    .siteHeaderInner {
+      width: 100%;
+      padding: 0 $gap;
+    }
+  }
+  @include phoneDown {
+    margin-top: $gap;
+
+    .siteHeaderInner {
+      display: none;
+    }
+    .mobileHeader {
+      display: block;
+    }
+
+    &.showMobile {
+      .mobileHeader {
+      }
+      .siteHeaderInner {
+        display: flex;
+        flex-direction: column;
+
+        .left {
+          flex-direction: column;
+          padding-top: 50px;
+
+          .navigation {
+            align-self: flex-start;
+
+            li {
+              margin: 5px 0;
+
+              a {
+                display: block;
+                padding: 20px 0;
+              }
+            }
+          }
+        }
+
+        .brand {
+          display: none;
+        }
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 @import "../app/variables.scss";
+@import "../app/mixins.scss";
 
 .siteHero {
   .siteHeroInner {
@@ -23,7 +24,9 @@
       iframe {
         width: 100%;
         background-color: $lightGrey;
-        aspect-ratio: 16/9;
+        border: 15px white solid;
+        // border-radius: 5px;
+        aspect-ratio: 16/10;
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
       }
     }
@@ -71,6 +74,12 @@
       background-color: $lightGreenGrey;
       width: 100vw;
       z-index: -3;
+    }
+  }
+
+  @include desktopDown {
+    .siteHeroInner {
+      width: 100%;
     }
   }
 }
