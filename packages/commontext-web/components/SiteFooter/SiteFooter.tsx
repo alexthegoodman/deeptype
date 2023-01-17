@@ -18,7 +18,7 @@ const SiteFooter: React.FC<SiteFooterProps> = () => {
         <div className={styles.left}>
           <div className={styles.brand}>
             <Link href="/" className={ibmPlexMono.className}>
-              CommonText
+              DeepType
             </Link>
           </div>
           <span>&copy; Common 2023</span>

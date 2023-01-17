@@ -80,6 +80,82 @@
   @include desktopDown {
     .siteHeroInner {
       width: 100%;
+      padding-left: $gap;
+      padding-right: $gap;
+
+      h1 {
+        font-size: 58px;
+        line-height: 88px;
+      }
+
+      // .heroVideo {
+      //   video,
+      //   iframe {
+      //     display: block;
+      //     width: calc(100% - 20px);
+      //     margin: 0 auto;
+      //   }
+      // }
+      .heroFeatures {
+        column-gap: 30px;
+      }
+    }
+    .featureWrapper {
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+  @include tabletDown {
+    .siteHeroInner {
+      h1 {
+        font-size: 48px;
+        line-height: 72px;
+      }
+      .heroFeatures {
+        .feature {
+          i {
+            font-size: 48px;
+            margin-bottom: 10px;
+          }
+          span {
+            font-size: 20px;
+            margin-bottom: 10px;
+          }
+          p {
+            font-size: 15px;
+            line-height: 25px;
+          }
+        }
+      }
+    }
+    .featureWrapper {
+      &:before {
+        height: 100px;
+        top: -100px;
+      }
+    }
+  }
+  @include phoneDown {
+    .siteHeroInner {
+      padding-top: 70px;
+
+      h1 {
+        font-size: 28px;
+        line-height: 46px;
+        margin-bottom: 35px;
+      }
+      .heroFeatures {
+        display: flex;
+        flex-direction: column;
+
+        .feature {
+          margin-bottom: 50px;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 @import "../../app/variables.scss";
+@import "../../app/mixins.scss";
 
 .siteFooter {
   .siteFooterInner {
@@ -41,6 +42,35 @@
               font-size: 18px;
             }
           }
+        }
+      }
+    }
+  }
+
+  @include desktopDown {
+    .siteFooterInner {
+      width: 100%;
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+  @include phoneDown {
+    .siteFooterInner {
+      flex-direction: column;
+      justify-content: center;
+      flex-flow: column-reverse;
+
+      .right {
+        margin-bottom: 25px;
+      }
+      .left,
+      .right {
+        text-align: center;
+
+        .navigation {
+          display: block;
+          margin: 0 auto;
+          width: fit-content;
         }
       }
     }
