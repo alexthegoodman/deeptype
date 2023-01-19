@@ -30,19 +30,22 @@ const Information: React.FC<InformationProps> = () => {
 
   React.useEffect(
     () => {
-      if (debouncedDescriptor && debouncedDescriptor !== "") {
+      if ((debouncedDescriptor && debouncedDescriptor !== "") || (debouncedPlaintext && debouncedPlaintext !== "")) {
         const fullText = debouncedPlaintext;
+        const descriptor = typeof debouncedDescriptor !== "undefined" && debouncedDescriptor ? debouncedDescriptor : "";
         const recentText = debouncedPlaintext.substring(
-          debouncedPlaintext.length - 50
+          debouncedPlaintext.length - 35
         );
+        
+        console.info('searching', debouncedDescriptor, recentText)
 
         setIsSearching(true);
         request("http://localhost:4001/graphql", searchQuery, {
           // contextQuery: fullText,
-          contextQuery: debouncedDescriptor,
+          contextQuery: descriptor,
           query: recentText,
         }).then((data) => {
-          console.info("data", data);
+          console.info("results data", data);
           setIsSearching(false);
           setResultData(data.search);
         });

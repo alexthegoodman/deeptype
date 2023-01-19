@@ -13,14 +13,16 @@
 
   .editor {
     width: 60%;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
 
     .editorField {
     }
   }
   .intelSidebar {
     width: 40%;
-    height: 100vh;
-    overflow: scroll;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
 
     .intelSidebarInner {
     }

@@ -21,7 +21,7 @@ export const UpdateDocumentMutation = extendType({
         let updateData = {};
 
         if (title) updateData = { ...updateData, title };
-        if (descriptor) updateData = { ...updateData, descriptor };
+        if (descriptor !== null) updateData = { ...updateData, descriptor };
         if (content)
           updateData = { ...updateData, content: JSON.parse(content) };
 

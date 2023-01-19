@@ -55,14 +55,13 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
 
   React.useEffect(() => {
     if (debouncedJson) {
-      // TODO: verify json over graphql
-      console.info("debouncedJson", debouncedJson);
+      // console.info("debouncedJson", debouncedJson);
       updateDocument({ content: JSON.stringify(debouncedJson) });
     }
   }, [debouncedJson]);
 
   React.useEffect(() => {
-    if (debouncedDescriptor) {
+    if (debouncedDescriptor !== null) {
       updateDocument({ descriptor: debouncedDescriptor });
     }
   }, [debouncedDescriptor]);
