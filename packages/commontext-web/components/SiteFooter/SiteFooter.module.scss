@@ -19,6 +19,16 @@
           color: $blackish;
         }
       }
+      span {
+        a {
+          color: $blackish;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
     }
     .right {
       .navigation {

@@ -21,7 +21,13 @@ const SiteFooter: React.FC<SiteFooterProps> = () => {
               DeepType
             </Link>
           </div>
-          <span>&copy; Common 2023</span>
+          <span>
+            &copy;{" "}
+            <a href="https://madebycommon.com" target="_blank">
+              Common
+            </a>{" "}
+            2023
+          </span>
         </div>
         <div className={styles.right}>
           <nav className={styles.navigation}>
