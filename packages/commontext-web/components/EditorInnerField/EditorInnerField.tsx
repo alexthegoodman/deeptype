@@ -28,6 +28,30 @@ const CustomToolbar = () => (
   </div>
 );
 
+const formats = [
+  // 'background',
+  'bold',
+  'color',
+  'font',
+  'code',
+  'italic',
+  'link',
+  'size',
+  'strike',
+  'script',
+  'underline',
+  'blockquote',
+  'header',
+  'indent',
+  'list',
+  'align',
+  'direction',
+  'code-block',
+  'formula'
+  // 'image' // disallowed
+  // 'video' // disallowed
+];
+
 const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   Quill = null,
   ReactQuill = null,
@@ -98,6 +122,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
             }}
             placeholder="Begin typing here..."
             defaultValue={documentData?.content}
+            formats={formats}
           />
         </div>
       </section>
