@@ -21,10 +21,10 @@ const Information: React.FC<InformationProps> = () => {
   const [resultData, setResultData] = React.useState<ResultData | null>(null);
 
   // for testing
-  React.useEffect(() => {
-    const initialData = resultDataFactory();
-    setResultData(initialData);
-  }, []);
+  // React.useEffect(() => {
+  //   const initialData = resultDataFactory();
+  //   setResultData(initialData);
+  // }, []);
 
   // console.info("resultData", resultData);
 
@@ -47,7 +47,7 @@ const Information: React.FC<InformationProps> = () => {
           setResultData(data.search);
         });
       } else {
-        // setResultData(null);
+        setResultData(null);
         setIsSearching(false);
       }
     },
