@@ -15,7 +15,7 @@ import useSWR from "swr";
 import styles from "./page.module.scss";
 import IntroHero from "../../components/IntroHero/IntroHero";
 
-const getUserData = async (token) => {
+export const getUserData = async (token) => {
   graphClient.setupClient(token);
 
   const { getCurrentUser } = await graphClient.client?.request(
@@ -93,7 +93,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <PricingInfo leftBtn={monthlyBtn} rightBtn={annualBtn} />
         </section>
       );
-    } else {
+    } else if (data.subscription === "STARTER") {
       homeBody = (
         <>
           <HomeSidebar />
