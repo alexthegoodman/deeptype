@@ -60,7 +60,7 @@ const Information: React.FC<InformationProps> = () => {
   return (
     <section className={styles.information}>
       <div className={styles.informationInner}>
-        <DebugPanel resultData={resultData} />
+        {/* <DebugPanel resultData={resultData} /> */}
 
         {/* <h2>Information</h2> */}
 

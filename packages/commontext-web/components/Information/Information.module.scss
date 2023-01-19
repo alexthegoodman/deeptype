@@ -1,4 +1,5 @@
 @import "../../app/variables.scss";
+@import "../../app/mixins.scss";
 
 .badge {
   display: flex;
@@ -90,6 +91,29 @@
             line-height: 32px;
             margin-bottom: 7px;
             font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+
+  @include tabletDown {
+    .informationInner {
+      .informationResults {
+        .informationResultsInner {
+          display: flex;
+          flex-direction: row;
+          overflow-y: hidden;
+
+          .resultItem {
+            min-width: 550px;
+            margin-right: 25px;
+            height: fit-content;
+
+            p {
+              font-size: 15px;
+              line-height: 28px;
+            }
           }
         }
       }
