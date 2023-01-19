@@ -24,7 +24,15 @@ export default function Home() {
               Surface <span>relevant information</span> as you type
             </h1>
             <div className={styles.heroVideo}>
-              <video />
+              <iframe
+                // width="560"
+                // height="315"
+                src="https://www.youtube.com/embed/E0x5n6m2a40?controls=0"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
             </div>
           </div>
           <div className={styles.featureWrapper}>

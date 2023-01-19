@@ -9,6 +9,8 @@ import bcrypt from "bcryptjs";
 import Helpers from "../../../helpers/Helpers";
 import ERROR_CODES from "../../../helpers/ERROR_CODES";
 
+import { v4 as uuidv4 } from "uuid";
+
 // const mailchimp = mailchimpPackage(process.env.MAILCHIMP_KEY);
 
 export const RegisterUserMutation = extendType({
@@ -36,6 +38,9 @@ export const RegisterUserMutation = extendType({
                     email,
                     password: hash,
                     role: "USER",
+                    subscriptionToken: uuidv4(),
+                    subscription: "NONE",
+                    frequency: "",
                   },
                 });
               } catch (error) {

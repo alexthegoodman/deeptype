@@ -72,7 +72,9 @@ export interface NexusGenObjects {
   User: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email?: string | null; // String
+    frequency?: string | null; // String
     role?: string | null; // String
+    subscription?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
 }
@@ -105,6 +107,8 @@ export interface NexusGenFieldTypes {
     url: string | null; // String
   }
   Mutation: { // field return type
+    confirmSubscription: NexusGenRootTypes['User'] | null; // User
+    newCheckout: string | null; // String
     newDocument: NexusGenRootTypes['Document'] | null; // Document
     registerUser: string; // String!
     updateDocument: NexusGenRootTypes['Document'] | null; // Document
@@ -112,13 +116,16 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     authenticate: string | null; // String
     document: NexusGenRootTypes['Document'] | null; // Document
+    getCurrentUser: NexusGenRootTypes['User'] | null; // User
     myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     documents: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
     email: string | null; // String
+    frequency: string | null; // String
     role: string | null; // String
+    subscription: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
 }
@@ -141,6 +148,8 @@ export interface NexusGenFieldTypeNames {
     url: 'String'
   }
   Mutation: { // field return type name
+    confirmSubscription: 'User'
+    newCheckout: 'String'
     newDocument: 'Document'
     registerUser: 'String'
     updateDocument: 'Document'
@@ -148,19 +157,29 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     authenticate: 'String'
     document: 'Document'
+    getCurrentUser: 'User'
     myDocuments: 'Document'
   }
   User: { // field return type name
     createdAt: 'DateTime'
     documents: 'Document'
     email: 'String'
+    frequency: 'String'
     role: 'String'
+    subscription: 'String'
     updatedAt: 'DateTime'
   }
 }
 
 export interface NexusGenArgTypes {
   Mutation: {
+    confirmSubscription: { // args
+      sessionId: string; // String!
+      token: string; // String!
+    }
+    newCheckout: { // args
+      frequency: string; // String!
+    }
     updateDocument: { // args
       content?: string | null; // String
       descriptor?: string | null; // String
