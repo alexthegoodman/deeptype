@@ -1,4 +1,5 @@
 @import "../../variables.scss";
+@import "../../mixins.scss";
 
 .editorContainer {
   display: flex;
@@ -13,16 +14,34 @@
 
   .editor {
     width: 60%;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
 
     .editorField {
     }
   }
   .intelSidebar {
     width: 40%;
-    height: 100vh;
-    overflow: scroll;
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
 
     .intelSidebarInner {
+    }
+  }
+
+  @include tabletDown {
+    .editorWrapper {
+      flex-direction: column;
+
+      .editor {
+        width: 100%;
+        height: calc(100vh - 330px);
+      }
+      .intelSidebar {
+        width: 100%;
+        height: 250px;
+        overflow-y: hidden;
+      }
     }
   }
 }

@@ -21,33 +21,36 @@ const Information: React.FC<InformationProps> = () => {
   const [resultData, setResultData] = React.useState<ResultData | null>(null);
 
   // for testing
-  React.useEffect(() => {
-    const initialData = resultDataFactory();
-    setResultData(initialData);
-  }, []);
+  // React.useEffect(() => {
+  //   const initialData = resultDataFactory();
+  //   setResultData(initialData);
+  // }, []);
 
   // console.info("resultData", resultData);
 
   React.useEffect(
     () => {
-      if (debouncedDescriptor && debouncedDescriptor !== "") {
+      if ((debouncedDescriptor && debouncedDescriptor !== "") || (debouncedPlaintext && debouncedPlaintext !== "")) {
         const fullText = debouncedPlaintext;
+        const descriptor = typeof debouncedDescriptor !== "undefined" && debouncedDescriptor ? debouncedDescriptor : "";
         const recentText = debouncedPlaintext.substring(
-          debouncedPlaintext.length - 50
+          debouncedPlaintext.length - 35
         );
+        
+        console.info('searching', debouncedDescriptor, recentText)
 
         setIsSearching(true);
         request("http://localhost:4001/graphql", searchQuery, {
           // contextQuery: fullText,
-          contextQuery: debouncedDescriptor,
+          contextQuery: descriptor,
           query: recentText,
         }).then((data) => {
-          console.info("data", data);
+          console.info("results data", data);
           setIsSearching(false);
           setResultData(data.search);
         });
       } else {
-        // setResultData(null);
+        setResultData(null);
         setIsSearching(false);
       }
     },
@@ -57,7 +60,7 @@ const Information: React.FC<InformationProps> = () => {
   return (
     <section className={styles.information}>
       <div className={styles.informationInner}>
-        <DebugPanel resultData={resultData} />
+        {/* <DebugPanel resultData={resultData} /> */}
 
         {/* <h2>Information</h2> */}
 
