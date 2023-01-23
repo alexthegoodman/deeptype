@@ -1,5 +1,6 @@
 @import "../../app/variables.scss";
 @import "../../app/shared.scss";
+@import "../../app/mixins.scss";
 
 .pricingInfo {
   margin-bottom: 90px;
@@ -41,6 +42,43 @@
         background: white;
         color: black;
         margin-top: 50px;
+      }
+    }
+  }
+
+  @include desktopDown {
+    .pricingInfoInner {
+      width: 100%;
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+  @include tabletDown {
+    .pricingInfoInner {
+      width: $small;
+      flex-direction: column;
+
+      .left {
+        width: calc(100% - 20px);
+        margin: 0 auto;
+        padding: 35px 40px 55px 40px;
+      }
+      .right {
+        width: 100%;
+        padding: 35px 40px 35px 40px;
+        margin-top: -20px;
+        margin-bottom: -20px;
+      }
+    }
+  }
+  @include phoneDown {
+    .pricingInfoInner {
+      width: 100%;
+
+      .left,
+      .right {
+        padding-left: 25px;
+        padding-right: 25px;
       }
     }
   }

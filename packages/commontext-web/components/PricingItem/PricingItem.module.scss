@@ -1,5 +1,6 @@
 @import "../../app/variables.scss";
 @import "../../app/shared.scss";
+@import "../../app/mixins.scss";
 
 .pricingItem {
   .pricingItemInner {
@@ -22,16 +23,43 @@
       li {
         text-align: left;
         font-size: 22px;
+        line-height: 32px;
         margin-bottom: 15px;
 
+        span,
+        i {
+          display: inline-block;
+          vertical-align: bottom;
+        }
         i {
           font-size: 32px;
-          vertical-align: bottom;
           position: relative;
           top: 4px;
           margin-right: 10px;
         }
       }
     }
+  }
+
+  @include tabletDown {
+    .pricingItemInner {
+      h3 {
+        font-size: 68px;
+      }
+      h4 {
+        font-size: 24px;
+      }
+
+      ul li {
+        font-size: 18px;
+      }
+    }
+  }
+  @include phoneDown {
+    // .pricingItemInner {
+    //   ul {
+    //     width: 100%;
+    //   }
+    // }
   }
 }
