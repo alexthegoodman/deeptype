@@ -1,5 +1,6 @@
 @import "../../app/variables.scss";
 @import "../../app/shared.scss";
+@import "../../app/mixins.scss";
 
 .homeLayout {
   .homeBody {
@@ -13,6 +14,13 @@
 
     > div {
       width: 100%;
+    }
+  }
+
+  @include tabletDown {
+    .homeBody {
+      flex-direction: column;
+      padding-top: 30px;
     }
   }
 }
