@@ -22,7 +22,7 @@ export const RegisterUserMutation = extendType({
       resolve: async (_, {}, { prisma, mixpanel, req }: Context) => {
         const helpers = new Helpers();
 
-        const credentials = helpers.parseAuthHeader(req.headers.authorization);
+        const credentials = helpers.parseAuthHeader(req.headers.authorization as string);
         const email = credentials[0];
         const password = credentials[1];
 
@@ -51,7 +51,7 @@ export const RegisterUserMutation = extendType({
               // TODO: mailchimp list
               // TODO: mixpanel
 
-              resolve(newUser);
+              resolve(newUser as User);
             } else {
               reject(ERROR_CODES.C005);
             }

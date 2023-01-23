@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export default class Helpers {
-  isDefinedWithContent(item) {
+  isDefinedWithContent(item: any) {
     if (typeof item !== "undefined" && item && item !== "" && item !== null) {
       if (item.constructor === Array && item.length > 0) {
         return true;
@@ -14,7 +14,7 @@ export default class Helpers {
     }
   }
 
-  parseAuthHeader(str) {
+  parseAuthHeader(str: string) {
     console.info("parseAuthHeader", str);
     const credentials = Buffer.from(str.split("Basic ")[1], "base64").toString(
       "ascii"
@@ -22,8 +22,8 @@ export default class Helpers {
     return credentials.split(":");
   }
 
-  createJWT(data) {
-    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+  createJWT(data: any) {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY as jwt.Secret;
     const jwtData = {
       time: Date(),
       ...data,
@@ -37,7 +37,7 @@ export default class Helpers {
     return token;
   }
 
-  async emailToUsername(email) {
+  async emailToUsername(email: string) {
     // const { nanoid } = await import("nanoid");
 
     const emailUsername = email.split("@")[0];

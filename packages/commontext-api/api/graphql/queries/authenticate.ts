@@ -17,7 +17,7 @@ export const AuthenticateQuery = extendType({
 
         console.info("authenticate user", req.headers);
 
-        const credentials = helpers.parseAuthHeader(req.headers.authorization);
+        const credentials = helpers.parseAuthHeader(req.headers.authorization as string);
         const email = credentials[0];
         const password = credentials[1];
 
@@ -35,7 +35,7 @@ export const AuthenticateQuery = extendType({
           }
 
           // if user is found, check for password match
-          if (helpers.isDefinedWithContent(user)) {
+          if (user && helpers.isDefinedWithContent(user)) {
             const match = await bcrypt.compare(password, user.password);
 
             if (match) {

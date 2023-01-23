@@ -37,7 +37,7 @@ export const permissions = shield(
           thrownThing = "NOT AUTHORIZED!";
         }
         console.error(thrownThing);
-        return new ApolloError(thrownThing, "ERR_INTERNAL_SERVER");
+        return new ApolloError(thrownThing as string, "ERR_INTERNAL_SERVER");
       }
     },
   }

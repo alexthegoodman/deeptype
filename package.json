@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix ./packages/commontext-api run build",
+    "start": "npm --prefix ./packages/commontext-api run start",
+    "postinstall": "npm --prefix ./packages/commontext-api install"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}

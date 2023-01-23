@@ -24,16 +24,16 @@ export const startApolloServer = async () => {
     expressMiddleware(server, {
       context: async ({ req, res }) => {
         const tokenHeaderKey = process.env.TOKEN_HEADER_KEY as string;
-        const jwtSecretKey = process.env.JWT_SECRET_KEY;
+        const jwtSecretKey = process.env.JWT_SECRET_KEY as string;
         let currentUser;
 
         try {
           const tokenHeader = req.header(tokenHeaderKey);
-          const token = tokenHeader?.split("Bearer ")[1];
+          const token = tokenHeader?.split("Bearer ")[1] as string;
 
           const verified = jwt.verify(token, jwtSecretKey);
 
-          if (verified) {
+          if (verified && typeof verified !== "string") {
             currentUser = await prisma.user.findFirst({
               where: {
                 id: verified.userId,
