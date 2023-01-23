@@ -1,5 +1,6 @@
 @import "../../../app/variables.scss";
 @import "../../../app/shared.scss";
+@import "../../../app/mixins.scss";
 
 .authForm {
   background-color: $lightGreenGrey;
@@ -19,6 +20,14 @@
     }
     .addtActions {
       margin-top: 25px;
+    }
+  }
+
+  @include phoneDown {
+    width: calc(100% - 20px);
+
+    .authFormInner {
+      padding: 35px;
     }
   }
 }
