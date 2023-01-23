@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 console.info("Start Server...");
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port as number, "0.0.0.0", () => {
   console.info(`Express Server ready on port ${port}`);
 });
 
