@@ -3,7 +3,7 @@ import { startApolloServer } from "./api";
 import cors from "cors";
 
 const app = express();
-const port = process.env.PORT ? process.env.PORT : 3001;
+const port = 3001;
 
 // NOTE: fixes aws-sdk type error
 declare global {
