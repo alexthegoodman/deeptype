@@ -1,1 +1,6 @@
-export interface PricingInfoProps {}
+import { ReactElement } from "react";
+
+export interface PricingInfoProps {
+    leftBtn?: ReactElement;
+    rightBtn?: ReactElement;
+}

@@ -14,30 +14,25 @@ import useSWR from "swr";
 
 import styles from "./page.module.scss";
 import IntroHero from "../../components/IntroHero/IntroHero";
-
-export const getUserData = async (token) => {
-  graphClient.setupClient(token);
-
-  const { getCurrentUser } = await graphClient.client?.request(
-    getCurrentUserQuery
-  );
-
-  return getCurrentUser;
-};
+import { getUserData } from "../../helpers/requests";
+import { useEffect } from "react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   // const nextCookies = cookies();
   // const coUserToken = nextCookies.get("coUserToken");
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
-  const router = useRouter();
+  const router = useRouter(); // hide for build
 
   graphClient.setupClient(token);
 
-  if (!token) {
-    // redirect("/");
-    router.push("/");
-  }
+  useEffect(() => {
+    if (!token) {
+      // redirect("/");
+      router.push("/");
+      // window.location = "/" as unknown as Location;
+    }
+  }, [token]);
 
   const { data, error, isLoading, mutate } = useSWR(
     "homeLayout",

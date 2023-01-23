@@ -15,20 +15,29 @@ import IntroHero from "../../../components/IntroHero/IntroHero";
 import graphClient from "../../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import { NextPage } from "next";
 
 const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
 });
 
-export default function SubscribeSuccess({ searchParams }) {
+type Props = {
+  searchParams: {
+    stripeSessionId: string;
+    userSubscriptionToken: string;
+  };
+};
+
+export default function SubscribeSuccess(props) {
+  const { searchParams } = props;
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
   const router = useRouter();
 
   graphClient.setupClient(token);
 
-  const confirmSubscription = async (sessionId, subscriptionToken) => {
+  const confirmSubscription = async (sessionId: string, subscriptionToken: string) => {
     await graphClient.client?.request(confirmSubscriptionMutation, {
       sessionId,
       token: subscriptionToken,

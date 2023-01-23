@@ -7,7 +7,7 @@ export interface EditorContextState {
   editorPlaintext: string;
 }
 
-export const EditorContextState = { editorValue: "", editorPlaintext: "" };
+export const EditorContextState = { editorTitle: "", editorValue: "", editorJson: null, editorPlaintext: "" };
 
 export const EditorContextReducer = (
   state: EditorContextState,

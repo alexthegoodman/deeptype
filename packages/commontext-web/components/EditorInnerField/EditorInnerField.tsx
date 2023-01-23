@@ -89,7 +89,10 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
 
   React.useEffect(() => {
     console.info("editorRef", editorRef.current);
-    editorRef.current.focus();
+    if (typeof editorRef.current !== "undefined") {
+      const elem = editorRef.current as any;
+      elem.focus();
+    }
   }, [editorRef.current]);
 
   React.useEffect(() => {

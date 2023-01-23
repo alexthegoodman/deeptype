@@ -8,7 +8,7 @@ import { getCurrentUserQuery } from "../../../graphql/user";
 import graphClient from "../../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
 
-const getUserData = async (token) => {
+const getUserData = async (token: string) => {
   graphClient.setupClient(token);
 
   const { getCurrentUser } = await graphClient.client?.request(

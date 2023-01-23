@@ -1,1 +1,3 @@
-export interface InfoSectionProps {}
+export interface InfoSectionProps {
+    children: any;
+}

@@ -61,7 +61,7 @@ export default function Browse() {
         {error ? <>{error}</> : <></>}
         {!isLoading && !error ? (
           <>
-            {data.map((document, i) => {
+            {data.map((document: any) => {
               return (
                 <div
                   key={document.id}

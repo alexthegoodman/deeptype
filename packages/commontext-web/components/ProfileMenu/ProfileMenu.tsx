@@ -8,9 +8,9 @@ import { ProfileMenuProps } from "./ProfileMenu.d";
 import Image from "next/image";
 import Link from "next/link";
 import useSWR from "swr";
-import { getUserData } from "../../app/(home)/layout";
 import graphClient from "../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
+import { getUserData } from "../../helpers/requests";
 
 const ProfileMenu: React.FC<ProfileMenuProps> = () => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);

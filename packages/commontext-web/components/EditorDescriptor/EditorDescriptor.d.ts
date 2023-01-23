@@ -1,1 +1,3 @@
-export interface EditorDescriptorProps {}
+export interface EditorDescriptorProps {
+    documentData: any;
+}

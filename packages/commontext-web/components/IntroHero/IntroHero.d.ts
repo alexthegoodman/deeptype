@@ -1,1 +1,4 @@
-export interface IntroHeroProps {}
+export interface IntroHeroProps {
+    headline: string;
+    subHeadline?: string;
+}

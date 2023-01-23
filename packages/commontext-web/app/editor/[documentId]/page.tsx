@@ -26,7 +26,8 @@ const getDocumentData = async (token: string, documentId: string) => {
   return document;
 };
 
-export default function Editor({ params }) {
+export default function Editor(props) {
+  const { params } = props;
   const documentId = params.documentId;
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
