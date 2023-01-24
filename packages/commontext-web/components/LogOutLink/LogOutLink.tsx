@@ -7,13 +7,16 @@ import styles from "./LogOutLink.module.scss";
 import { LogOutLinkProps } from "./LogOutLink.d";
 import { useCookies } from "react-cookie";
 import { useRouter } from "next/navigation";
+import { CookieSettings } from "../../defs/CookieSettings";
 
 const LogOutLink: React.FC<LogOutLinkProps> = () => {
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(["coUserToken"]);
 
   const onClick = () => {
-    removeCookie("coUserToken");
+    removeCookie("coUserToken", {
+      ...CookieSettings,
+    });
     router.refresh();
   };
 
