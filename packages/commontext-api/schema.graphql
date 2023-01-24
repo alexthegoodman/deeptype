@@ -42,6 +42,7 @@ type Query {
   authenticate: String
   document(documentId: String!): Document
   getCurrentUser: User
+  getPortalUrl: String
   myDocuments: [Document]
 }
 

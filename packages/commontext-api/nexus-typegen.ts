@@ -117,6 +117,7 @@ export interface NexusGenFieldTypes {
     authenticate: string | null; // String
     document: NexusGenRootTypes['Document'] | null; // Document
     getCurrentUser: NexusGenRootTypes['User'] | null; // User
+    getPortalUrl: string | null; // String
     myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
   User: { // field return type
@@ -158,6 +159,7 @@ export interface NexusGenFieldTypeNames {
     authenticate: 'String'
     document: 'Document'
     getCurrentUser: 'User'
+    getPortalUrl: 'String'
     myDocuments: 'Document'
   }
   User: { // field return type name

@@ -39,3 +39,9 @@ export const confirmSubscriptionMutation = gql`
     }
   }
 `;
+
+export const getPortalUrlQuery = gql`
+  query GetPortalUrl {
+    getPortalUrl
+  }
+`;

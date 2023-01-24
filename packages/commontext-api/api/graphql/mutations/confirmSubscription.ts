@@ -19,6 +19,8 @@ export const ConfirmSubscriptionMutation = extendType({
         const stripe = require("stripe")(process.env.STRIPE_KEY);
         const session = await stripe.checkout.sessions.retrieve(sessionId);
 
+        console.info("session", session);
+
         let frequency = "";
         if (session.amount_total === 1900) {
           frequency = "MONTHLY";
@@ -33,6 +35,7 @@ export const ConfirmSubscriptionMutation = extendType({
           data: {
             subscription: "STARTER",
             frequency,
+            stripeCustomerId: session.customer,
           },
         });
 

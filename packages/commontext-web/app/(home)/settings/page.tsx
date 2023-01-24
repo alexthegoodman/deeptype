@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { getCurrentUserQuery } from "../../../graphql/user";
 import graphClient from "../../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
+import ManageSubscriptionLink from "../../../components/ManageSubscriptionLink/ManageSubscriptionLink";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -38,6 +39,9 @@ export default function Settings() {
       <div>
         <p>Subscription: {data.subscription}</p>
         <p>Frequency: {data.frequency}</p>
+        <p>
+          <ManageSubscriptionLink />
+        </p>
       </div>
     );
   }

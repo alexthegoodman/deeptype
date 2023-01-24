@@ -19,6 +19,8 @@ model User {
   subscription String
   frequency    String
 
+  stripeCustomerId String @default("")
+
   documents Document[]
 
   updatedAt DateTime @updatedAt
