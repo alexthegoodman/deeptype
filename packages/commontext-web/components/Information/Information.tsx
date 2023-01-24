@@ -11,6 +11,7 @@ import { resultDataFactory } from "../../factories/resultData";
 // import { Copy, ArrowSquareOut } from "phosphor-react";
 import DebugPanel from "../DebugPanel/DebugPanel";
 import { ResultData } from "../../defs/resultData";
+import { searchUrl } from "../../defs/urls";
 
 const Information: React.FC<InformationProps> = () => {
   const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
@@ -40,7 +41,7 @@ const Information: React.FC<InformationProps> = () => {
         console.info('searching', debouncedDescriptor, recentText)
 
         setIsSearching(true);
-        request("http://localhost:4001/graphql", searchQuery, {
+        request(searchUrl, searchQuery, {
           // contextQuery: fullText,
           contextQuery: descriptor,
           query: recentText,
