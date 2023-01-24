@@ -28,7 +28,10 @@ const Meta: React.FC<MetaProps> = ({
       <meta name="description" content={description} />
       <link rel="icon" href="/favicon.ico" />
       <script src="https://unpkg.com/phosphor-icons" async></script>
-      <Script dangerouslySetInnerHTML={{ __html: initializeHotjar }} />
+      <Script
+        id="init-hotjar"
+        dangerouslySetInnerHTML={{ __html: initializeHotjar }}
+      />
     </>
   );
 };
