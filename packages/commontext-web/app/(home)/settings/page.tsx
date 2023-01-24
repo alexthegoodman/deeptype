@@ -43,10 +43,12 @@ export default function Settings() {
   }
 
   return (
-    <div>
-      <h1>Settings</h1>
-      {userInformation}
-      <LogOutLink />
-    </div>
+    <section className={styles.settings}>
+      <div className={styles.settingsInner}>
+        <h1 className={styles.headline}>Settings</h1>
+        <div className={styles.settingsCard}>{userInformation}</div>
+        <LogOutLink />
+      </div>
+    </section>
   );
 }

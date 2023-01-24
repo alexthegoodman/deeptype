@@ -1,0 +1,37 @@
+@import "../../../app/variables.scss";
+@import "../../../app/shared.scss";
+@import "../../../app/mixins.scss";
+
+.settings {
+  .settingsInner {
+    padding: 0 35px;
+
+    h1 {
+      margin-bottom: 25px;
+    }
+    .settingsCard {
+      background-color: $lightGreenGrey;
+      padding: 35px;
+      min-width: $small;
+      width: fit-content;
+      margin-bottom: 25px;
+
+      p {
+        margin-bottom: 10px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @include phoneDown {
+    .settingsInner {
+      .settingsCard {
+        width: 100%;
+        min-width: auto;
+      }
+    }
+  }
+}
