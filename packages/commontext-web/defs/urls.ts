@@ -16,7 +16,7 @@ export const fullDomainPort =
 export const graphqlUrl =
   env === "production"
     ? "https://commontext-api.herokuapp.com/graphql"
-    : `https://localhost:4000/graphql`;
+    : `http://localhost:4000/graphql`;
 
 export const searchUrl =
     env === "production"

@@ -1,5 +1,5 @@
 import Meta from "../../../components/Meta/Meta";
 
 export default function Head() {
-  return <Meta title="Edit Document" />;
+  return <Meta title="Browse Documents" />;
 }

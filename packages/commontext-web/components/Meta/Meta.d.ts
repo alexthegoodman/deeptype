@@ -1,1 +1,4 @@
-export interface MetaProps {}
+export interface MetaProps {
+    title?: string;
+    description?: string;
+}

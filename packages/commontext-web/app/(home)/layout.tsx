@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   if (isLoading) {
     homeBody = <>Loading...</>;
-  } else {
+  } else if (data) {
     if (data.subscription === "NONE") {
       const newMonthlyCheckout = async () => {
         const { newCheckout } = await graphClient.client?.request(
