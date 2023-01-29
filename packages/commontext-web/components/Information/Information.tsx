@@ -12,6 +12,7 @@ import { resultDataFactory } from "../../factories/resultData";
 import DebugPanel from "../DebugPanel/DebugPanel";
 import { ResultData } from "../../defs/resultData";
 import { searchUrl } from "../../defs/urls";
+import Loader from "../Loader/Loader";
 
 const Information: React.FC<InformationProps> = () => {
   const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
@@ -31,14 +32,20 @@ const Information: React.FC<InformationProps> = () => {
 
   React.useEffect(
     () => {
-      if ((debouncedDescriptor && debouncedDescriptor !== "") || (debouncedPlaintext && debouncedPlaintext !== "")) {
+      if (
+        (debouncedDescriptor && debouncedDescriptor !== "") ||
+        (debouncedPlaintext && debouncedPlaintext !== "")
+      ) {
         const fullText = debouncedPlaintext;
-        const descriptor = typeof debouncedDescriptor !== "undefined" && debouncedDescriptor ? debouncedDescriptor : "";
+        const descriptor =
+          typeof debouncedDescriptor !== "undefined" && debouncedDescriptor
+            ? debouncedDescriptor
+            : "";
         const recentText = debouncedPlaintext.substring(
           debouncedPlaintext.length - 35
         );
-        
-        console.info('searching', debouncedDescriptor, recentText)
+
+        console.info("searching", debouncedDescriptor, recentText);
 
         setIsSearching(true);
         request(searchUrl, searchQuery, {
@@ -64,6 +71,8 @@ const Information: React.FC<InformationProps> = () => {
         {/* <DebugPanel resultData={resultData} /> */}
 
         {/* <h2>Information</h2> */}
+
+        {isSearching ? <Loader /> : <></>}
 
         <section className={styles.informationResults}>
           <div className={styles.informationResultsInner}>

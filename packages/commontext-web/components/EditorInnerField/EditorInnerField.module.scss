@@ -52,8 +52,8 @@
   @include tabletDown {
     .quillFieldInner {
       padding: 35px;
-      height: calc(100vh - 280px);
-      overflow-y: scroll;
+      // height: calc(100vh - 280px);
+      // overflow-y: scroll;
 
       .toolbarWrapper {
         flex-direction: column;

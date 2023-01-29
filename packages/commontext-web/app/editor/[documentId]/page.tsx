@@ -17,6 +17,8 @@ import graphClient from "../../../helpers/GQLClient";
 import { documentQuery } from "../../../graphql/document";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useWindowSize } from "../../../hooks/useWindowSize";
+import { BounceLoader } from "react-spinners";
+import Loader from "../../../components/Loader/Loader";
 
 const getDocumentData = async (token: string, documentId: string) => {
   graphClient.setupClient(token);
@@ -70,7 +72,7 @@ export default function Editor(props) {
 
   let body = <></>;
 
-  if (isLoading) body = <span>Loading Document...</span>;
+  if (isLoading) body = <Loader />;
   if (error) body = <span>Error...</span>;
   if (!isLoading && !error)
     body = (
@@ -84,11 +86,11 @@ export default function Editor(props) {
           }
           className={styles.editorGroup}
         >
-          <Panel defaultSize={60} order={1}>
+          <Panel className={styles.panel} defaultSize={60} order={1}>
             <EditorField documentId={documentId} documentData={data} />
           </Panel>
           <ResizeHandle />
-          <Panel order={2}>
+          <Panel className={styles.panel} order={2}>
             <Information />
           </Panel>
         </PanelGroup>
