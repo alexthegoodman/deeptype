@@ -15,6 +15,8 @@ import styles from "./page.module.scss";
 import useSWR from "swr";
 import graphClient from "../../../helpers/GQLClient";
 import { documentQuery } from "../../../graphql/document";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { useWindowSize } from "../../../hooks/useWindowSize";
 
 const getDocumentData = async (token: string, documentId: string) => {
   graphClient.setupClient(token);
@@ -26,11 +28,31 @@ const getDocumentData = async (token: string, documentId: string) => {
   return document;
 };
 
+function ResizeHandle({
+  className = "",
+  id,
+}: {
+  className?: string;
+  id?: string;
+}) {
+  return (
+    <PanelResizeHandle className={styles.resizeHandle} id={id}>
+      <div className={styles.resizeHandleInner}>
+        <i className="ph-dots-six-vertical"></i>
+        <i className="ph-dots-six-vertical"></i>
+        {/* <i className="ph-dots-six-vertical"></i> */}
+      </div>
+    </PanelResizeHandle>
+  );
+}
+
 export default function Editor(props) {
   const { params } = props;
   const documentId = params.documentId;
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
+
+  const windowSize = useWindowSize();
 
   const { data, error, isLoading, mutate } = useSWR(
     "documentKey" + documentId,
@@ -46,6 +68,33 @@ export default function Editor(props) {
     mutate(newData);
   };
 
+  let body = <></>;
+
+  if (isLoading) body = <span>Loading Document...</span>;
+  if (error) body = <span>Error...</span>;
+  if (!isLoading && !error)
+    body = (
+      <section className={styles.editorGroupWrapper}>
+        <PanelGroup
+          autoSaveId="primary"
+          direction={
+            typeof windowSize.width !== "undefined" && windowSize.width < 900
+              ? "vertical"
+              : "horizontal"
+          }
+          className={styles.editorGroup}
+        >
+          <Panel defaultSize={60} order={1}>
+            <EditorField documentId={documentId} documentData={data} />
+          </Panel>
+          <ResizeHandle />
+          <Panel order={2}>
+            <Information />
+          </Panel>
+        </PanelGroup>
+      </section>
+    );
+
   console.info("document data", documentId, data, error, isLoading);
 
   return (
@@ -58,7 +107,8 @@ export default function Editor(props) {
           documentData={data}
           refetchDocument={refetch}
         />
-        <div className={styles.editorWrapper}>
+        {body}
+        {/* <div className={styles.editorWrapper}>
           <section className={styles.editor}>
             <div>
               <section className={styles.editorField}>
@@ -71,7 +121,7 @@ export default function Editor(props) {
               <Information />
             </div>
           </aside>
-        </div>
+        </div> */}
       </main>
     </EditorContext.Provider>
   );

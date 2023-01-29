@@ -52,6 +52,8 @@
   @include tabletDown {
     .quillFieldInner {
       padding: 35px;
+      height: calc(100vh - 280px);
+      overflow-y: scroll;
 
       .toolbarWrapper {
         flex-direction: column;
@@ -71,7 +73,7 @@
           width: 40px;
           height: 40px;
           margin-right: 10px;
-          
+
           i {
             font-size: 24px;
           }
