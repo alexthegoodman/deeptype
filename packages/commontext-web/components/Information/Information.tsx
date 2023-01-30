@@ -13,6 +13,7 @@ import DebugPanel from "../DebugPanel/DebugPanel";
 import { ResultData } from "../../defs/resultData";
 import { searchUrl } from "../../defs/urls";
 import Loader from "../Loader/Loader";
+import InfoCard from "../InfoCard/InfoCard";
 
 const Information: React.FC<InformationProps> = () => {
   const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
@@ -78,38 +79,7 @@ const Information: React.FC<InformationProps> = () => {
           <div className={styles.informationResultsInner}>
             {resultData?.results ? (
               resultData.results.map((item, i) => {
-                return (
-                  <div key={`resultItem${i}`} className={styles.resultItem}>
-                    <div className={styles.itemHeader}>
-                      <span>Summary</span>
-                    </div>
-                    <div className={styles.itemBody}>
-                      <p>{item.summary}</p>
-                    </div>
-                    {/* {item.media.map((item, x) => {
-                      return (<img width="50" src={item.url} />)
-                    })} */}
-                    <div className={styles.itemFooter}>
-                      <div className={styles.left}>
-                        <a href="#!" target="_blank">
-                          {/* <Copy weight="light" size={25} /> */}
-                          <i className="ph-copy-thin"></i>
-                        </a>
-                        <a href={item.url} target="_blank">
-                          {/* Visit Source{" "} */}
-                          {/* <ArrowSquareOut weight="light" size={25} /> */}
-                          <i className="ph-arrow-square-out-thin"></i>
-                        </a>
-                        {/* <span className={styles.badge}>
-                          {item.topicClassification.name}
-                        </span> */}
-                      </div>
-                      <div className={styles.right}>
-                        {/* <ArrowCircleRight weight="thin" size={25} /> */}
-                      </div>
-                    </div>
-                  </div>
-                );
+                return <InfoCard key={`resultItem${i}`} item={item} />;
               })
             ) : (
               <></>

@@ -1,0 +1,89 @@
+@import "../../app/variables.scss";
+@import "../../app/mixins.scss";
+
+.resultItem {
+  padding: 20px 25px 15px 25px;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  background-color: white;
+
+  box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.1);
+
+  .itemHeader {
+    display: flex;
+    // justify-content: flex-end;
+
+    span {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 5px;
+      color: $greenBlack;
+    }
+  }
+  .itemBody {
+    margin-bottom: 12px;
+
+    p {
+      //   color: rgb(215, 215, 215);
+    }
+  }
+  .itemFooter {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+    }
+
+    a {
+      font-size: 15px;
+      //   line-height: 25px;
+      color: $green1;
+      margin-right: 7px;
+      text-decoration: none;
+
+      i,
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      i {
+        font-size: 24px;
+        margin-right: 3px;
+      }
+      span {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+
+    // a {
+    //   margin-right: 25px;
+    //   position: relative;
+
+    //   svg {
+    //     position: absolute;
+    //     right: -25px;
+    //   }
+    // }
+  }
+  p {
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 7px;
+    font-weight: 300;
+  }
+
+  @include tabletDown {
+    min-width: 550px;
+    margin-right: 25px;
+    height: fit-content;
+
+    p {
+      font-size: 15px;
+      line-height: 28px;
+    }
+  }
+}

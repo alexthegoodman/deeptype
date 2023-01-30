@@ -12,12 +12,14 @@ import { useEditorContext } from "../../context/EditorContext/EditorContext";
 function ResizeHandle({
   className = "",
   id,
+  style,
 }: {
   className?: string;
   id?: string;
+  style?: any;
 }) {
   return (
-    <PanelResizeHandle className={styles.resizeHandle} id={id}>
+    <PanelResizeHandle className={styles.resizeHandle} id={id} style={style}>
       <div className={styles.resizeHandleInner}>
         <i className="ph-dots-six-vertical"></i>
         <i className="ph-dots-six-vertical"></i>
@@ -33,6 +35,8 @@ const EditorGroup: React.FC<EditorGroupProps> = ({
 }) => {
   const [{ focusModeEnabled }, dispatch] = useEditorContext();
   const windowSize = useWindowSize();
+
+  const backgroundColor = "rgba(217, 217, 217, 0.2)";
 
   return (
     <section
@@ -54,8 +58,12 @@ const EditorGroup: React.FC<EditorGroupProps> = ({
         </Panel>
         {!focusModeEnabled ? (
           <>
-            <ResizeHandle />
-            <Panel className={styles.panel} order={2}>
+            <ResizeHandle style={{ backgroundColor }} />
+            <Panel
+              style={{ backgroundColor }}
+              className={styles.panel}
+              order={2}
+            >
               <Information />
             </Panel>
           </>
