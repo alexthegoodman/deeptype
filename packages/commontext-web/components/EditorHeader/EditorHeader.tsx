@@ -23,8 +23,10 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
 
   graphClient.setupClient(token);
 
-  const [{ editorJson, editorTitle, editorDescriptor }, dispatch] =
-    useEditorContext();
+  const [
+    { editorJson, editorTitle, editorDescriptor, focusModeEnabled },
+    dispatch,
+  ] = useEditorContext();
   const debouncedTitle = useDebounce(editorTitle, 500);
   const debouncedJson = useDebounce(editorJson, 500);
   const debouncedDescriptor = useDebounce(editorDescriptor, 500);
@@ -69,6 +71,8 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
   const onTitleChange = (e: any) => {
     dispatch({ type: "editorTitle", payload: e.target.outerText });
   };
+
+  if (focusModeEnabled) return <></>;
 
   return (
     <header className={styles.editorHeader}>

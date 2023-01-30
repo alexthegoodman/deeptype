@@ -5,9 +5,16 @@ export interface EditorContextState {
   editorValue: string;
   editorJson: any;
   editorPlaintext: string;
+  focusModeEnabled: boolean;
 }
 
-export const EditorContextState = { editorTitle: "", editorValue: "", editorJson: null, editorPlaintext: "" };
+export const EditorContextState = {
+  editorTitle: "",
+  editorValue: "",
+  editorJson: null,
+  editorPlaintext: "",
+  focusModeEnabled: false,
+};
 
 export const EditorContextReducer = (
   state: EditorContextState,

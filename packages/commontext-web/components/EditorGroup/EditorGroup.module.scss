@@ -1,0 +1,39 @@
+@import "../../app/variables.scss";
+@import "../../app/mixins.scss";
+
+.editorGroupWrapper {
+  height: calc(100vh - 80px);
+  // overflow-y: scroll;
+
+  &.focusMode {
+    width: 65vw;
+    margin: 0 auto;
+  }
+
+  .panel {
+    overflow-y: scroll !important;
+  }
+
+  @include tabletDown {
+    &.focusMode {
+      width: 100vw;
+    }
+  }
+}
+
+.resizeHandle {
+  .resizeHandleInner {
+    width: 50px;
+    // height: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-between;
+    font-size: 32px;
+  }
+
+  @include tabletDown {
+    display: none;
+  }
+}

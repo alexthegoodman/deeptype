@@ -1,0 +1,33 @@
+@import "../../app/variables.scss";
+
+.focusModeButton {
+  border: 1px $lightGrey solid;
+  background: none;
+  outline: none;
+  border-radius: 50px;
+  color: $darkGrey;
+  padding: 5px 12px;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+  }
+
+  i,
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  i {
+    font-size: 20px;
+    position: relative;
+    top: 1px;
+    margin-right: 4px;
+  }
+  span {
+    font-size: 16px;
+  }
+}

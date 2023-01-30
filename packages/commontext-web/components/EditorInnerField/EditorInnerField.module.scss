@@ -49,6 +49,12 @@
     }
   }
 
+  &.focusMode {
+    .quillFieldInner {
+      padding: 35px;
+    }
+  }
+
   @include tabletDown {
     .quillFieldInner {
       padding: 35px;

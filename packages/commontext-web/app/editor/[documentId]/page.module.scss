@@ -6,18 +6,6 @@
   flex-direction: column;
   width: 100vw;
 
-  .editorGroupWrapper {
-    height: calc(100vh - 80px);
-    // overflow-y: scroll;
-
-    .panel {
-      overflow-y: scroll !important;
-    }
-  }
-
-  .editorGroup {
-  }
-
   // .editorWrapper {
   //   width: 100%;
   //   display: flex;
@@ -56,21 +44,4 @@
   //     }
   //   }
   // }
-}
-
-.resizeHandle {
-  .resizeHandleInner {
-    width: 50px;
-    // height: 50px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-content: space-between;
-    font-size: 32px;
-  }
-
-  @include tabletDown {
-    display: none;
-  }
 }

@@ -11,6 +11,7 @@ import { EditorInnerFieldProps } from "./EditorInnerField.d";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import { Noto_Sans } from "@next/font/google";
 import EditorDescriptor from "../EditorDescriptor/EditorDescriptor";
+import FocusModeButton from "../FocusModeButton/FocusModeButton";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -30,24 +31,24 @@ const CustomToolbar = () => (
 
 const formats = [
   // 'background',
-  'bold',
-  'color',
-  'font',
-  'code',
-  'italic',
-  'link',
-  'size',
-  'strike',
-  'script',
-  'underline',
-  'blockquote',
-  'header',
-  'indent',
-  'list',
-  'align',
-  'direction',
-  'code-block',
-  'formula'
+  "bold",
+  "color",
+  "font",
+  "code",
+  "italic",
+  "link",
+  "size",
+  "strike",
+  "script",
+  "underline",
+  "blockquote",
+  "header",
+  "indent",
+  "list",
+  "align",
+  "direction",
+  "code-block",
+  "formula",
   // 'image' // disallowed
   // 'video' // disallowed
 ];
@@ -59,9 +60,9 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   documentData = null,
   refetch = () => console.info("refetch"),
 }) => {
-  console.info("Quill", Quill.default);
+  // console.info("Quill", Quill.default);
   var icons = Quill.default.import("ui/icons");
-  console.info("icons", icons);
+  // console.info("icons", icons);
   icons["bold"] = `<i class="ph-text-bolder-thin"></i>`;
   icons["italic"] = `<i class="ph-text-italic-thin"></i>`;
   icons["header"] = `<i class="ph-text-h-one-thin"></i>`;
@@ -70,7 +71,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   icons["link"] = `<i class="ph-link-thin"></i>`;
 
   const editorRef = React.useRef();
-  const [{ editorPlaintext }, dispatch] = useEditorContext();
+  const [{ editorPlaintext, focusModeEnabled }, dispatch] = useEditorContext();
 
   const totalWords = editorPlaintext
     ? editorPlaintext.match(/(\w+)/g)?.length
@@ -101,8 +102,14 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
 
   return (
     <>
-      <section className={styles.quillField}>
+      <section
+        className={`${styles.quillField} ${
+          focusModeEnabled ? styles.focusMode : ""
+        }`}
+      >
         <div className={styles.quillFieldInner}>
+          <FocusModeButton />
+
           <EditorDescriptor documentData={documentData} />
 
           <section className={styles.toolbarWrapper}>
