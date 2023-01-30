@@ -5,6 +5,14 @@
   .quillFieldInner {
     padding: 70px 100px;
 
+    .descriptorWrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
     .toolbarWrapper {
       display: flex;
       flex-direction: row;
@@ -60,6 +68,13 @@
       padding: 35px;
       // height: calc(100vh - 280px);
       // overflow-y: scroll;
+
+      .descriptorWrapper {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 15px;
+      }
 
       .toolbarWrapper {
         flex-direction: column;

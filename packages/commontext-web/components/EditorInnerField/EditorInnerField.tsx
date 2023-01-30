@@ -108,9 +108,10 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
         }`}
       >
         <div className={styles.quillFieldInner}>
-          <FocusModeButton />
-
-          <EditorDescriptor documentData={documentData} />
+          <section className={styles.descriptorWrapper}>
+            <EditorDescriptor documentData={documentData} />
+            <FocusModeButton />
+          </section>
 
           <section className={styles.toolbarWrapper}>
             <CustomToolbar />

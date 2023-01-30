@@ -1,15 +1,15 @@
 @import "../../app/mixins.scss";
 
 .descriptorInput {
-    border: none;
-    outline: none;
-    font-size: 24px;
-    font-weight: 300;
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  font-weight: 300;
+  display: block;
+  width: 100%;
+  // margin-bottom: 15px;
 
-    @include tabletDown {
-        font-size: 20px;
-    }
+  @include tabletDown {
+    font-size: 20px;
+  }
 }

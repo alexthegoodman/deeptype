@@ -1,6 +1,9 @@
 @import "../../app/variables.scss";
+@import "../../app/mixins.scss";
 
 .focusModeButton {
+  display: flex;
+  flex-direction: row;
   border: 1px $lightGrey solid;
   background: none;
   outline: none;
@@ -8,7 +11,7 @@
   color: $darkGrey;
   padding: 5px 12px;
   cursor: pointer;
-  margin-bottom: 25px;
+  // margin-bottom: 25px;
   transition: all 0.2s;
 
   &:hover {
@@ -16,18 +19,18 @@
     transition: all 0.2s;
   }
 
-  i,
-  span {
-    display: inline-block;
-    vertical-align: middle;
-  }
   i {
     font-size: 20px;
-    position: relative;
-    top: 1px;
     margin-right: 4px;
   }
   span {
     font-size: 16px;
+    white-space: nowrap;
+    position: relative;
+    top: 1px;
+  }
+
+  @include tabletDown {
+    margin-bottom: 15px;
   }
 }
