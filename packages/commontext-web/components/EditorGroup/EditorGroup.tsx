@@ -9,6 +9,7 @@ import EditorField from "../EditorField/EditorField";
 import Information from "../Information/Information";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import Suggestions from "../Suggestions/Suggestions";
+import Sidebars from "../Sidebars/Sidebars";
 
 function ResizeHandle({
   className = "",
@@ -65,8 +66,7 @@ const EditorGroup: React.FC<EditorGroupProps> = ({
               className={styles.panel}
               order={2}
             >
-              {/* <Information /> */}
-              <Suggestions />
+              <Sidebars />
             </Panel>
           </>
         ) : (

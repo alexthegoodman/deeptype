@@ -67,24 +67,26 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
   const loader = isSearching ? <Loader /> : <></>;
 
   return (
-    <>
-      {text1 ? (
-        <BasicCard header={<span>Suggestion</span>} body={<p>{text1}</p>} />
-      ) : (
-        <></>
-      )}
-      {text2 ? (
-        <BasicCard header={<span>Suggestion</span>} body={<p>{text2}</p>} />
-      ) : (
-        <></>
-      )}
-      {text3 ? (
-        <BasicCard header={<span>Suggestion</span>} body={<p>{text3}</p>} />
-      ) : (
-        <></>
-      )}
-      {loader}
-    </>
+    <section className={styles.suggestions}>
+      <div className={styles.suggestionsInner}>
+        {text1 ? (
+          <BasicCard header={<span>Suggestion</span>} body={<p>{text1}</p>} />
+        ) : (
+          <></>
+        )}
+        {text2 ? (
+          <BasicCard header={<span>Suggestion</span>} body={<p>{text2}</p>} />
+        ) : (
+          <></>
+        )}
+        {text3 ? (
+          <BasicCard header={<span>Suggestion</span>} body={<p>{text3}</p>} />
+        ) : (
+          <></>
+        )}
+        {loader}
+      </div>
+    </section>
   );
 };
 

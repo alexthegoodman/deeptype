@@ -30,6 +30,7 @@
     "react-quill": "^2.0.0",
     "react-resizable-panels": "^0.0.35",
     "react-spinners": "^0.13.8",
+    "react-tabs": "^6.0.0",
     "server-only": "^0.0.1",
     "swr": "^2.0.0",
     "typescript": "4.9.3"
