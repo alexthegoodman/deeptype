@@ -2,8 +2,7 @@ export const env = process.env.NEXT_PUBLIC_APP_ENV;
 
 export const protocol = env === "production" ? "https://" : "http://";
 
-export const cookieDomain =
-  env === "production" ? "deeptype.app" : "localhost";
+export const cookieDomain = env === "production" ? "deeptype.app" : "localhost";
 
 export const fullDomain =
   env === "production" ? "deeptype.app" : process.env.NEXT_PUBLIC_HOST;
@@ -19,6 +18,11 @@ export const graphqlUrl =
     : `http://localhost:4000/graphql`;
 
 export const searchUrl =
-    env === "production"
-      ? "https://rapid-search.herokuapp.com/graphql"
-      : `http://localhost:4001/graphql`;
+  env === "production"
+    ? "https://rapid-search.herokuapp.com/graphql"
+    : `http://localhost:4001/graphql`;
+
+export const scoringUrl =
+  env === "production"
+    ? "https://scoring-service.tunnel"
+    : `http://127.0.0.1:5000`;
