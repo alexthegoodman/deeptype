@@ -1,1 +1,3 @@
-export interface InformationProps {}
+export interface InformationProps {
+  documentId: string;
+}

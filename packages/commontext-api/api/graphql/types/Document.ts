@@ -25,11 +25,11 @@ export const DocumentType = objectType({
       },
     });
 
-    t.field("savedItems", {
+    t.list.field("savedItems", {
       type: "SavedItem",
       resolve: async (document, __, context: Context) => {
         // TODO: just get creatorId off document?
-        return await context.prisma.savedItem.findFirst({
+        return await context.prisma.savedItem.findMany({
           where: {
             document: {
               id: document.id as string,

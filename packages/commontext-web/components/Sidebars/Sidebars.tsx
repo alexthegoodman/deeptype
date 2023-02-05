@@ -10,6 +10,7 @@ import useSWR from "swr";
 import graphClient from "../../helpers/GQLClient";
 import { getCurrentUserQuery } from "../../graphql/user";
 import { useCookies } from "react-cookie";
+import BasicCard from "../BasicCard/BasicCard";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -55,14 +56,16 @@ const Sidebars: React.FC<SidebarsProps> = ({
 
       <TabPanel>
         <>
-          Saved Items{" "}
           {documentData?.savedItems?.map((savedItem) => (
-            <p>{savedItem.id}</p>
+            <BasicCard
+              header={<span>{savedItem.type}</span>}
+              body={<p>{savedItem.data.summary}</p>}
+            />
           ))}
         </>
       </TabPanel>
       <TabPanel>
-        <Information />
+        <Information documentId={documentId} />
       </TabPanel>
       <TabPanel>
         {data.subscription === "PRO" ? (

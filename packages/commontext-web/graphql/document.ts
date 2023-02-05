@@ -69,3 +69,15 @@ export const documentQuery = gql`
     }
   }
 `;
+
+export const saveItemMutation = gql`
+  mutation SaveItemMutation(
+    $type: String!
+    $data: String!
+    $documentId: String!
+  ) {
+    addSavedItem(type: $type, data: $data, documentId: $documentId) {
+      id
+    }
+  }
+`;

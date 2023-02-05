@@ -13,7 +13,7 @@ type Document {
   creator: User
   descriptor: String
   id: String
-  savedItems: SavedItem
+  savedItems: [SavedItem]
   title: String
   updatedAt: DateTime
 }
@@ -32,6 +32,7 @@ type Link {
 }
 
 type Mutation {
+  addSavedItem(data: String!, documentId: String!, type: String!): SavedItem
   confirmFreemium: User
   confirmSubscription(sessionId: String!, token: String!): User
   newCheckout(frequency: String!): String

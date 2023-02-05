@@ -15,7 +15,7 @@ import { searchUrl } from "../../defs/urls";
 import Loader from "../Loader/Loader";
 import InfoCard from "../InfoCard/InfoCard";
 
-const Information: React.FC<InformationProps> = () => {
+const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
   const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
   const debouncedDescriptor = useDebounce(editorDescriptor, 500);
   const debouncedPlaintext = useDebounce(editorPlaintext, 500);
@@ -80,7 +80,13 @@ const Information: React.FC<InformationProps> = () => {
           <div className={styles.informationResultsInner}>
             {resultData?.results ? (
               resultData.results.map((item, i) => {
-                return <InfoCard key={`resultItem${i}`} item={item} />;
+                return (
+                  <InfoCard
+                    key={`resultItem${i}`}
+                    documentId={documentId}
+                    item={item}
+                  />
+                );
               })
             ) : (
               <></>

@@ -20,16 +20,7 @@ import { documentQuery } from "../../../graphql/document";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 import Loader from "../../../components/Loader/Loader";
 import EditorGroup from "../../../components/EditorGroup/EditorGroup";
-
-const getDocumentData = async (token: string, documentId: string) => {
-  graphClient.setupClient(token);
-
-  const { document } = await graphClient.client?.request(documentQuery, {
-    documentId,
-  });
-
-  return document;
-};
+import { getDocumentData } from "../../../api/document";
 
 export default function Editor(props) {
   const { params } = props;

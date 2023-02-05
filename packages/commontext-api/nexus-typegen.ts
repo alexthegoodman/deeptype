@@ -103,7 +103,7 @@ export interface NexusGenFieldTypes {
     creator: NexusGenRootTypes['User'] | null; // User
     descriptor: string | null; // String
     id: string | null; // String
-    savedItems: NexusGenRootTypes['SavedItem'] | null; // SavedItem
+    savedItems: Array<NexusGenRootTypes['SavedItem'] | null> | null; // [SavedItem]
     title: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -115,6 +115,7 @@ export interface NexusGenFieldTypes {
     url: string | null; // String
   }
   Mutation: { // field return type
+    addSavedItem: NexusGenRootTypes['SavedItem'] | null; // SavedItem
     confirmFreemium: NexusGenRootTypes['User'] | null; // User
     confirmSubscription: NexusGenRootTypes['User'] | null; // User
     newCheckout: string | null; // String
@@ -167,6 +168,7 @@ export interface NexusGenFieldTypeNames {
     url: 'String'
   }
   Mutation: { // field return type name
+    addSavedItem: 'SavedItem'
     confirmFreemium: 'User'
     confirmSubscription: 'User'
     newCheckout: 'String'
@@ -202,6 +204,11 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    addSavedItem: { // args
+      data: string; // String!
+      documentId: string; // String!
+      type: string; // String!
+    }
     confirmSubscription: { // args
       sessionId: string; // String!
       token: string; // String!

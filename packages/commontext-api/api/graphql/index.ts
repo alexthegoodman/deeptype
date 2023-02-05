@@ -9,6 +9,7 @@ export * from "./queries/getCurrentUser";
 export * from "./queries/getPortalUrl";
 export * from "./queries/document";
 
+export * from "./mutations/addSavedItem";
 export * from "./mutations/confirmFreemium";
 export * from "./mutations/confirmSubscription";
 export * from "./mutations/newCheckout";
