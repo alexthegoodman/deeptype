@@ -4,7 +4,10 @@ import LogOutLink from "../../../components/LogOutLink/LogOutLink";
 import styles from "./page.module.scss";
 
 import useSWR from "swr";
-import { getCurrentUserQuery } from "../../../graphql/user";
+import {
+  getCurrentUserQuery,
+  newCheckoutMutation,
+} from "../../../graphql/user";
 import graphClient from "../../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
 import ManageSubscriptionLink from "../../../components/ManageSubscriptionLink/ManageSubscriptionLink";
@@ -33,15 +36,46 @@ export default function Settings() {
     }
   );
 
+  const newCheckout = async (type = "MONTHLY") => {
+    const { newCheckout } = await graphClient.client?.request(
+      newCheckoutMutation,
+      {
+        frequency: type,
+      }
+    );
+    console.info("newCheckout 2", type, newCheckout);
+    window.location = newCheckout;
+  };
+
+  const monthlyBtn = (
+    <a className={styles.btn} onClick={() => newCheckout("MONTHLY")}>
+      Start Pro Monthly at $19/mo
+    </a>
+  );
+  const annualBtn = (
+    <a className={styles.btn} onClick={() => newCheckout("ANNUAL")}>
+      Select Pro Annual at $12/mo
+    </a>
+  );
+
   let userInformation = <></>;
   if (!isLoading) {
     userInformation = (
       <div>
         <p>Subscription: {data.subscription}</p>
-        <p>Frequency: {data.frequency}</p>
-        <p>
-          <ManageSubscriptionLink />
-        </p>
+        {data.subscription === "PRO" ? (
+          <>
+            <p>Frequency: {data.frequency}</p>
+            <p>
+              <ManageSubscriptionLink />
+            </p>
+          </>
+        ) : (
+          <>
+            <p>{monthlyBtn}</p>
+            <p>{annualBtn}</p>
+          </>
+        )}
       </div>
     );
   }

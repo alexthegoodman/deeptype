@@ -5,7 +5,11 @@ import styles from "./PricingInfo.module.scss";
 import { PricingInfoProps } from "./PricingInfo.d";
 import PricingItem from "../PricingItem/PricingItem";
 
-const PricingInfo: React.FC<PricingInfoProps> = ({ leftBtn, rightBtn }) => {
+const PricingInfo: React.FC<PricingInfoProps> = ({
+  leftBtn,
+  centerBtn,
+  rightBtn,
+}) => {
   return (
     <section className={styles.pricingInfo}>
       <div className={styles.pricingInfoInner}>
@@ -24,7 +28,7 @@ const PricingInfo: React.FC<PricingInfoProps> = ({ leftBtn, rightBtn }) => {
           <PricingItem
             price={19}
             frequency="Monthly"
-            btn={leftBtn}
+            btn={centerBtn}
             items={[
               "AI Text Suggestions",
               "Information as You Type",

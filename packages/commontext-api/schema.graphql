@@ -31,6 +31,7 @@ type Link {
 }
 
 type Mutation {
+  confirmFreemium: User
   confirmSubscription(sessionId: String!, token: String!): User
   newCheckout(frequency: String!): String
   newDocument: Document

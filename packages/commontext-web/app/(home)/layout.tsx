@@ -8,7 +8,11 @@ import HomeHeader from "../../components/HomeHeader/HomeHeader";
 import HomeSidebar from "../../components/HomeSidebar/HomeSidebar";
 import PricingInfo from "../../components/PricingInfo/PricingInfo";
 import { graphqlUrl } from "../../defs/urls";
-import { getCurrentUserQuery, newCheckoutMutation } from "../../graphql/user";
+import {
+  confirmFreemiumMutation,
+  getCurrentUserQuery,
+  newCheckoutMutation,
+} from "../../graphql/user";
 import graphClient from "../../helpers/GQLClient";
 import useSWR from "swr";
 
@@ -50,45 +54,52 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     homeBody = <>Loading...</>;
   } else if (data) {
     if (data.subscription === "NONE") {
-      const newMonthlyCheckout = async () => {
+      const newCheckout = async (type = "MONTHLY") => {
         const { newCheckout } = await graphClient.client?.request(
           newCheckoutMutation,
           {
-            frequency: "MONTHLY",
+            frequency: type,
           }
         );
-        console.info("newCheckout 1", newCheckout);
-        window.location = newCheckout;
-      };
-      const newAnnualCheckout = async () => {
-        const { newCheckout } = await graphClient.client?.request(
-          newCheckoutMutation,
-          {
-            frequency: "ANNUAL",
-          }
-        );
-        console.info("newCheckout 2", newCheckout);
+        console.info("newCheckout 2", type, newCheckout);
         window.location = newCheckout;
       };
 
+      const confirmFreemium = async () => {
+        const { confirmFreemium } = await graphClient.client?.request(
+          confirmFreemiumMutation
+        );
+        console.info("confirmFreemium", confirmFreemium);
+        window.location.reload();
+      };
+
+      const freeBtn = (
+        <a className={styles.btn} onClick={confirmFreemium}>
+          Select Free
+        </a>
+      );
       const monthlyBtn = (
-        <a className={styles.btn} onClick={newMonthlyCheckout}>
-          Select Plan
+        <a className={styles.btn} onClick={() => newCheckout("MONTHLY")}>
+          Select Monthly
         </a>
       );
       const annualBtn = (
-        <a className={styles.btn} onClick={newAnnualCheckout}>
-          Select Plan
+        <a className={styles.btn} onClick={() => newCheckout("ANNUAL")}>
+          Select Annual
         </a>
       );
 
       homeBody = (
         <section>
           <IntroHero headline="Welcome" subHeadline="Select a Plan" />
-          <PricingInfo leftBtn={monthlyBtn} rightBtn={annualBtn} />
+          <PricingInfo
+            leftBtn={freeBtn}
+            centerBtn={monthlyBtn}
+            rightBtn={annualBtn}
+          />
         </section>
       );
-    } else if (data.subscription === "STARTER") {
+    } else if (data.subscription === "STARTER" || data.subscription === "PRO") {
       homeBody = (
         <>
           <HomeSidebar />

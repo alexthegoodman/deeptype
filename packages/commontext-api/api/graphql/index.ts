@@ -8,6 +8,7 @@ export * from "./queries/getCurrentUser";
 export * from "./queries/getPortalUrl";
 export * from "./queries/document";
 
+export * from "./mutations/confirmFreemium";
 export * from "./mutations/confirmSubscription";
 export * from "./mutations/newCheckout";
 export * from "./mutations/newDocument";

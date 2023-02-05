@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 
 export interface PricingInfoProps {
-    leftBtn?: ReactElement;
-    rightBtn?: ReactElement;
+  leftBtn?: ReactElement;
+  rightBtn?: ReactElement;
+  centerBtn?: ReactElement;
 }

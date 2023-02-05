@@ -40,6 +40,14 @@ export const confirmSubscriptionMutation = gql`
   }
 `;
 
+export const confirmFreemiumMutation = gql`
+  mutation ConfirmFreemium {
+    confirmFreemium {
+      updatedAt
+    }
+  }
+`;
+
 export const getPortalUrlQuery = gql`
   query GetPortalUrl {
     getPortalUrl

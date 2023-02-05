@@ -33,7 +33,7 @@ export const ConfirmSubscriptionMutation = extendType({
             subscriptionToken: token,
           },
           data: {
-            subscription: "STARTER",
+            subscription: "PRO",
             frequency,
             stripeCustomerId: session.customer,
           },

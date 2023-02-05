@@ -107,6 +107,7 @@ export interface NexusGenFieldTypes {
     url: string | null; // String
   }
   Mutation: { // field return type
+    confirmFreemium: NexusGenRootTypes['User'] | null; // User
     confirmSubscription: NexusGenRootTypes['User'] | null; // User
     newCheckout: string | null; // String
     newDocument: NexusGenRootTypes['Document'] | null; // Document
@@ -149,6 +150,7 @@ export interface NexusGenFieldTypeNames {
     url: 'String'
   }
   Mutation: { // field return type name
+    confirmFreemium: 'User'
     confirmSubscription: 'User'
     newCheckout: 'String'
     newDocument: 'Document'
