@@ -44,11 +44,11 @@ const Sidebars: React.FC<SidebarsProps> = ({
   return (
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
       <TabList className={styles.sidebarsTabList}>
-        <Tab title="Save items for later">
-          <i className="ph-archive"></i> Saved
-        </Tab>
         <Tab title="Real-time information feed as you type">
           <i className="ph-info"></i> Information
+        </Tab>
+        <Tab title="Save items for later">
+          <i className="ph-archive"></i> Saved
         </Tab>
         <Tab title="Generative AI text completions">
           <i className="ph-article"></i> Suggestions
@@ -56,10 +56,10 @@ const Sidebars: React.FC<SidebarsProps> = ({
       </TabList>
 
       <TabPanel>
-        <SavedItems documentData={documentData} />
+        <Information documentId={documentId} />
       </TabPanel>
       <TabPanel>
-        <Information documentId={documentId} />
+        <SavedItems documentData={documentData} />
       </TabPanel>
       <TabPanel>
         {data.subscription === "PRO" ? (
