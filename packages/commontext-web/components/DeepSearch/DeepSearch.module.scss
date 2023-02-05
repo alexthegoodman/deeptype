@@ -1,0 +1,29 @@
+.deepSearch {
+  .deepSearchInner {
+    .deepSearchHeader {
+      .searchInput {
+      }
+    }
+    .searchResults {
+      .result {
+        margin-bottom: 25px;
+
+        span {
+          display: block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 90%;
+
+          strong {
+            font-weight: 500;
+          }
+        }
+        a,
+        p {
+          display: block;
+        }
+      }
+    }
+  }
+}

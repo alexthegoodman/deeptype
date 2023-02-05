@@ -29,3 +29,28 @@ export const searchQuery = gql`
     }
   }
 `;
+
+export const baseSearchQuery = gql`
+  query BaseSearch($query: String!) {
+    baseSearch(query: $query) {
+      id
+      url
+      metaTitle
+      metaDescription
+      headline
+      excerpt
+      summary
+      loadSpeedScore
+
+      outgoingLinks {
+        id
+        originUrl
+        targetUrl
+        count
+        analyzedDate
+        updatedAt
+        createdAt
+      }
+    }
+  }
+`;
