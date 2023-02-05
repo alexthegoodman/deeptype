@@ -1,3 +1,5 @@
+@import "../../app/variables.scss";
+
 .sidebars {
   .sidebarsTabList {
     list-style: none;
@@ -6,14 +8,27 @@
     padding: 0;
     margin: 0;
 
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    border-radius: 50px;
+    margin: 16px 10px;
+    padding: 6px 8px;
+    box-shadow: $cardShadow1;
+
     li {
       display: block;
-      padding: 16px 8px;
-      font-size: 18px;
+      padding: 4px 8px;
+      font-size: 15px;
       cursor: pointer;
+      text-transform: uppercase;
+      margin-right: 3px;
+      font-weight: 500;
 
       &.selectedTab {
-        font-weight: 500;
+        background-color: $darkGreen;
+        color: white;
+        border-radius: 50px;
       }
 
       &:focus {

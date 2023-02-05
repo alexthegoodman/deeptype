@@ -11,6 +11,7 @@ import graphClient from "../../helpers/GQLClient";
 import { getCurrentUserQuery } from "../../graphql/user";
 import { useCookies } from "react-cookie";
 import BasicCard from "../BasicCard/BasicCard";
+import SavedItems from "../SavedItems/SavedItems";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -43,26 +44,19 @@ const Sidebars: React.FC<SidebarsProps> = ({
   return (
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
       <TabList className={styles.sidebarsTabList}>
-        <Tab>
+        <Tab title="Save items for later">
           <i className="ph-archive"></i> Saved
         </Tab>
-        <Tab>
+        <Tab title="Real-time information feed as you type">
           <i className="ph-info"></i> Information
         </Tab>
-        <Tab>
+        <Tab title="Generative AI text completions">
           <i className="ph-article"></i> Suggestions
         </Tab>
       </TabList>
 
       <TabPanel>
-        <>
-          {documentData?.savedItems?.map((savedItem) => (
-            <BasicCard
-              header={<span>{savedItem.type}</span>}
-              body={<p>{savedItem.data.summary}</p>}
-            />
-          ))}
-        </>
+        <SavedItems documentData={documentData} />
       </TabPanel>
       <TabPanel>
         <Information documentId={documentId} />
@@ -71,7 +65,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
         {data.subscription === "PRO" ? (
           <Suggestions />
         ) : (
-          <p>Please upgrade to a Pro subscription use AI Text Suggestions</p>
+          <p>Please upgrade to a Pro subscription to use AI Text Suggestions</p>
         )}
       </TabPanel>
     </Tabs>
