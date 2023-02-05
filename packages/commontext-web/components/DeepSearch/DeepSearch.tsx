@@ -48,7 +48,7 @@ const DeepSearch: React.FC<DeepSearchProps> = () => {
             type="search"
             placeholder="Search the web"
             onInput={searchInput}
-            // defaultValue={documentData?.descriptor}
+            defaultValue={search}
           />
         </div>
         <div className={styles.searchResults}>
