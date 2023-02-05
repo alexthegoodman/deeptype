@@ -56,6 +56,14 @@ export const documentQuery = gql`
         role
       }
 
+      savedItems {
+        id
+        type
+        data
+        updatedAt
+        createdAt
+      }
+
       updatedAt
       createdAt
     }

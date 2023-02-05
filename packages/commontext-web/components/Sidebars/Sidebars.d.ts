@@ -1,1 +1,4 @@
-export interface SidebarsProps {}
+export interface SidebarsProps {
+  documentId: string;
+  documentData: any;
+}

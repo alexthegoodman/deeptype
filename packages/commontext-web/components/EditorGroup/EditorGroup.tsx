@@ -66,7 +66,7 @@ const EditorGroup: React.FC<EditorGroupProps> = ({
               className={styles.panel}
               order={2}
             >
-              <Sidebars />
+              <Sidebars documentId={documentId} documentData={documentData} />
             </Panel>
           </>
         ) : (

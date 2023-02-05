@@ -1,5 +1,6 @@
 export * from "./types/Link";
 export * from "./types/Document";
+export * from "./types/SavedItem";
 export * from "./types/User";
 
 export * from "./queries/myDocuments";

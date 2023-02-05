@@ -69,6 +69,13 @@ export interface NexusGenObjects {
   }
   Mutation: {};
   Query: {};
+  SavedItem: { // root type
+    createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    data?: NexusGenScalars['JSONObject'] | null; // JSONObject
+    id?: string | null; // String
+    type?: string | null; // String
+    updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
+  }
   User: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     email?: string | null; // String
@@ -96,6 +103,7 @@ export interface NexusGenFieldTypes {
     creator: NexusGenRootTypes['User'] | null; // User
     descriptor: string | null; // String
     id: string | null; // String
+    savedItems: NexusGenRootTypes['SavedItem'] | null; // SavedItem
     title: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -121,6 +129,14 @@ export interface NexusGenFieldTypes {
     getPortalUrl: string | null; // String
     myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
+  SavedItem: { // field return type
+    createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    data: NexusGenScalars['JSONObject'] | null; // JSONObject
+    document: NexusGenRootTypes['Document'] | null; // Document
+    id: string | null; // String
+    type: string | null; // String
+    updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
+  }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     documents: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
@@ -139,6 +155,7 @@ export interface NexusGenFieldTypeNames {
     creator: 'User'
     descriptor: 'String'
     id: 'String'
+    savedItems: 'SavedItem'
     title: 'String'
     updatedAt: 'DateTime'
   }
@@ -163,6 +180,14 @@ export interface NexusGenFieldTypeNames {
     getCurrentUser: 'User'
     getPortalUrl: 'String'
     myDocuments: 'Document'
+  }
+  SavedItem: { // field return type name
+    createdAt: 'DateTime'
+    data: 'JSONObject'
+    document: 'Document'
+    id: 'String'
+    type: 'String'
+    updatedAt: 'DateTime'
   }
   User: { // field return type name
     createdAt: 'DateTime'

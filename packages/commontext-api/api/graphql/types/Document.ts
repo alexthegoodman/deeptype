@@ -25,6 +25,20 @@ export const DocumentType = objectType({
       },
     });
 
+    t.field("savedItems", {
+      type: "SavedItem",
+      resolve: async (document, __, context: Context) => {
+        // TODO: just get creatorId off document?
+        return await context.prisma.savedItem.findFirst({
+          where: {
+            document: {
+              id: document.id as string,
+            },
+          },
+        });
+      },
+    });
+
     t.field("updatedAt", { type: "DateTime" });
     t.field("createdAt", { type: "DateTime" });
   },

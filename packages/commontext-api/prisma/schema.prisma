@@ -38,6 +38,21 @@ model Document {
   creator     User @relation(fields: [creatorId], references: [id])
   creatorId   String 
 
+  savedItems SavedItem[]
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
+
+model SavedItem {
+  id String @id @unique @default(uuid())
+
+  type String
+  data Json
+
+  document     Document @relation(fields: [documentId], references: [id])
+  documentId   String 
+
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }

@@ -13,6 +13,7 @@ type Document {
   creator: User
   descriptor: String
   id: String
+  savedItems: SavedItem
   title: String
   updatedAt: DateTime
 }
@@ -45,6 +46,15 @@ type Query {
   getCurrentUser: User
   getPortalUrl: String
   myDocuments: [Document]
+}
+
+type SavedItem {
+  createdAt: DateTime
+  data: JSONObject
+  document: Document
+  id: String
+  type: String
+  updatedAt: DateTime
 }
 
 type User {

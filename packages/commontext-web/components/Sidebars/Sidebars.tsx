@@ -21,7 +21,10 @@ const getUserData = async (token: string) => {
   return getCurrentUser;
 };
 
-const Sidebars: React.FC<SidebarsProps> = () => {
+const Sidebars: React.FC<SidebarsProps> = ({
+  documentId = "",
+  documentData = null,
+}) => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
 
@@ -40,6 +43,9 @@ const Sidebars: React.FC<SidebarsProps> = () => {
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
       <TabList className={styles.sidebarsTabList}>
         <Tab>
+          <i className="ph-archive"></i> Saved
+        </Tab>
+        <Tab>
           <i className="ph-info"></i> Information
         </Tab>
         <Tab>
@@ -47,6 +53,14 @@ const Sidebars: React.FC<SidebarsProps> = () => {
         </Tab>
       </TabList>
 
+      <TabPanel>
+        <>
+          Saved Items{" "}
+          {documentData?.savedItems?.map((savedItem) => (
+            <p>{savedItem.id}</p>
+          ))}
+        </>
+      </TabPanel>
       <TabPanel>
         <Information />
       </TabPanel>
