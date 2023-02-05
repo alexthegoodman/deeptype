@@ -34,8 +34,9 @@ const Information: React.FC<InformationProps> = () => {
   React.useEffect(
     () => {
       if (
-        (debouncedDescriptor && debouncedDescriptor !== "") ||
-        (debouncedPlaintext && debouncedPlaintext !== "")
+        !isSearching &&
+        ((debouncedDescriptor && debouncedDescriptor !== "") ||
+          (debouncedPlaintext && debouncedPlaintext !== ""))
       ) {
         const fullText = debouncedPlaintext;
         const descriptor =

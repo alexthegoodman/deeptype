@@ -24,7 +24,7 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
 
   React.useEffect(
     () => {
-      if (debouncedPlaintext && debouncedPlaintext !== "") {
+      if (!isSearching && debouncedPlaintext && debouncedPlaintext !== "") {
         const body = JSON.stringify({ text: recentText });
 
         console.info("generating", recentText);

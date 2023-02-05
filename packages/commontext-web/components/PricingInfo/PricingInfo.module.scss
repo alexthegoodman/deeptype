@@ -16,22 +16,30 @@
       text-align: center;
     }
 
-    .left {
-      padding: 65px 80px;
-      background-color: $lightGreenGrey;
-      width: 50%;
-
+    .left,
+    .center,
+    .right {
+      padding: 65px 35px;
+      width: calc(100% / 3);
+    }
+    .left,
+    .center {
       a {
         background: $blackish;
         margin-top: 50px;
       }
     }
+
+    .left {
+      background-color: $lightGreenGrey;
+    }
     .right {
-      padding: 90px 80px 65px 80px;
+      padding: 90px 35px 65px 35px;
       background-color: $green1;
       margin-top: -25px;
       margin-bottom: -25px;
-      width: calc(50% + 100px);
+      margin-right: -25px;
+      width: calc((100% / 3) + 50px);
 
       h3,
       h4,
@@ -58,7 +66,8 @@
       width: $small;
       flex-direction: column;
 
-      .left {
+      .left,
+      .center {
         width: calc(100% - 20px);
         margin: 0 auto;
         padding: 35px 40px 55px 40px;
@@ -76,7 +85,8 @@
       width: 100%;
 
       .left,
-      .right {
+      .right,
+      .center {
         padding-left: 25px;
         padding-right: 25px;
       }

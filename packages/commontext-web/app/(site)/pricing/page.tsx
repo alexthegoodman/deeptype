@@ -18,7 +18,10 @@ export default function Pricing() {
     <>
       <SiteHeader />
       <main className={ibmPlexMono.className}>
-        <IntroHero headline="Simple Pricing" subHeadline="Two Options" />
+        <IntroHero
+          headline="Simple Pricing"
+          subHeadline="Easy to start. Easy to cancel."
+        />
         <PricingInfo />
       </main>
       <SiteFooter />

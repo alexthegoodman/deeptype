@@ -13,25 +13,22 @@ const PricingItem: React.FC<PricingItemProps> = ({
       Start Now
     </Link>
   ),
+  items = [],
 }) => {
   return (
     <section className={styles.pricingItem}>
       <div className={styles.pricingItemInner}>
-        <h3>${price}/mo</h3>
-        <h4>Paid {frequency}</h4>
+        <h3>{typeof price === "number" ? `$${price}/mo` : price}</h3>
+        {frequency ? <h4>Paid {frequency}</h4> : <></>}
         <ul>
-          <li>
-            <i className="ph-check-circle-thin"></i>
-            <span>Unlimited Documents</span>
-          </li>
-          <li>
-            <i className="ph-check-circle-thin"></i>
-            <span>Unlimited Research</span>
-          </li>
-          <li>
-            <i className="ph-check-circle-thin"></i>
-            <span>Customer Support</span>
-          </li>
+          {items.map((item) => {
+            return (
+              <li>
+                <i className="ph-check-circle-thin"></i>
+                <span>{item}</span>
+              </li>
+            );
+          })}
         </ul>
         {btn}
       </div>

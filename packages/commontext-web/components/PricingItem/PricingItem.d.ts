@@ -1,7 +1,8 @@
 import { ReactElement } from "react";
 
 export interface PricingItemProps {
-    price: number;
-    frequency: string;
-    btn?: ReactElement;
+  price: number | string;
+  frequency?: string;
+  btn?: ReactElement;
+  items?: string[];
 }
