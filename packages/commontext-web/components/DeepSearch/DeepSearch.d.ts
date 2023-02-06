@@ -1,1 +1,3 @@
-export interface DeepSearchProps {}
+export interface DeepSearchProps {
+  documentId: string;
+}

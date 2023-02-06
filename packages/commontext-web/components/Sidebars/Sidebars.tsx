@@ -67,7 +67,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
       </TabPanel>
 
       <TabPanel>
-        <DeepSearch />
+        <DeepSearch documentId={documentId} />
       </TabPanel>
 
       <TabPanel>
@@ -79,7 +79,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
       </TabPanel>
 
       <TabPanel>
-        <SavedItems documentData={documentData} />
+        <SavedItems documentId={documentId} documentData={documentData} />
       </TabPanel>
     </Tabs>
   );

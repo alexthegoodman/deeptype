@@ -1,0 +1,21 @@
+.resultBody {
+  span,
+  a,
+  p {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  span,
+  a {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 90%;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+}

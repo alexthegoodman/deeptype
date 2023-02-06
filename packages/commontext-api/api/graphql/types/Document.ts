@@ -35,6 +35,9 @@ export const DocumentType = objectType({
               id: document.id as string,
             },
           },
+          orderBy: {
+            createdAt: "desc",
+          },
         });
       },
     });

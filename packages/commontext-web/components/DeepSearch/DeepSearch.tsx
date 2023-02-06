@@ -10,8 +10,13 @@ import { useCookies } from "react-cookie";
 import { baseSearchQuery } from "../../graphql/search";
 import request from "graphql-request";
 import { searchUrl } from "../../defs/urls";
+import Loader from "../Loader/Loader";
+import BasicCard from "../BasicCard/BasicCard";
+import SaveLink from "../SaveLink/SaveLink";
+import CardLinks from "../CardLinks/CardLinks";
+import PageCard from "../PageCard/PageCard";
 
-const DeepSearch: React.FC<DeepSearchProps> = () => {
+const DeepSearch: React.FC<DeepSearchProps> = ({ documentId = "" }) => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
 
@@ -20,13 +25,17 @@ const DeepSearch: React.FC<DeepSearchProps> = () => {
   const [{ search }, dispatch] = useEditorContext();
   const debouncedSearch = useDebounce(search, 500);
   const [searchResults, setSearchResults] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(false);
 
   const fetchSearchResults = async (query) => {
+    setLoading(true);
+
     const { baseSearch } = await request(searchUrl, baseSearchQuery, {
       query,
     });
 
     setSearchResults(baseSearch);
+    setLoading(false);
   };
 
   React.useEffect(() => {
@@ -46,36 +55,15 @@ const DeepSearch: React.FC<DeepSearchProps> = () => {
           <input
             className={styles.searchInput}
             type="search"
-            placeholder="Search the web"
+            placeholder="Search the web..."
             onInput={searchInput}
             defaultValue={search}
           />
         </div>
+        {loading ? <Loader /> : <></>}
         <div className={styles.searchResults}>
           {searchResults?.map((result) => {
-            return (
-              <div className={styles.result}>
-                <span>
-                  <strong>{result.metaTitle}</strong>
-                </span>
-                <a href={result.url} target="_blank">
-                  {result.url}
-                </a>
-                <p>{result.excerpt}</p>
-                <span>Outgoing Links:</span>
-                <ul>
-                  {result.outgoingLinks.map((link) => {
-                    return (
-                      <li>
-                        <a href={link.targetUrl} target="_blank">
-                          {link.targetUrl}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            );
+            return <PageCard documentId={documentId} result={result} />;
           })}
         </div>
       </div>

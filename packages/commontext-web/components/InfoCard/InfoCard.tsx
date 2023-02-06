@@ -16,7 +16,11 @@ const InfoCard: React.FC<InfoCardProps> = ({
       body={<p>{item.summary}</p>}
       footerLeft={
         <>
-          <SaveLink documentId={documentId} type="SUMMARY" data={item} />
+          {documentId ? (
+            <SaveLink documentId={documentId} type="SUMMARY" data={item} />
+          ) : (
+            <></>
+          )}
           <a href={item.url} target="_blank">
             <i className="ph-arrow-square-out-thin"></i>
             <span>Source</span>
