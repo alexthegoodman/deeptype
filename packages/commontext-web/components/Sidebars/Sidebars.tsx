@@ -13,6 +13,7 @@ import { useCookies } from "react-cookie";
 import BasicCard from "../BasicCard/BasicCard";
 import SavedItems from "../SavedItems/SavedItems";
 import DeepSearch from "../DeepSearch/DeepSearch";
+import EmptyNotice from "../EmptyNotice/EmptyNotice";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -74,7 +75,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
         {data.subscription === "PRO" ? (
           <Suggestions />
         ) : (
-          <p>Please upgrade to a Pro subscription to use AI Text Suggestions</p>
+          <EmptyNotice message="Please upgrade to a Pro subscription to use AI Text Suggestions" />
         )}
       </TabPanel>
 

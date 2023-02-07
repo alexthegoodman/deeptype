@@ -14,6 +14,7 @@ import { ResultData } from "../../defs/resultData";
 import { searchUrl } from "../../defs/urls";
 import Loader from "../Loader/Loader";
 import InfoCard from "../InfoCard/InfoCard";
+import EmptyNotice from "../EmptyNotice/EmptyNotice";
 
 const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
   const [{ editorRecentText, editorDescriptor }, dispatch] = useEditorContext();
@@ -71,7 +72,7 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
     <section className={styles.information}>
       <div className={styles.informationInner}>
         {/* <DebugPanel resultData={resultData} /> */}
-        {debouncedRecentText}
+        {/* {debouncedRecentText} */}
 
         {/* <h2>Information</h2> */}
 
@@ -90,7 +91,7 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
                 );
               })
             ) : (
-              <></>
+              <EmptyNotice message="Start typing or adjust the descriptor field" />
             )}
           </div>
         </section>
