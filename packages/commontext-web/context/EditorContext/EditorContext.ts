@@ -5,6 +5,7 @@ export interface EditorContextState {
   editorValue: string;
   editorJson: any;
   editorPlaintext: string;
+  editorRecentText: string;
   focusModeEnabled: boolean;
 }
 
@@ -13,6 +14,7 @@ export const EditorContextState = {
   editorValue: "",
   editorJson: null,
   editorPlaintext: "",
+  editorRecentText: "",
   focusModeEnabled: false,
 };
 

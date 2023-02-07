@@ -16,9 +16,9 @@ import Loader from "../Loader/Loader";
 import InfoCard from "../InfoCard/InfoCard";
 
 const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
-  const [{ editorPlaintext, editorDescriptor }, dispatch] = useEditorContext();
+  const [{ editorRecentText, editorDescriptor }, dispatch] = useEditorContext();
   const debouncedDescriptor = useDebounce(editorDescriptor, 500);
-  const debouncedPlaintext = useDebounce(editorPlaintext, 500);
+  const debouncedRecentText = useDebounce(editorRecentText, 500);
 
   const [isSearching, setIsSearching] = React.useState(false);
   const [resultData, setResultData] = React.useState<ResultData | null>(null);
@@ -36,24 +36,24 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
       if (
         !isSearching &&
         ((debouncedDescriptor && debouncedDescriptor !== "") ||
-          (debouncedPlaintext && debouncedPlaintext !== ""))
+          (debouncedRecentText && debouncedRecentText !== ""))
       ) {
-        const fullText = debouncedPlaintext;
+        // const fullText = debouncedPlaintext;
         const descriptor =
           typeof debouncedDescriptor !== "undefined" && debouncedDescriptor
             ? debouncedDescriptor
             : "";
-        const recentText = debouncedPlaintext.substring(
-          debouncedPlaintext.length - 35
-        );
+        // const recentText = debouncedPlaintext.substring(
+        //   debouncedPlaintext.length - 35
+        // );
 
-        console.info("searching", debouncedDescriptor, recentText);
+        console.info("searching", debouncedDescriptor, debouncedRecentText);
 
         setIsSearching(true);
         request(searchUrl, searchQuery, {
           // contextQuery: fullText,
           contextQuery: descriptor,
-          query: recentText,
+          query: debouncedRecentText,
         }).then((data) => {
           console.info("results data", data);
           setIsSearching(false);
@@ -64,13 +64,14 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
         setIsSearching(false);
       }
     },
-    [debouncedPlaintext, debouncedDescriptor] // Only call effect if debounced search term changes
+    [debouncedRecentText, debouncedDescriptor] // Only call effect if debounced search term changes
   );
 
   return (
     <section className={styles.information}>
       <div className={styles.informationInner}>
         {/* <DebugPanel resultData={resultData} /> */}
+        {debouncedRecentText}
 
         {/* <h2>Information</h2> */}
 

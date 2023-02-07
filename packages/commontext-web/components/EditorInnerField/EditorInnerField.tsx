@@ -70,7 +70,10 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
   icons["list"]["ordered"] = `<i class="ph-list-numbers-thin"></i>`;
   icons["link"] = `<i class="ph-link-thin"></i>`;
 
-  const editorRef = React.useRef();
+  const recentTextLength = 35;
+
+  const editorRef = React.useRef<any>();
+
   const [{ editorPlaintext, focusModeEnabled }, dispatch] = useEditorContext();
 
   const totalWords = editorPlaintext
@@ -78,21 +81,65 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
     : 0;
 
   const onFieldChange = (html: any, delta: any, x: any, instance: any) => {
-    console.info("field change", html, delta, instance.getContents());
-    const plaintext = html.replace(/<(.|\n)*?>/g, "");
+    console.info("field change", html, delta, instance.getSelection());
 
-    dispatch({ type: "editorValue", payload: html });
-    dispatch({ type: "editorJson", payload: instance.getContents() });
-    dispatch({ type: "editorPlaintext", payload: plaintext });
+    const selectionData = instance.getSelection();
 
-    // refetch(); // need to refetch after doc update, not on field change
+    if (selectionData) {
+      const plaintext = html.replace(/<(.|\n)*?>/g, "");
+
+      const recentText = instance.getText(
+        selectionData.index - recentTextLength,
+        recentTextLength
+      );
+
+      dispatch({ type: "editorValue", payload: html });
+      dispatch({ type: "editorJson", payload: instance.getContents() });
+      dispatch({ type: "editorPlaintext", payload: plaintext });
+      dispatch({
+        type: "editorRecentText",
+        payload: recentText,
+      });
+
+      // refetch(); // need to refetch after doc update, not on field change
+    }
   };
 
   React.useEffect(() => {
     console.info("editorRef", editorRef.current);
     if (typeof editorRef.current !== "undefined") {
       const elem = editorRef.current as any;
+      const quill = elem.getEditor();
+
       elem.focus();
+
+      // quill.on("text-change", function (delta, oldDelta, source) {
+      //   console.info("text change", delta, oldDelta, source);
+      // });
+
+      quill.on("selection-change", function (range, oldRange, source) {
+        if (range) {
+          if (range.length === 0) {
+            const recentText = quill.getText(
+              range.index - recentTextLength,
+              recentTextLength
+            );
+
+            console.log("User cursor is on", range.index, recentText);
+
+            dispatch({ type: "editorRecentText", payload: recentText });
+          } else {
+            // var text = quill.getText(range.index, range.length);
+            // console.log('User has highlighted', text);
+          }
+        } else {
+          // console.log('Cursor not in the editor');
+        }
+      });
+
+      return () => {
+        quill.off("selection-change");
+      };
     }
   }, [editorRef.current]);
 
