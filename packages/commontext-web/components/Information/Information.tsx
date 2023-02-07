@@ -80,7 +80,7 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
 
         <section className={styles.informationResults}>
           <div className={styles.informationResultsInner}>
-            {resultData?.results ? (
+            {resultData?.results && resultData?.results.length > 0 ? (
               resultData.results.map((item, i) => {
                 return (
                   <InfoCard
@@ -91,7 +91,7 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
                 );
               })
             ) : (
-              <EmptyNotice message="Start typing or adjust the descriptor field" />
+              <EmptyNotice message="Continue typing or adjust the descriptor field" />
             )}
           </div>
         </section>
