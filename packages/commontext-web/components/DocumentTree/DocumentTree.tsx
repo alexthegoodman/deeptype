@@ -6,6 +6,7 @@ import styles from "./DocumentTree.module.scss";
 import { DocumentTreeProps } from "./DocumentTree.d";
 import { getDocumentsData } from "../../api/document";
 import { useCookies } from "react-cookie";
+import Link from "next/link";
 
 const DocumentTree: React.FC<DocumentTreeProps> = () => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
@@ -23,13 +24,13 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
   const treeData = [
     {
       id: "4cfdc067-7376-42ef-af40-0363f67bd27b",
-      folded: true,
+      folded: false,
       // color: ""
       // icon: ""
       children: [
         {
           id: "e70ecff7-849c-4a9f-96b3-5d1918a2d430",
-          folded: true,
+          folded: false,
           children: [
             {
               id: "0b1962a5-e92c-467a-a3fb-c713f4526fe4",
@@ -67,7 +68,11 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
 
           return (
             <li className={child.folded ? styles.folded : ""}>
-              <span>{childData.title}</span> {displayChildren(child)}
+              <Link href={`/editor/${child.id}`} draggable="true">
+                <i className="ph-caret-right-thin"></i>
+                <span>{childData.title}</span>
+              </Link>{" "}
+              {displayChildren(child)}
             </li>
           );
         })}
@@ -81,24 +86,30 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
   if (error) return <>{error}</>;
 
   return (
-    <>
-      {treeData.map((item) => {
-        const itemData = documentsData.filter(
-          (document) => document.id === item.id
-        )[0];
+    <section className={styles.documentTree}>
+      <div className={styles.documentTreeInner}>
+        <span className={styles.treeHeadline}>Your Documents</span>
+        {treeData.map((item) => {
+          const itemData = documentsData.filter(
+            (document) => document.id === item.id
+          )[0];
 
-        return (
-          <>
-            <ul>
-              <li className={item.folded ? styles.folded : ""}>
-                <span>{itemData.title}</span>
-                {displayChildren(item)}
-              </li>
-            </ul>
-          </>
-        );
-      })}
-    </>
+          return (
+            <>
+              <ul>
+                <li className={item.folded ? styles.folded : ""}>
+                  <Link href={`/editor/${item.id}`} draggable="true">
+                    <i className="ph-caret-right-thin"></i>
+                    <span>{itemData.title}</span>
+                  </Link>
+                  {displayChildren(item)}
+                </li>
+              </ul>
+            </>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

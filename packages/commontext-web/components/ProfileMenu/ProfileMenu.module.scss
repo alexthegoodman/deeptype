@@ -1,5 +1,11 @@
+@import "../../app/variables.scss";
+
 .profileMenu {
+  background-color: $lightGreyBackground;
+
   .profileMenuInner {
+    padding: 25px;
+
     .menuTrigger {
       display: flex;
       align-items: center;
