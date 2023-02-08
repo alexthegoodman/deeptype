@@ -2,7 +2,8 @@
 @import "../../app/mixins.scss";
 
 .editorGroupWrapper {
-  height: calc(100vh - 80px);
+  height: 100vh;
+  // height: calc(100vh - 80px);
   // overflow-y: scroll;
 
   &.focusMode {
