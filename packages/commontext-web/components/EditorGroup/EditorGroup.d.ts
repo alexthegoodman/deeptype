@@ -1,4 +1,4 @@
 export interface EditorGroupProps {
-  documentId: string;
-  documentData: any;
+  documentId?: string;
+  documentData?: any;
 }

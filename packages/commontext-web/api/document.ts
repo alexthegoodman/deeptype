@@ -1,4 +1,4 @@
-import { documentQuery } from "../graphql/document";
+import { documentQuery, myDocumentsQuery } from "../graphql/document";
 import graphClient from "../helpers/GQLClient";
 
 export const getDocumentData = async (token: string, documentId: string) => {
@@ -9,4 +9,12 @@ export const getDocumentData = async (token: string, documentId: string) => {
   });
 
   return document;
+};
+
+export const getDocumentsData = async (token: string) => {
+  graphClient.setupClient(token);
+
+  const { myDocuments } = await graphClient.client?.request(myDocumentsQuery);
+
+  return myDocuments;
 };

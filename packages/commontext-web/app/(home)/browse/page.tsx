@@ -12,14 +12,7 @@ import graphClient from "../../../helpers/GQLClient";
 import { graphqlUrl } from "../../../defs/urls";
 import styles from "./page.module.scss";
 import { useRouter } from "next/navigation";
-
-const getDocumentsData = async (token: string) => {
-  graphClient.setupClient(token);
-
-  const { myDocuments } = await graphClient.client?.request(myDocumentsQuery);
-
-  return myDocuments;
-};
+import { getDocumentsData } from "../../../api/document";
 
 export default function Browse() {
   const router = useRouter();

@@ -56,11 +56,11 @@ export default function Editor(props) {
       value={useReducer(EditorContextReducer, EditorContextState)}
     >
       <main className={styles.editorContainer}>
-        <EditorHeader
+        {/* <EditorHeader
           documentId={documentId}
           documentData={data}
           refetchDocument={refetch}
-        />
+        /> */}
         {body}
       </main>
     </EditorContext.Provider>

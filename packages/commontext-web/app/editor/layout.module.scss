@@ -1,0 +1,15 @@
+.editorLayout {
+  .editorLayoutInner {
+    display: flex;
+    flex-direction: row;
+
+    .documentTreeSidebar {
+      .sidebarInner {
+      }
+    }
+    .documentEditorWrapper {
+      .wrapperInner {
+      }
+    }
+  }
+}
