@@ -58,7 +58,13 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
     },
   ];
 
-  const displayChildren = (obj) => {
+  const addPageHandler = (id) => {
+    // create new document
+    // add its ID to children of id
+    // save new tree
+  };
+
+  const displayChildren = (obj, addPage) => {
     return obj.children ? (
       <ul>
         {obj.children.map((child) => {
@@ -66,19 +72,29 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
             (document) => document.id === child.id
           )[0];
 
-          return (
-            <li className={child.folded ? styles.folded : ""}>
-              <Link href={`/editor/${child.id}`} draggable="true">
-                <i className="ph-caret-right-thin"></i>
-                <span>{childData.title}</span>
-              </Link>{" "}
-              {displayChildren(child)}
+          const newAddPage = (
+            <li onClick={() => addPageHandler(child.id)}>
+              <i className="ph-plus-thin"></i>
+              <span>Add Document</span>
             </li>
           );
+
+          return (
+            <>
+              <li className={child.folded ? styles.folded : ""}>
+                <Link href={`/editor/${child.id}`} draggable="true">
+                  <i className="ph-caret-right-thin"></i>
+                  <span>{childData.title}</span>
+                </Link>{" "}
+                {child.id ? displayChildren(child, newAddPage) : <></>}
+              </li>
+            </>
+          );
         })}
+        {addPage}
       </ul>
     ) : (
-      <></>
+      <ul>{addPage}</ul>
     );
   };
 
@@ -94,16 +110,26 @@ const DocumentTree: React.FC<DocumentTreeProps> = () => {
             (document) => document.id === item.id
           )[0];
 
+          const newAddPage = (
+            <li onClick={() => addPageHandler(item.id)}>
+              <i className="ph-plus-thin"></i>
+              <span>Add Document</span>
+            </li>
+          );
+
           return (
             <>
               <ul>
-                <li className={item.folded ? styles.folded : ""}>
-                  <Link href={`/editor/${item.id}`} draggable="true">
-                    <i className="ph-caret-right-thin"></i>
-                    <span>{itemData.title}</span>
-                  </Link>
-                  {displayChildren(item)}
-                </li>
+                <>
+                  <li className={item.folded ? styles.folded : ""}>
+                    <Link href={`/editor/${item.id}`} draggable="true">
+                      <i className="ph-caret-right-thin"></i>
+                      <span>{itemData.title}</span>
+                    </Link>
+                    {item.id ? displayChildren(item, newAddPage) : <></>}
+                  </li>
+                </>
+                {/* {newAddPage} */}
               </ul>
             </>
           );
