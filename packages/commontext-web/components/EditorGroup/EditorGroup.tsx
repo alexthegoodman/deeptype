@@ -34,6 +34,7 @@ function ResizeHandle({
 const EditorGroup: React.FC<EditorGroupProps> = ({
   documentId = "",
   documentData = null,
+  refetchDocument = () => console.info("refetch"),
 }) => {
   const [{ focusModeEnabled }, dispatch] = useEditorContext();
   const windowSize = useWindowSize();
@@ -56,7 +57,11 @@ const EditorGroup: React.FC<EditorGroupProps> = ({
         className={styles.editorGroup}
       >
         <Panel className={styles.panel} defaultSize={60} order={1}>
-          <EditorField documentId={documentId} documentData={documentData} />
+          <EditorField
+            documentId={documentId}
+            documentData={documentData}
+            refetch={refetchDocument}
+          />
         </Panel>
         {!focusModeEnabled ? (
           <>

@@ -1,4 +1,5 @@
 @import "../../app/variables.scss";
+@import "../../app/shared.scss";
 
 .deepSearch {
   .deepSearchInner {
@@ -8,19 +9,7 @@
       margin-bottom: 25px;
 
       .searchInput {
-        width: 100%;
-        height: 70px;
-        box-shadow: $cardShadow1;
-        display: flex;
-        align-items: center;
-        border: none;
-        padding: 0 25px;
-        font-size: 20px;
-        font-weight: 300;
-
-        &:focus {
-          outline-color: $darkGreen;
-        }
+        @extend .search;
       }
     }
     .searchResults {

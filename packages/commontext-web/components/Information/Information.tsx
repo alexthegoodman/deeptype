@@ -15,8 +15,12 @@ import { searchUrl } from "../../defs/urls";
 import Loader from "../Loader/Loader";
 import InfoCard from "../InfoCard/InfoCard";
 import EmptyNotice from "../EmptyNotice/EmptyNotice";
+import EditorDescriptor from "../EditorDescriptor/EditorDescriptor";
 
-const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
+const Information: React.FC<InformationProps> = ({
+  documentId = "",
+  documentData = null,
+}) => {
   const [{ editorRecentText, editorDescriptor }, dispatch] = useEditorContext();
   const debouncedDescriptor = useDebounce(editorDescriptor, 500);
   const debouncedRecentText = useDebounce(editorRecentText, 500);
@@ -75,6 +79,8 @@ const Information: React.FC<InformationProps> = ({ documentId = "" }) => {
         {/* {debouncedRecentText} */}
 
         {/* <h2>Information</h2> */}
+
+        <EditorDescriptor documentData={documentData} />
 
         {isSearching ? <Loader /> : <></>}
 

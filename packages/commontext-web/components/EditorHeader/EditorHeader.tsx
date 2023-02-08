@@ -69,7 +69,8 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
   }, [debouncedDescriptor]);
 
   const onTitleChange = (e: any) => {
-    dispatch({ type: "editorTitle", payload: e.target.outerText });
+    console.info("title change", e.target.value);
+    dispatch({ type: "editorTitle", payload: e.target.value });
   };
 
   if (focusModeEnabled) return <></>;
@@ -77,20 +78,19 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
   return (
     <header className={styles.editorHeader}>
       <div className={styles.editorHeaderInner}>
-        <div className={styles.left}>
+        {/* <div className={styles.left}>
           <Link href="/browse" className={styles.headerBack}>
             <i className="ph-arrow-circle-left-thin"></i>
           </Link>
-        </div>
+        </div> */}
         <div className={styles.center}>
           <div className={styles.headerInfo}>
-            <span
+            <input
               className={styles.docTitle}
-              contentEditable={true}
-              onInput={onTitleChange}
-            >
-              {documentData?.title}
-            </span>
+              onChange={onTitleChange}
+              defaultValue={documentData?.title}
+              placeholder="Document Title"
+            />
             <span className={styles.savedDate}>
               Autosaved on{" "}
               {DateTime.fromISO(lastSaved).toLocaleString(
@@ -98,9 +98,6 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
               )}
             </span>
           </div>
-        </div>
-        <div className={styles.right}>
-          <ProfileMenu />
         </div>
       </div>
     </header>

@@ -12,6 +12,7 @@ import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import { Noto_Sans } from "@next/font/google";
 import EditorDescriptor from "../EditorDescriptor/EditorDescriptor";
 import FocusModeButton from "../FocusModeButton/FocusModeButton";
+import EditorHeader from "../EditorHeader/EditorHeader";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -156,7 +157,11 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
       >
         <div className={styles.quillFieldInner}>
           <section className={styles.descriptorWrapper}>
-            <EditorDescriptor documentData={documentData} />
+            <EditorHeader
+              documentId={documentId}
+              documentData={documentData}
+              refetchDocument={refetch}
+            />
             <FocusModeButton />
           </section>
 

@@ -36,6 +36,8 @@ export default function Editor(props) {
     }
   );
 
+  console.info("document data", data);
+
   const refetch = async () => {
     const newData = await getDocumentData(token, documentId);
     console.info("refetch document data", newData);
@@ -49,20 +51,19 @@ export default function Editor(props) {
   if (isLoading) body = <Loader />;
   if (error) body = <span>Error...</span>;
   if (!isLoading && !error)
-    body = <EditorGroup documentId={documentId} documentData={data} />;
+    body = (
+      <EditorGroup
+        documentId={documentId}
+        documentData={data}
+        refetchDocument={refetch}
+      />
+    );
 
   return (
     <EditorContext.Provider
       value={useReducer(EditorContextReducer, EditorContextState)}
     >
-      <main className={styles.editorContainer}>
-        {/* <EditorHeader
-          documentId={documentId}
-          documentData={data}
-          refetchDocument={refetch}
-        /> */}
-        {body}
-      </main>
+      <main className={styles.editorContainer}>{body}</main>
     </EditorContext.Provider>
   );
 }

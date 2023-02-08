@@ -64,7 +64,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
       </TabList>
 
       <TabPanel>
-        <Information documentId={documentId} />
+        <Information documentId={documentId} documentData={documentData} />
       </TabPanel>
 
       <TabPanel>

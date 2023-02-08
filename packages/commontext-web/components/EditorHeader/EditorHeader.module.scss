@@ -1,47 +1,55 @@
 @import "../../app/variables.scss";
+@import "../../app/shared.scss";
 
 .editorHeader {
   width: 100%;
-  background: $green1;
+  // background: $green1;
 
   .editorHeaderInner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    // height: 70px;
 
-    .headerBack {
-      width: 70px;
-      height: 70px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $darkGreen;
-      text-decoration: none;
+    // .headerBack {
+    //   width: 70px;
+    //   height: 70px;
+    //   display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+    //   background-color: $darkGreen;
+    //   text-decoration: none;
 
-      svg {
-        width: 35px;
-        height: 35px;
-        color: white;
-      }
-      i {
-        font-size: 32px;
-        color: white;
-      }
-    }
+    //   svg {
+    //     width: 35px;
+    //     height: 35px;
+    //     color: white;
+    //   }
+    //   i {
+    //     font-size: 32px;
+    //     color: white;
+    //   }
+    // }
     .headerInfo {
       display: flex;
       flex-direction: column;
+
+      .docTitle {
+        @extend .search;
+        box-shadow: none;
+        padding: 0;
+
+        &:focus {
+          outline: none;
+          // background-color: $lightGreenGrey;
+        }
+      }
 
       span {
         display: block;
         color: white;
         text-align: center;
 
-        &.docTitle {
-          font-size: 18px;
-          margin-bottom: 7px;
-        }
         &.savedDate {
           font-size: 12px;
         }
