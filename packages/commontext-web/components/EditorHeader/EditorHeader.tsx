@@ -11,6 +11,8 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { useCookies } from "react-cookie";
 import graphClient from "../../helpers/GQLClient";
 import { updateDocumentMutation } from "../../graphql/document";
+import { mutate } from "swr";
+import { getDocumentsData } from "../../api/document";
 const { DateTime } = require("luxon");
 
 const EditorHeader: React.FC<EditorHeaderProps> = ({
@@ -46,7 +48,8 @@ const EditorHeader: React.FC<EditorHeaderProps> = ({
 
     console.info("updatedDocument", updateDocument);
 
-    refetchDocument();
+    refetchDocument(); // TODO: can now be done with documentId
+    mutate("browseKey", () => getDocumentsData(token));
   };
 
   React.useEffect(() => {

@@ -1,9 +1,9 @@
 import { makeSchema, asNexusMethod } from "nexus";
 import { join } from "path";
-import { DateTimeResolver, JSONObjectResolver } from "graphql-scalars";
+import { DateTimeResolver, JSONResolver } from "graphql-scalars";
 import { applyMiddleware } from "graphql-middleware";
 
-const jsonScalar = asNexusMethod(JSONObjectResolver, "json");
+const jsonScalar = asNexusMethod(JSONResolver, "json");
 const dateTimeScalar = asNexusMethod(DateTimeResolver, "date");
 
 import * as types from "./graphql";

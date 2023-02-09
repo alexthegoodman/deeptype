@@ -17,19 +17,29 @@
       display: block;
       list-style: none;
       padding: 0 0 0 25px;
-      margin: 0 0 15px 0;
+      margin: 0 0 0 0;
 
       li {
         a {
           display: block;
-          margin-bottom: 15px;
+          // margin-bottom: 15px;
+          padding: 7px 0;
           text-decoration: none;
           color: $blackish;
           //   background: $lightGrey;
+
+          &.selected {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
         }
 
         i {
           transform: rotate(90deg);
+        }
+
+        &.addDocument {
+          padding: 7px 0;
+          cursor: pointer;
         }
 
         &.folded {

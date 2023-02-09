@@ -6,7 +6,7 @@ export const SavedItemType = objectType({
   definition(t) {
     t.field("id", { type: "String" });
     t.field("type", { type: "String" });
-    t.field("data", { type: "JSONObject" });
+    t.field("data", { type: "JSON" });
 
     t.field("document", {
       type: "Document",

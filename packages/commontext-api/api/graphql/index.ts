@@ -16,3 +16,4 @@ export * from "./mutations/newCheckout";
 export * from "./mutations/newDocument";
 export * from "./mutations/registerUser";
 export * from "./mutations/updateDocument";
+export * from "./mutations/updateUser";

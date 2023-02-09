@@ -8,9 +8,9 @@ import type { core } from "nexus"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
     /**
-     * The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+     * The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
      */
-    json<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "JSONObject";
+    json<FieldName extends string>(fieldName: FieldName, opts?: core.CommonInputFieldConfig<TypeName, FieldName>): void // "JSON";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -20,9 +20,9 @@ declare global {
 declare global {
   interface NexusGenCustomOutputMethods<TypeName extends string> {
     /**
-     * The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+     * The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
      */
-    json<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "JSONObject";
+    json<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "JSON";
     /**
      * A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
      */
@@ -48,12 +48,12 @@ export interface NexusGenScalars {
   Boolean: boolean
   ID: string
   DateTime: any
-  JSONObject: any
+  JSON: any
 }
 
 export interface NexusGenObjects {
   Document: { // root type
-    content?: NexusGenScalars['JSONObject'] | null; // JSONObject
+    content?: NexusGenScalars['JSON'] | null; // JSON
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     descriptor?: string | null; // String
     id?: string | null; // String
@@ -71,13 +71,14 @@ export interface NexusGenObjects {
   Query: {};
   SavedItem: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
-    data?: NexusGenScalars['JSONObject'] | null; // JSONObject
+    data?: NexusGenScalars['JSON'] | null; // JSON
     id?: string | null; // String
     type?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
   User: { // root type
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
+    documentTree?: NexusGenScalars['JSON'] | null; // JSON
     email?: string | null; // String
     frequency?: string | null; // String
     role?: string | null; // String
@@ -98,7 +99,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Document: { // field return type
-    content: NexusGenScalars['JSONObject'] | null; // JSONObject
+    content: NexusGenScalars['JSON'] | null; // JSON
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
     creator: NexusGenRootTypes['User'] | null; // User
     descriptor: string | null; // String
@@ -122,6 +123,7 @@ export interface NexusGenFieldTypes {
     newDocument: NexusGenRootTypes['Document'] | null; // Document
     registerUser: string; // String!
     updateDocument: NexusGenRootTypes['Document'] | null; // Document
+    updateUser: NexusGenRootTypes['User'] | null; // User
   }
   Query: { // field return type
     authenticate: string | null; // String
@@ -132,7 +134,7 @@ export interface NexusGenFieldTypes {
   }
   SavedItem: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
-    data: NexusGenScalars['JSONObject'] | null; // JSONObject
+    data: NexusGenScalars['JSON'] | null; // JSON
     document: NexusGenRootTypes['Document'] | null; // Document
     id: string | null; // String
     type: string | null; // String
@@ -140,6 +142,7 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     createdAt: NexusGenScalars['DateTime'] | null; // DateTime
+    documentTree: NexusGenScalars['JSON'] | null; // JSON
     documents: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
     email: string | null; // String
     frequency: string | null; // String
@@ -151,7 +154,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Document: { // field return type name
-    content: 'JSONObject'
+    content: 'JSON'
     createdAt: 'DateTime'
     creator: 'User'
     descriptor: 'String'
@@ -175,6 +178,7 @@ export interface NexusGenFieldTypeNames {
     newDocument: 'Document'
     registerUser: 'String'
     updateDocument: 'Document'
+    updateUser: 'User'
   }
   Query: { // field return type name
     authenticate: 'String'
@@ -185,7 +189,7 @@ export interface NexusGenFieldTypeNames {
   }
   SavedItem: { // field return type name
     createdAt: 'DateTime'
-    data: 'JSONObject'
+    data: 'JSON'
     document: 'Document'
     id: 'String'
     type: 'String'
@@ -193,6 +197,7 @@ export interface NexusGenFieldTypeNames {
   }
   User: { // field return type name
     createdAt: 'DateTime'
+    documentTree: 'JSON'
     documents: 'Document'
     email: 'String'
     frequency: 'String'
@@ -221,6 +226,9 @@ export interface NexusGenArgTypes {
       descriptor?: string | null; // String
       documentId: string; // String!
       title?: string | null; // String
+    }
+    updateUser: { // args
+      documentTree?: string | null; // String
     }
   }
   Query: {

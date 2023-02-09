@@ -1,9 +1,15 @@
+@import "../../app/variables.scss";
+
 .editorLayout {
   .editorLayoutInner {
     display: flex;
     flex-direction: row;
 
     .documentTreeSidebar {
+      background-color: $lightGreyBackground;
+      height: 100vh;
+      width: 400px;
+
       .sidebarInner {
       }
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import DocumentTree from "../../components/DocumentTree/DocumentTree";
@@ -13,6 +13,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
   const router = useRouter();
+  const pathname = usePathname();
+
+  const documentId = pathname?.split("/")[2];
 
   graphClient.setupClient(token);
 
@@ -28,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <aside className={styles.documentTreeSidebar}>
           <div className={styles.sidebarInner}>
             <ProfileMenu />
-            <DocumentTree />
+            <DocumentTree documentId={documentId} />
           </div>
         </aside>
         <section className={styles.documentEditorWrapper}>

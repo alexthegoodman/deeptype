@@ -24,6 +24,8 @@ export const UserType = objectType({
       },
     });
 
+    t.field("documentTree", { type: "JSON" });
+
     t.field("updatedAt", { type: "DateTime" });
     t.field("createdAt", { type: "DateTime" });
   },

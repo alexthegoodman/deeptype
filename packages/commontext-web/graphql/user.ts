@@ -7,6 +7,21 @@ export const getCurrentUserQuery = gql`
       role
       subscription
       frequency
+      documentTree
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+export const updateUserMutation = gql`
+  mutation UpdateUser($documentTree: String) {
+    updateUser(documentTree: $documentTree) {
+      email
+      role
+      subscription
+      frequency
+      documentTree
       updatedAt
       createdAt
     }

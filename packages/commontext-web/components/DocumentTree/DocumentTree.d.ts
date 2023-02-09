@@ -1,1 +1,3 @@
-export interface DocumentTreeProps {}
+export interface DocumentTreeProps {
+  documentId?: string;
+}
