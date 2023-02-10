@@ -20,31 +20,57 @@
       margin: 0 0 0 0;
 
       li {
-        a {
-          display: block;
-          // margin-bottom: 15px;
-          padding: 7px 0;
-          text-decoration: none;
-          color: $blackish;
-          //   background: $lightGrey;
+        span {
+          display: flex;
+          flex-direction: row;
 
           &.selected {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: $lightGreyBackground2;
+          }
+
+          i {
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            transform: rotate(90deg);
+            cursor: pointer;
+
+            &:hover {
+              background-color: $lightGreyBackground2;
+            }
+          }
+          a {
+            display: block;
+            padding: 7px 2px;
+            text-decoration: none;
+            color: $blackish;
+            line-height: 21px;
           }
         }
 
-        i {
-          transform: rotate(90deg);
-        }
-
         &.addDocument {
-          padding: 7px 0;
+          // padding: 7px 0;
           cursor: pointer;
+
+          span {
+            line-height: 35px;
+
+            > i {
+              &:hover {
+                background-color: none;
+              }
+            }
+          }
         }
 
         &.folded {
-          i {
-            transform: rotate(0deg);
+          span {
+            i {
+              transform: rotate(0deg);
+            }
           }
 
           ul {

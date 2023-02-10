@@ -43,6 +43,17 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
     }
   };
 
+  const foldChildren = (obj, targetId) => {
+    if (obj.children) {
+      obj.children.forEach((child) => {
+        if (child.id === targetId) {
+          child.folded = !child.folded;
+        }
+        foldChildren(child, targetId);
+      });
+    }
+  };
+
   const addPageHandler = async (parentId = null) => {
     // create new document
     const { newDocument } = await graphClient.client?.request(
@@ -52,7 +63,16 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
     // if parentId supplied, add to its children
     let newTree = treeData;
     if (parentId) {
-      addToChildren(newTree, newDocument.id, parentId);
+      newTree.forEach((item) => {
+        if (item.id === parentId) {
+          item.children.push({
+            id: newDocument.id,
+            folded: true,
+            children: [],
+          });
+        }
+        addToChildren(item, newDocument.id, parentId);
+      });
     } else {
       if (newTree === null) newTree = [];
       newTree.push({ id: newDocument.id, folded: true, children: [] });
@@ -61,6 +81,21 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
     // save new tree
 
     mutate("browseKey", () => getDocumentsData(token));
+    mutate("homeLayout", () => updateUserData(token, newTree), {
+      optimisticData: { ...userData, documentTree: newTree },
+    });
+  };
+
+  const toggleFold = (targetId) => {
+    let newTree = treeData;
+
+    newTree.forEach((item) => {
+      if (item.id === targetId) {
+        item.folded = !item.folded;
+      }
+      foldChildren(item, targetId);
+    });
+
     mutate("homeLayout", () => updateUserData(token, newTree), {
       optimisticData: { ...userData, documentTree: newTree },
     });
@@ -79,22 +114,28 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
               className={styles.addDocument}
               onClick={() => addPageHandler(child.id)}
             >
-              <i className="ph-plus-thin"></i>
-              <span>Add Document</span>
+              <span>
+                <i className="ph-plus-thin"></i>Add Document
+              </span>
             </li>
           );
 
           return (
             <>
               <li className={child.folded ? styles.folded : ""}>
-                <Link
+                <span
                   className={documentId === child.id ? styles.selected : ""}
-                  href={`/editor/${child.id}`}
-                  draggable="true"
                 >
-                  <i className="ph-caret-right-thin"></i>
-                  <span>{childData.title}</span>
-                </Link>{" "}
+                  <i
+                    className="ph-caret-right-thin"
+                    onClick={() => toggleFold(child.id)}
+                  ></i>
+
+                  <Link href={`/editor/${child.id}`} draggable="true">
+                    {childData?.title}
+                  </Link>
+                </span>
+
                 {child.id ? displayChildren(child, newAddPage) : <></>}
               </li>
             </>
@@ -113,8 +154,10 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
   const newTopLevelPage = (
     <ul>
       <li className={styles.addDocument} onClick={() => addPageHandler()}>
-        <i className="ph-plus-thin"></i>
-        <span>Add Document</span>
+        <span>
+          {" "}
+          <i className="ph-plus-thin"></i> Add Document
+        </span>
       </li>
     </ul>
   );
@@ -123,7 +166,7 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
     <section className={styles.documentTree}>
       <div className={styles.documentTreeInner}>
         <span className={styles.treeHeadline}>Your Documents</span>
-        {treeData && typeof treeData === "object" ? (
+        {treeData && typeof treeData === "object" && documentsData ? (
           treeData.map((item) => {
             const itemData = documentsData.filter(
               (document) => document.id === item.id
@@ -134,8 +177,9 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
                 className={styles.addDocument}
                 onClick={() => addPageHandler(item.id)}
               >
-                <i className="ph-plus-thin"></i>
-                <span>Add Document</span>
+                <span>
+                  <i className="ph-plus-thin"></i> Add Document
+                </span>
               </li>
             );
 
@@ -144,16 +188,21 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
                 <ul>
                   <>
                     <li className={item.folded ? styles.folded : ""}>
-                      <Link
+                      <span
                         className={
                           documentId === item.id ? styles.selected : ""
                         }
-                        href={`/editor/${item.id}`}
-                        draggable="true"
                       >
-                        <i className="ph-caret-right-thin"></i>
-                        <span>{itemData?.title}</span>
-                      </Link>
+                        <i
+                          className="ph-caret-right-thin"
+                          onClick={() => toggleFold(item.id)}
+                        ></i>
+
+                        <Link href={`/editor/${item.id}`} draggable="true">
+                          {itemData?.title}
+                        </Link>
+                      </span>
+
                       {item.id ? displayChildren(item, newAddPage) : <></>}
                     </li>
                   </>
