@@ -19,7 +19,7 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
   const [text3, setText3] = React.useState<string | null>(null);
 
   const recentText = debouncedPlaintext.substring(
-    debouncedPlaintext.length - 140
+    debouncedPlaintext.length - 240
   );
 
   React.useEffect(
@@ -66,25 +66,59 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
 
   const loader = isSearching ? <Loader /> : <></>;
 
+  const text1Parts = text1 ? text1?.split(recentText) : [];
+  const text2Parts = text2 ? text2?.split(recentText) : [];
+  const text3Parts = text3 ? text3?.split(recentText) : [];
+
+  // console.info("text1Parts", text1, "recentText", recentText, text1Parts);
+
+  const displayText1 = (
+    <>
+      {/* <em>{recentText}</em> */}
+      {text1Parts[1]}
+    </>
+  );
+  const displayText2 = (
+    <>
+      {/* <em>{recentText}</em> */}
+      {text2Parts[1]}
+    </>
+  );
+  const displayText3 = (
+    <>
+      {/* <em>{recentText}</em> */}
+      {text3Parts[1]}
+    </>
+  );
+
   return (
     <section className={styles.suggestions}>
       <div className={styles.suggestionsInner}>
+        {loader}
         {text1 ? (
-          <BasicCard header={<span>Suggestion</span>} body={<p>{text1}</p>} />
+          <BasicCard
+            header={<span>Suggestion</span>}
+            body={<p>{displayText1}</p>}
+          />
         ) : (
           <></>
         )}
         {text2 ? (
-          <BasicCard header={<span>Suggestion</span>} body={<p>{text2}</p>} />
+          <BasicCard
+            header={<span>Suggestion</span>}
+            body={<p>{displayText2}</p>}
+          />
         ) : (
           <></>
         )}
         {text3 ? (
-          <BasicCard header={<span>Suggestion</span>} body={<p>{text3}</p>} />
+          <BasicCard
+            header={<span>Suggestion</span>}
+            body={<p>{displayText3}</p>}
+          />
         ) : (
           <></>
         )}
-        {loader}
       </div>
     </section>
   );

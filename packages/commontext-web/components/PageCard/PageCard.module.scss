@@ -1,4 +1,6 @@
 .resultBody {
+  width: 100%;
+
   span,
   a,
   p {
@@ -12,7 +14,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 90%;
+    // width: 90%;
+    width: 400px;
 
     strong {
       font-weight: 500;

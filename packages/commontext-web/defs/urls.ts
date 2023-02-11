@@ -24,5 +24,5 @@ export const searchUrl =
 
 export const scoringUrl =
   env === "production"
-    ? "https://scoring-service.tunnel"
-    : `http://127.0.0.1:5000`;
+    ? "https://scoring-service.tunnelto.dev"
+    : `https://scoring-service.tunnelto.dev`;
