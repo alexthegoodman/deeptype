@@ -26,15 +26,18 @@ const ProfileMenu: React.FC<ProfileMenuProps> = () => {
     }
   );
 
-  if (isLoading) return <></>
+  if (isLoading) return <></>;
 
-  if (error) return <>Error</>
+  if (error) return <>Error</>;
 
   return (
     <section className={styles.profileMenu}>
       <div className={styles.profileMenuInner}>
         <div className={styles.menuTrigger}>
           <span>{data.email}</span>
+          <Link href="/settings" title="Settings">
+            <i className="ph-gear-thin"></i>
+          </Link>
           {/* <Image src="" alt="" /> */}
         </div>
         {/* <div className={styles.dropdown}>
