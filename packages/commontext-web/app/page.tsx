@@ -22,14 +22,14 @@ export default function Home() {
         <section className={styles.siteHero}>
           <div className={styles.siteHeroInner}>
             <h1 className={ibmPlexMono.className}>
-              Write and Research <br />
+              Research and Write <br />
               <span>Well-Informed</span> Books
             </h1>
             <div className={styles.heroVideo}>
               <iframe
                 // width="560"
                 // height="315"
-                src="https://www.youtube.com/embed/7j7cjM1O1TQ?controls=0"
+                src="https://www.youtube.com/embed/0ZXj4_FyVzw?controls=0"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </section>
         <FeatureSection
-          videoSrc=""
+          videoSrc="/video/infofull.mp4"
           headline={
             <>
               Surface <span>relevant information</span> as you type
@@ -59,7 +59,7 @@ export default function Home() {
           ]}
         />
         <FeatureSection
-          videoSrc=""
+          videoSrc="/video/search2a.mp4"
           flip={true}
           headline={
             <>
@@ -78,7 +78,7 @@ export default function Home() {
           ]}
         />
         <FeatureSection
-          videoSrc=""
+          videoSrc="/video/suggestions2.mp4"
           headline={
             <>
               Get <span>AI text suggestions</span> as you type

@@ -16,7 +16,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({
     >
       <div className={styles.featureSectionInner}>
         <div className={styles.video}>
-          <video playsInline={true} loop={true} muted={true}>
+          <video playsInline={true} loop={true} muted={true} autoPlay={true}>
             <source src={videoSrc} type="video/mp4" />
           </video>
         </div>

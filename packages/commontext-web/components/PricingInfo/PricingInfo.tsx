@@ -19,6 +19,7 @@ const PricingInfo: React.FC<PricingInfoProps> = ({
             btn={leftBtn}
             items={[
               "Information as You Type",
+              "Deep Search",
               "Unlimited Documents",
               "Customer Support",
             ]}
@@ -32,6 +33,7 @@ const PricingInfo: React.FC<PricingInfoProps> = ({
             items={[
               "AI Text Suggestions",
               "Information as You Type",
+              "Deep Search",
               "Unlimited Documents",
               "Customer Support",
             ]}
@@ -45,6 +47,7 @@ const PricingInfo: React.FC<PricingInfoProps> = ({
             items={[
               "AI Text Suggestions",
               "Information as You Type",
+              "Deep Search",
               "Unlimited Documents",
               "Customer Support",
             ]}
