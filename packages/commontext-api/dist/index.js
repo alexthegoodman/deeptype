@@ -7,7 +7,7 @@ var express_1 = __importDefault(require("express"));
 var api_1 = require("./api");
 var cors_1 = __importDefault(require("cors"));
 var app = (0, express_1["default"])();
-var port = process.env.PORT ? process.env.PORT : 3001;
+var port = 3001;
 console.info("Setup Express Routes...");
 app.use((0, cors_1["default"])());
 app.get("/", function (req, res) {

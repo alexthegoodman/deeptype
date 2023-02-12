@@ -36,37 +36,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UserType = void 0;
+exports.ConfirmFreemiumMutation = void 0;
 var nexus_1 = require("nexus");
-exports.UserType = (0, nexus_1.objectType)({
-    name: "User",
+exports.ConfirmFreemiumMutation = (0, nexus_1.extendType)({
+    type: "Mutation",
     definition: function (t) {
         var _this = this;
-        // PRIVATE: subscriptionToken, id, password
-        t.field("email", { type: "String" });
-        t.field("role", { type: "String" });
-        t.field("subscription", { type: "String" });
-        t.field("frequency", { type: "String" });
-        t.list.field("documents", {
-            type: "Document",
-            resolve: function (user, __, context) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, context.prisma.document.findMany({
-                                where: {
-                                    creator: {
-                                        email: user.email
+        t.field("confirmFreemium", {
+            type: "User",
+            args: {},
+            resolve: function (_, _a, _b, x) {
+                var prisma = _b.prisma, currentUser = _b.currentUser;
+                return __awaiter(_this, void 0, void 0, function () {
+                    var updatedUser;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
+                            case 0: return [4 /*yield*/, prisma.user.update({
+                                    where: {
+                                        id: currentUser.id
+                                    },
+                                    data: {
+                                        subscription: "STARTER"
                                     }
-                                }
-                            })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
+                                })];
+                            case 1:
+                                updatedUser = _c.sent();
+                                return [2 /*return*/, updatedUser];
+                        }
+                    });
                 });
-            }); }
+            }
         });
-        t.field("documentTree", { type: "JSON" });
-        t.field("updatedAt", { type: "DateTime" });
-        t.field("createdAt", { type: "DateTime" });
     }
 });
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=confirmFreemium.js.map

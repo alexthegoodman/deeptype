@@ -36,37 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UserType = void 0;
+exports.AddSavedItemMutation = void 0;
 var nexus_1 = require("nexus");
-exports.UserType = (0, nexus_1.objectType)({
-    name: "User",
+exports.AddSavedItemMutation = (0, nexus_1.extendType)({
+    type: "Mutation",
     definition: function (t) {
         var _this = this;
-        // PRIVATE: subscriptionToken, id, password
-        t.field("email", { type: "String" });
-        t.field("role", { type: "String" });
-        t.field("subscription", { type: "String" });
-        t.field("frequency", { type: "String" });
-        t.list.field("documents", {
-            type: "Document",
-            resolve: function (user, __, context) { return __awaiter(_this, void 0, void 0, function () {
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, context.prisma.document.findMany({
-                                where: {
-                                    creator: {
-                                        email: user.email
+        t.field("addSavedItem", {
+            type: "SavedItem",
+            args: {
+                type: (0, nexus_1.nonNull)((0, nexus_1.stringArg)()),
+                data: (0, nexus_1.nonNull)((0, nexus_1.stringArg)()),
+                documentId: (0, nexus_1.nonNull)((0, nexus_1.stringArg)())
+            },
+            resolve: function (_, _a, _b, x) {
+                var type = _a.type, data = _a.data, documentId = _a.documentId;
+                var prisma = _b.prisma, currentUser = _b.currentUser;
+                return __awaiter(_this, void 0, void 0, function () {
+                    var savedItem;
+                    return __generator(this, function (_c) {
+                        switch (_c.label) {
+                            case 0: return [4 /*yield*/, prisma.savedItem.create({
+                                    data: {
+                                        type: type,
+                                        data: JSON.parse(data),
+                                        document: {
+                                            connect: {
+                                                id: documentId
+                                            }
+                                        }
                                     }
-                                }
-                            })];
-                        case 1: return [2 /*return*/, _a.sent()];
-                    }
+                                })];
+                            case 1:
+                                savedItem = _c.sent();
+                                return [2 /*return*/, savedItem];
+                        }
+                    });
                 });
-            }); }
+            }
         });
-        t.field("documentTree", { type: "JSON" });
-        t.field("updatedAt", { type: "DateTime" });
-        t.field("createdAt", { type: "DateTime" });
     }
 });
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=addSavedItem.js.map

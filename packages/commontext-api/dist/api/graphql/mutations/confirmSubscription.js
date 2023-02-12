@@ -60,6 +60,7 @@ exports.ConfirmSubscriptionMutation = (0, nexus_1.extendType)({
                                 return [4 /*yield*/, stripe.checkout.sessions.retrieve(sessionId)];
                             case 1:
                                 session = _c.sent();
+                                console.info("session", session);
                                 frequency = "";
                                 if (session.amount_total === 1900) {
                                     frequency = "MONTHLY";
@@ -72,8 +73,9 @@ exports.ConfirmSubscriptionMutation = (0, nexus_1.extendType)({
                                             subscriptionToken: token
                                         },
                                         data: {
-                                            subscription: "STARTER",
-                                            frequency: frequency
+                                            subscription: "PRO",
+                                            frequency: frequency,
+                                            stripeCustomerId: session.customer
                                         }
                                     })];
                             case 2:

@@ -111,7 +111,7 @@ var startApolloServer = function () { return __awaiter(void 0, void 0, void 0, f
                         });
                     }
                 }));
-                return [4 /*yield*/, new Promise(function (r) { return app.listen({ port: 4000 }, r); })];
+                return [4 /*yield*/, new Promise(function (r) { return app.listen({ port: process.env.PORT ? process.env.PORT : 4000 }, r); })];
             case 2:
                 _a.sent();
                 console.info("\uD83D\uDE80 Server ready at http://localhost:4000/graphql");

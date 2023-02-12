@@ -36,37 +36,38 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UserType = void 0;
+exports.SavedItemType = void 0;
 var nexus_1 = require("nexus");
-exports.UserType = (0, nexus_1.objectType)({
-    name: "User",
+exports.SavedItemType = (0, nexus_1.objectType)({
+    name: "SavedItem",
     definition: function (t) {
         var _this = this;
-        // PRIVATE: subscriptionToken, id, password
-        t.field("email", { type: "String" });
-        t.field("role", { type: "String" });
-        t.field("subscription", { type: "String" });
-        t.field("frequency", { type: "String" });
-        t.list.field("documents", {
+        t.field("id", { type: "String" });
+        t.field("type", { type: "String" });
+        t.field("data", { type: "JSON" });
+        t.field("document", {
             type: "Document",
-            resolve: function (user, __, context) { return __awaiter(_this, void 0, void 0, function () {
+            resolve: function (savedItem, __, context) { return __awaiter(_this, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, context.prisma.document.findMany({
+                        case 0: return [4 /*yield*/, context.prisma.document.findFirst({
                                 where: {
-                                    creator: {
-                                        email: user.email
+                                    savedItems: {
+                                        some: {
+                                            id: savedItem.id
+                                        }
                                     }
                                 }
                             })];
-                        case 1: return [2 /*return*/, _a.sent()];
+                        case 1: 
+                        // TODO: just get creatorId off document?
+                        return [2 /*return*/, _a.sent()];
                     }
                 });
             }); }
         });
-        t.field("documentTree", { type: "JSON" });
         t.field("updatedAt", { type: "DateTime" });
         t.field("createdAt", { type: "DateTime" });
     }
 });
-//# sourceMappingURL=User.js.map
+//# sourceMappingURL=SavedItem.js.map

@@ -16,14 +16,19 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 exports.__esModule = true;
 __exportStar(require("./types/Link"), exports);
 __exportStar(require("./types/Document"), exports);
+__exportStar(require("./types/SavedItem"), exports);
 __exportStar(require("./types/User"), exports);
 __exportStar(require("./queries/myDocuments"), exports);
 __exportStar(require("./queries/authenticate"), exports);
 __exportStar(require("./queries/getCurrentUser"), exports);
+__exportStar(require("./queries/getPortalUrl"), exports);
 __exportStar(require("./queries/document"), exports);
+__exportStar(require("./mutations/addSavedItem"), exports);
+__exportStar(require("./mutations/confirmFreemium"), exports);
 __exportStar(require("./mutations/confirmSubscription"), exports);
 __exportStar(require("./mutations/newCheckout"), exports);
 __exportStar(require("./mutations/newDocument"), exports);
 __exportStar(require("./mutations/registerUser"), exports);
 __exportStar(require("./mutations/updateDocument"), exports);
+__exportStar(require("./mutations/updateUser"), exports);
 //# sourceMappingURL=index.js.map

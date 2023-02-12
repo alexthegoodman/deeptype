@@ -44,7 +44,7 @@ exports.DocumentType = (0, nexus_1.objectType)({
         var _this = this;
         t.field("id", { type: "String" });
         t.field("title", { type: "String" });
-        t.field("content", { type: "JSONObject" });
+        t.field("content", { type: "JSON" });
         t.field("descriptor", { type: "String" });
         t.field("creator", {
             type: "User",
@@ -58,6 +58,28 @@ exports.DocumentType = (0, nexus_1.objectType)({
                                             id: document.id
                                         }
                                     }
+                                }
+                            })];
+                        case 1: 
+                        // TODO: just get creatorId off document?
+                        return [2 /*return*/, _a.sent()];
+                    }
+                });
+            }); }
+        });
+        t.list.field("savedItems", {
+            type: "SavedItem",
+            resolve: function (document, __, context) { return __awaiter(_this, void 0, void 0, function () {
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, context.prisma.savedItem.findMany({
+                                where: {
+                                    document: {
+                                        id: document.id
+                                    }
+                                },
+                                orderBy: {
+                                    createdAt: "desc"
                                 }
                             })];
                         case 1: 
