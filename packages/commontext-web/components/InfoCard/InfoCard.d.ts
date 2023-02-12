@@ -1,4 +1,4 @@
 export interface InfoCardProps {
   item: any;
-  documentId: string;
+  documentId?: string;
 }
