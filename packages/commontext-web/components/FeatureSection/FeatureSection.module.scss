@@ -1,0 +1,59 @@
+@import "../../app/variables.scss";
+
+.featureSection {
+  background-color: $lightGreenGrey;
+
+  .featureSectionInner {
+    width: $desktop;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    padding: 150px 0;
+
+    .video {
+      width: 50%;
+
+      video {
+      }
+    }
+    .copy {
+      width: 50%;
+
+      h2 {
+        font-size: 42px;
+        line-height: 74px;
+        margin-bottom: 25px;
+
+        span {
+          color: $green1;
+        }
+      }
+      .features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 50px;
+
+        .feature {
+          span {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 10px;
+          }
+          span,
+          p {
+            font-size: 16px;
+            line-height: 28px;
+          }
+        }
+      }
+    }
+  }
+
+  &.flipped {
+    background-color: white;
+
+    .featureSectionInner {
+      flex-flow: row-reverse;
+    }
+  }
+}
