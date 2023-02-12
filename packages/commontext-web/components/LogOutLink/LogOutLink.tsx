@@ -17,7 +17,7 @@ const LogOutLink: React.FC<LogOutLinkProps> = () => {
     removeCookie("coUserToken", {
       ...CookieSettings,
     });
-    router.refresh();
+    window.location.reload();
   };
 
   return (

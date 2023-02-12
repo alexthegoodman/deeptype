@@ -10,6 +10,7 @@ import { useCookies } from "react-cookie";
 import ManageSubscriptionLink from "../../components/ManageSubscriptionLink/ManageSubscriptionLink";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -28,6 +29,12 @@ export default function Settings() {
   const router = useRouter();
 
   graphClient.setupClient(token);
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/");
+    }
+  }, [token]);
 
   const { data, error, isLoading, mutate } = useSWR(
     "settings",
@@ -60,10 +67,10 @@ export default function Settings() {
   );
 
   let userInformation = <></>;
-  if (!isLoading) {
+  if (!isLoading && data) {
     userInformation = (
       <div>
-        <p>Subscription: {data.subscription}</p>
+        <p>Subscription: {data?.subscription}</p>
         {data.subscription === "PRO" ? (
           <>
             <p>Frequency: {data.frequency}</p>
