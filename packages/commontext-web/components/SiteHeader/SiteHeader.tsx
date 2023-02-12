@@ -58,7 +58,7 @@ const SiteHeader: React.FC<SiteHeaderProps> = () => {
         </div>
         <div className={styles.right}>
           {token ? (
-            <Link href="/browse" className={styles.btn}>
+            <Link href="/editor" className={styles.btn}>
               Go to App
             </Link>
           ) : (

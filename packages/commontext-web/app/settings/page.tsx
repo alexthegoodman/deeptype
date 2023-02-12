@@ -1,16 +1,15 @@
 "use client";
 
-import LogOutLink from "../../../components/LogOutLink/LogOutLink";
+import LogOutLink from "../../components/LogOutLink/LogOutLink";
 import styles from "./page.module.scss";
 
 import useSWR from "swr";
-import {
-  getCurrentUserQuery,
-  newCheckoutMutation,
-} from "../../../graphql/user";
-import graphClient from "../../../helpers/GQLClient";
+import { getCurrentUserQuery, newCheckoutMutation } from "../../graphql/user";
+import graphClient from "../../helpers/GQLClient";
 import { useCookies } from "react-cookie";
-import ManageSubscriptionLink from "../../../components/ManageSubscriptionLink/ManageSubscriptionLink";
+import ManageSubscriptionLink from "../../components/ManageSubscriptionLink/ManageSubscriptionLink";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -25,6 +24,8 @@ const getUserData = async (token: string) => {
 export default function Settings() {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
+
+  const router = useRouter();
 
   graphClient.setupClient(token);
 
@@ -80,10 +81,17 @@ export default function Settings() {
     );
   }
 
+  const goBack = () => router.back();
+
   return (
     <section className={styles.settings}>
       <div className={styles.settingsInner}>
-        <h1 className={styles.headline}>Settings</h1>
+        <div className={styles.header}>
+          <a href="#!" onClick={goBack}>
+            <i className="ph-arrow-left-thin"></i>Back to Editor
+          </a>
+        </div>
+        <h1 className={styles.headline}>DeepType Settings</h1>
         <div className={styles.settingsCard}>{userInformation}</div>
         <LogOutLink />
       </div>

@@ -37,12 +37,15 @@ export default function SubscribeSuccess(props) {
 
   graphClient.setupClient(token);
 
-  const confirmSubscription = async (sessionId: string, subscriptionToken: string) => {
+  const confirmSubscription = async (
+    sessionId: string,
+    subscriptionToken: string
+  ) => {
     await graphClient.client?.request(confirmSubscriptionMutation, {
       sessionId,
       token: subscriptionToken,
     });
-    router.push("/browse");
+    router.push("/editor");
   };
 
   useEffect(() => {

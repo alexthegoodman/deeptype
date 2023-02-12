@@ -127,7 +127,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
       // cleanup and
       setFormErrorMessage("");
-      router.push("/browse");
+      router.push("/editor");
     } catch (error: any) {
       console.error(error);
       const errorMessage = error?.response?.errors[0].message;

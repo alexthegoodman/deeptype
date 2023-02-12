@@ -149,7 +149,7 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
   };
 
   if (isLoading) return <></>;
-  if (error) return <>{error}</>;
+  if (error) return <>{error.message}</>;
 
   const newTopLevelPage = (
     <ul>

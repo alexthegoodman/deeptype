@@ -1,11 +1,21 @@
-@import "../../../app/variables.scss";
-@import "../../../app/shared.scss";
-@import "../../../app/mixins.scss";
+@import "../../app/variables.scss";
+@import "../../app/shared.scss";
+@import "../../app/mixins.scss";
 
 .settings {
   .settingsInner {
-    padding: 0 35px;
+    padding: 35px 0;
+    width: $desktop;
+    margin: 0 auto;
 
+    .header {
+      margin-bottom: 25px;
+
+      a {
+        text-decoration: none;
+        color: $blackish;
+      }
+    }
     h1 {
       margin-bottom: 25px;
     }
