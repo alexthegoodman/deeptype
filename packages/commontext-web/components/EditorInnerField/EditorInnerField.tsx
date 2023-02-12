@@ -112,7 +112,7 @@ const EditorInnerField: React.FC<EditorInnerFieldProps> = ({
       const elem = editorRef.current as any;
       const quill = elem.getEditor();
 
-      elem.focus();
+      // elem.focus();
 
       // quill.on("text-change", function (delta, oldDelta, source) {
       //   console.info("text change", delta, oldDelta, source);

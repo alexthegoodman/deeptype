@@ -41,7 +41,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
   );
 
   if (isLoading) return <></>;
-  if (error) return <>{error}</>;
+  if (error) return <>{error.message}</>;
 
   return (
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
