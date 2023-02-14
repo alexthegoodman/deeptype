@@ -24,7 +24,7 @@ const PageCard: React.FC<PageCardProps> = ({
             {result.url}
           </a>
           <p>Excerpt: {result.excerpt ? result.excerpt : "None"}</p>
-          <CardLinks title="Outgoing Links" links={result.outgoingLinks} />
+          <CardLinks title="Outgoing Links:" links={result.outgoingLinks} />
         </div>
       }
       footerLeft={

@@ -28,6 +28,14 @@
     p {
       //   color: rgb(215, 215, 215);
     }
+    a {
+      color: $darkGreen;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
   }
   .itemFooter {
     display: flex;
