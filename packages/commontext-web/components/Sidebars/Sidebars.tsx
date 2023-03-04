@@ -14,6 +14,7 @@ import BasicCard from "../BasicCard/BasicCard";
 import SavedItems from "../SavedItems/SavedItems";
 import DeepSearch from "../DeepSearch/DeepSearch";
 import EmptyNotice from "../EmptyNotice/EmptyNotice";
+import Format from "../Format/Format";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -47,19 +48,23 @@ const Sidebars: React.FC<SidebarsProps> = ({
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
       <TabList className={styles.sidebarsTabList}>
         <Tab title="Real-time information feed as you type">
-          <i className="ph-info"></i> Information
+          <i className="ph-info"></i> Info
         </Tab>
 
         <Tab title="Find links across the web">
-          <i className="ph-magnifying-glass"></i> Deep Search
+          <i className="ph-magnifying-glass"></i> Search
         </Tab>
 
         <Tab title="Generative AI text completions">
-          <i className="ph-article"></i> Suggestions
+          <i className="ph-article"></i> Suggest
         </Tab>
 
         <Tab title="Save items for later">
           <i className="ph-archive"></i> Saved
+        </Tab>
+
+        <Tab title="Save items for later">
+          <i className="ph-file-text"></i> Format
         </Tab>
       </TabList>
 
@@ -81,6 +86,10 @@ const Sidebars: React.FC<SidebarsProps> = ({
 
       <TabPanel>
         <SavedItems documentId={documentId} documentData={documentData} />
+      </TabPanel>
+
+      <TabPanel>
+        <Format />
       </TabPanel>
     </Tabs>
   );
