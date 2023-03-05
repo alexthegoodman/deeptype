@@ -1,0 +1,13 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 600px;
+  max-width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: -2px 0 12px 0 rgba(0, 0, 0, 0.2);
+}
