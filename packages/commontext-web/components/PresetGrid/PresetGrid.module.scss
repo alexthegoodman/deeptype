@@ -1,1 +1,37 @@
-/** Styles **/
+@import "../../app/shared.scss";
+@import "../../app/variables.scss";
+
+.presetGrid {
+  .presetGridInner {
+    padding: 35px;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 8px 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 18px;
+
+        i {
+          margin-right: 7px;
+        }
+
+        &:hover {
+          background-color: $lightGreyBackground2;
+        }
+      }
+    }
+  }
+}

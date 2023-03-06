@@ -10,4 +10,18 @@
   background-color: white;
   z-index: 1000;
   box-shadow: -2px 0 12px 0 rgba(0, 0, 0, 0.2);
+
+  .drawerCtrls {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+
+    .close {
+      background: none;
+      outline: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+    }
+  }
 }

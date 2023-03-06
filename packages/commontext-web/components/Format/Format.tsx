@@ -6,6 +6,7 @@ import { FormatProps } from "./Format.d";
 import Dropdown from "../Dropdown/Dropdown";
 import Drawer from "../Drawer/Drawer";
 import PresetGrid from "../PresetGrid/PresetGrid";
+import LivePreview from "../LivePreview/LivePreview";
 
 const Format: React.FC<FormatProps> = () => {
   const [openPresetDrawer, setOpenPresetDrawer] = React.useState(false);
@@ -17,15 +18,18 @@ const Format: React.FC<FormatProps> = () => {
   };
 
   return (
-    <>
-      <section>
-        <div>
-          <span>Preset</span>
-          <button onClick={() => setOpenPresetDrawer(true)}>
-            {selectedPreset ? selectedPreset : "Select Preset"}
+    <section className={styles.boxContainer}>
+      <section className={styles.basicBox}>
+        <div className={styles.basicBoxInner}>
+          <span>Select Preset</span>
+          <button
+            className={styles.btn}
+            onClick={() => setOpenPresetDrawer(true)}
+          >
+            {selectedPreset ? selectedPreset : "Open Preset Drawer"}
           </button>
           {openPresetDrawer ? (
-            <Drawer>
+            <Drawer onCloseDrawer={() => setOpenPresetDrawer(false)}>
               <PresetGrid onSelectPreset={selectPresetHandler} />
             </Drawer>
           ) : (
@@ -33,7 +37,17 @@ const Format: React.FC<FormatProps> = () => {
           )}
         </div>
       </section>
-    </>
+
+      <section className={styles.basicBox}>
+        <div className={styles.basicBoxInner}>
+          <span>Live Preview</span>
+          <div></div>
+        </div>
+        <div className={styles.basicBoxInner}>
+          <LivePreview />
+        </div>
+      </section>
+    </section>
   );
 };
 
