@@ -35,6 +35,7 @@ type Mutation {
   addSavedItem(data: String!, documentId: String!, type: String!): SavedItem
   confirmFreemium: User
   confirmSubscription(sessionId: String!, token: String!): User
+  export(html: String!, type: String!): String
   newCheckout(frequency: String!): String
   newDocument: Document
   registerUser: String!

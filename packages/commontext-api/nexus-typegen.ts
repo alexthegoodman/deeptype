@@ -119,6 +119,7 @@ export interface NexusGenFieldTypes {
     addSavedItem: NexusGenRootTypes['SavedItem'] | null; // SavedItem
     confirmFreemium: NexusGenRootTypes['User'] | null; // User
     confirmSubscription: NexusGenRootTypes['User'] | null; // User
+    export: string | null; // String
     newCheckout: string | null; // String
     newDocument: NexusGenRootTypes['Document'] | null; // Document
     registerUser: string; // String!
@@ -174,6 +175,7 @@ export interface NexusGenFieldTypeNames {
     addSavedItem: 'SavedItem'
     confirmFreemium: 'User'
     confirmSubscription: 'User'
+    export: 'String'
     newCheckout: 'String'
     newDocument: 'Document'
     registerUser: 'String'
@@ -217,6 +219,10 @@ export interface NexusGenArgTypes {
     confirmSubscription: { // args
       sessionId: string; // String!
       token: string; // String!
+    }
+    export: { // args
+      html: string; // String!
+      type: string; // String!
     }
     newCheckout: { // args
       frequency: string; // String!

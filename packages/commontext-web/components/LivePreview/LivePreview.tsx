@@ -12,13 +12,44 @@ const LivePreview: React.FC<LivePreviewProps> = () => {
 
   console.info("LivePreview", editorJson, editorValue);
 
-  // TODO: capture HTML contents from livePreviewInner
+  // TODO: capture HTML contents from livePreviewContents
+  const extractHTML = () => {
+    const html = document.getElementById("livePreviewContents")?.innerHTML;
+    console.info("extractHTML", html);
+    return html;
+  };
+
+  const handleExportPDF = () => {
+    const html = extractHTML();
+  };
+
+  const handleExportEpub = () => {
+    const html = extractHTML();
+  };
 
   return (
     <section className={styles.livePreview}>
       <div className={styles.livePreviewInner}>
-        <PreviewChapter title={editorTitle} />
-        <section dangerouslySetInnerHTML={{ __html: editorValue }}></section>
+        <section
+          id="livePreviewContents"
+          className={styles.livePreviewContents}
+        >
+          <PreviewChapter title={editorTitle} />
+          <section dangerouslySetInnerHTML={{ __html: editorValue }}></section>
+          <style>
+            {`.ql-indent-1 {
+                margin-left: 15px;
+            }
+            .ql-indent-2 {
+                margin-left: 30px;
+            }
+            .ql-indent-3 {
+                margin-left: 45px;
+            }`}
+          </style>
+        </section>
+        <button onClick={handleExportPDF}>Export PDF</button>
+        <button onClick={handleExportEpub}>Export ePub</button>
       </div>
     </section>
   );

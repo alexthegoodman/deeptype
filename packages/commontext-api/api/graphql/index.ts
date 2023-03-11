@@ -12,6 +12,7 @@ export * from "./queries/document";
 export * from "./mutations/addSavedItem";
 export * from "./mutations/confirmFreemium";
 export * from "./mutations/confirmSubscription";
+export * from "./mutations/export";
 export * from "./mutations/newCheckout";
 export * from "./mutations/newDocument";
 export * from "./mutations/registerUser";
