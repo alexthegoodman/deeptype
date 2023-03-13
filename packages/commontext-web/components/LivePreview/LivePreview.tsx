@@ -5,8 +5,16 @@ import styles from "./LivePreview.module.scss";
 import { LivePreviewProps } from "./LivePreview.d";
 import { useEditorContext } from "../../context/EditorContext/EditorContext";
 import PreviewChapter from "../PreviewChapter/PreviewChapter";
+import graphClient from "../../helpers/GQLClient";
+import { useCookies } from "react-cookie";
+import { exportMutation } from "../../graphql/export";
 
 const LivePreview: React.FC<LivePreviewProps> = () => {
+  const [cookies, setCookie] = useCookies(["coUserToken"]);
+  const token = cookies.coUserToken;
+
+  graphClient.setupClient(token);
+
   const [{ editorTitle, editorJson, editorValue }, dispatch] =
     useEditorContext();
 
@@ -19,12 +27,22 @@ const LivePreview: React.FC<LivePreviewProps> = () => {
     return html;
   };
 
-  const handleExportPDF = () => {
+  const handleExportPDF = async () => {
     const html = extractHTML();
+
+    await graphClient.client?.request(exportMutation, {
+      type: "pdf",
+      html: JSON.stringify(html),
+    });
   };
 
-  const handleExportEpub = () => {
+  const handleExportEpub = async () => {
     const html = extractHTML();
+
+    await graphClient.client?.request(exportMutation, {
+      type: "epub",
+      html: JSON.stringify(html),
+    });
   };
 
   return (

@@ -5,8 +5,8 @@
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "allowJs": true
+    "allowJs": true,
+    "module": "NodeNext"
   },
   "exclude": ["dist", "seed", "prisma"]
 }
-
