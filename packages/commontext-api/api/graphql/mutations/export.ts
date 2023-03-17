@@ -2,6 +2,8 @@ import { extendType, nonNull, nullable, stringArg } from "nexus";
 import { Context } from "../../context";
 
 import { EPub } from "../../../lib/html-to-epub";
+import { generatePdf } from "../../../lib/html-pdf-node";
+import { writeFileSync } from "fs";
 // const { EPub } = require("@lesjoursfr/html-to-epub");
 
 export const ExportMutation = extendType({
@@ -51,6 +53,26 @@ export const ExportMutation = extendType({
               });
           }, 500);
         } else if (type === "pdf") {
+          let options = {
+            // format: "A4"
+            width: "4in",
+            height: "6in",
+            margin: {
+              top: "1cm",
+              bottom: "1cm",
+              left: "1cm",
+              right: "1cm",
+            },
+          };
+          // Example of options with args //
+          // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
+
+          let file = { content: html };
+
+          generatePdf(file, options).then((pdfBuffer) => {
+            console.log("PDF Buffer:-", pdfBuffer);
+            writeFileSync("10111.pdf", pdfBuffer, "binary");
+          });
         }
 
         return "success";
