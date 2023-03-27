@@ -35,6 +35,8 @@ model Document {
   content Json?
 
   descriptor String @default("")
+  // preset     String @default("")
+  // options    BookOptions?
 
   creator     User @relation(fields: [creatorId], references: [id])
   creatorId   String 
@@ -57,3 +59,10 @@ model SavedItem {
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
+
+// model BookOptions {
+// layoutOptions Json
+//   // coverOptions Json
+//   // partOptions Json
+//   // chapterOptions Json
+// }

@@ -35,3 +35,38 @@
     outline-color: $darkGreen;
   }
 }
+
+.basicBox {
+  width: 100%;
+  min-height: 70px;
+  height: auto;
+  background-color: white;
+  box-shadow: $cardShadow1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0 25px;
+
+  .basicBoxInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+
+    > span {
+      font-size: 16px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: $darkGreen;
+    }
+    > .btn {
+      height: auto;
+      font-size: 16px;
+      text-transform: capitalize;
+    }
+  }
+}

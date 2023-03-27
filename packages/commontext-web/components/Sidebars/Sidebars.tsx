@@ -15,6 +15,7 @@ import SavedItems from "../SavedItems/SavedItems";
 import DeepSearch from "../DeepSearch/DeepSearch";
 import EmptyNotice from "../EmptyNotice/EmptyNotice";
 import Format from "../Format/Format";
+import SelectPreset from "../SelectPreset/SelectPreset";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -46,9 +47,13 @@ const Sidebars: React.FC<SidebarsProps> = ({
 
   return (
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
+      <div style={{ marginTop: 15, padding: "0 8px" }}>
+        <SelectPreset />
+      </div>
+
       <TabList className={styles.sidebarsTabList}>
         <Tab title="Real-time information feed as you type">
-          <i className="ph-info"></i> Info
+          <i className="ph-info"></i> Information
         </Tab>
 
         <Tab title="Find links across the web">
@@ -56,16 +61,16 @@ const Sidebars: React.FC<SidebarsProps> = ({
         </Tab>
 
         <Tab title="Generative AI text completions">
-          <i className="ph-article"></i> Suggest
+          <i className="ph-article"></i> Suggestions
         </Tab>
 
         <Tab title="Save items for later">
           <i className="ph-archive"></i> Saved
         </Tab>
 
-        <Tab title="Save items for later">
+        {/* <Tab title="Save items for later">
           <i className="ph-file-text"></i> Format
-        </Tab>
+        </Tab> */}
       </TabList>
 
       <TabPanel>
@@ -88,9 +93,9 @@ const Sidebars: React.FC<SidebarsProps> = ({
         <SavedItems documentId={documentId} documentData={documentData} />
       </TabPanel>
 
-      <TabPanel>
+      {/* <TabPanel>
         <Format />
-      </TabPanel>
+      </TabPanel> */}
     </Tabs>
   );
 };
