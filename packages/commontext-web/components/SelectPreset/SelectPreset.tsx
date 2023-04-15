@@ -6,9 +6,11 @@ import { SelectPresetProps } from "./SelectPreset.d";
 import Drawer from "../Drawer/Drawer";
 import PresetGrid from "../PresetGrid/PresetGrid";
 
-const SelectPreset: React.FC<SelectPresetProps> = () => {
+const SelectPreset: React.FC<SelectPresetProps> = ({
+  initialPreset = null,
+}) => {
   const [openPresetDrawer, setOpenPresetDrawer] = React.useState(false);
-  const [selectedPreset, setSelectedPreset] = React.useState(null);
+  const [selectedPreset, setSelectedPreset] = React.useState(initialPreset);
 
   const selectPresetHandler = (preset) => {
     setSelectedPreset(preset);

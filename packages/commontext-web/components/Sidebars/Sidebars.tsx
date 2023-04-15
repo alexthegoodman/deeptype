@@ -45,10 +45,12 @@ const Sidebars: React.FC<SidebarsProps> = ({
   if (isLoading) return <></>;
   if (error) return <>{error.message}</>;
 
+  // console.info("sidebar documentData", documentData);
+
   return (
     <Tabs className={styles.sidebars} selectedTabClassName={styles.selectedTab}>
       <div style={{ marginTop: 15, padding: "0 8px" }}>
-        <SelectPreset />
+        <SelectPreset initialPreset={documentData.preset} />
       </div>
 
       <TabList className={styles.sidebarsTabList}>

@@ -1,1 +1,3 @@
-export interface SelectPresetProps {}
+export interface SelectPresetProps {
+  initialPreset?: string;
+}
