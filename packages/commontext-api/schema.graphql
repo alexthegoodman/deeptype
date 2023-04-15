@@ -13,6 +13,7 @@ type Document {
   creator: User
   descriptor: String
   id: String
+  preset: String
   savedItems: [SavedItem]
   title: String
   updatedAt: DateTime
@@ -37,7 +38,7 @@ type Mutation {
   confirmSubscription(sessionId: String!, token: String!): User
   export(html: String!, type: String!): String
   newCheckout(frequency: String!): String
-  newDocument: Document
+  newDocument(preset: String!): Document
   registerUser: String!
   updateDocument(content: String, descriptor: String, documentId: String!, title: String): Document
   updateUser(documentTree: String): User

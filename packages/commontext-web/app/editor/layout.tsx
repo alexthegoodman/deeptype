@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -31,6 +32,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <aside className={styles.documentTreeSidebar}>
           <div className={styles.sidebarInner}>
             <ProfileMenu />
+            <Link href="/publish" className={styles.publishBtn}>
+              Publish Books
+            </Link>
             <DocumentTree documentId={documentId} />
           </div>
         </aside>

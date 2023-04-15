@@ -35,7 +35,7 @@ model Document {
   content Json?
 
   descriptor String @default("")
-  // preset     String @default("")
+  preset     String @default("")
   // options    BookOptions?
 
   creator     User @relation(fields: [creatorId], references: [id])

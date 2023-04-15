@@ -1,8 +1,8 @@
 import { gql } from "graphql-request";
 
 export const newDocumentMutation = gql`
-  mutation NewDocumentMutation {
-    newDocument {
+  mutation NewDocumentMutation($preset: String!) {
+    newDocument(preset: $preset) {
       id
     }
   }
@@ -31,6 +31,7 @@ export const myDocumentsQuery = gql`
     myDocuments {
       id
       title
+      preset
 
       creator {
         email
@@ -50,6 +51,7 @@ export const documentQuery = gql`
       title
       content
       descriptor
+      preset
 
       creator {
         email

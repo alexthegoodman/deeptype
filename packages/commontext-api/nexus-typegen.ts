@@ -57,6 +57,7 @@ export interface NexusGenObjects {
     createdAt?: NexusGenScalars['DateTime'] | null; // DateTime
     descriptor?: string | null; // String
     id?: string | null; // String
+    preset?: string | null; // String
     title?: string | null; // String
     updatedAt?: NexusGenScalars['DateTime'] | null; // DateTime
   }
@@ -104,6 +105,7 @@ export interface NexusGenFieldTypes {
     creator: NexusGenRootTypes['User'] | null; // User
     descriptor: string | null; // String
     id: string | null; // String
+    preset: string | null; // String
     savedItems: Array<NexusGenRootTypes['SavedItem'] | null> | null; // [SavedItem]
     title: string | null; // String
     updatedAt: NexusGenScalars['DateTime'] | null; // DateTime
@@ -160,6 +162,7 @@ export interface NexusGenFieldTypeNames {
     creator: 'User'
     descriptor: 'String'
     id: 'String'
+    preset: 'String'
     savedItems: 'SavedItem'
     title: 'String'
     updatedAt: 'DateTime'
@@ -226,6 +229,9 @@ export interface NexusGenArgTypes {
     }
     newCheckout: { // args
       frequency: string; // String!
+    }
+    newDocument: { // args
+      preset: string; // String!
     }
     updateDocument: { // args
       content?: string | null; // String

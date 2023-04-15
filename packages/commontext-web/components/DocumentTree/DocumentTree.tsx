@@ -11,6 +11,28 @@ import { getUserData, updateUserData } from "../../helpers/requests";
 import graphClient from "../../helpers/GQLClient";
 import { newDocumentMutation } from "../../graphql/document";
 
+const AddDocumentMenu = ({ id = null, addPageHandler }) => {
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  return (
+    <li className={styles.addDocument} onClick={() => setShowMenu(!showMenu)}>
+      <span>
+        <i className="ph-plus-thin"></i> Add Document
+      </span>
+      {showMenu ? (
+        <ul className={styles.addDocumentMenu}>
+          <li onClick={() => addPageHandler(id, "book")}>Add Book</li>
+          <li onClick={() => addPageHandler(id, "cover")}>Add Cover</li>
+          <li onClick={() => addPageHandler(id, "part")}>Add Part</li>
+          <li onClick={() => addPageHandler(id, "chapter")}>Add Chapter</li>
+        </ul>
+      ) : (
+        <></>
+      )}
+    </li>
+  );
+};
+
 const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
@@ -54,10 +76,13 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
     }
   };
 
-  const addPageHandler = async (parentId = null) => {
+  const addPageHandler = async (parentId = null, preset) => {
     // create new document
     const { newDocument } = await graphClient.client?.request(
-      newDocumentMutation
+      newDocumentMutation,
+      {
+        preset,
+      }
     );
 
     // if parentId supplied, add to its children
@@ -110,14 +135,7 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
           )[0];
 
           const newAddPage = (
-            <li
-              className={styles.addDocument}
-              onClick={() => addPageHandler(child.id)}
-            >
-              <span>
-                <i className="ph-plus-thin"></i>Add Document
-              </span>
-            </li>
+            <AddDocumentMenu id={child.id} addPageHandler={addPageHandler} />
           );
 
           return (
@@ -153,12 +171,7 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
 
   const newTopLevelPage = (
     <ul>
-      <li className={styles.addDocument} onClick={() => addPageHandler()}>
-        <span>
-          {" "}
-          <i className="ph-plus-thin"></i> Add Document
-        </span>
-      </li>
+      <AddDocumentMenu id={null} addPageHandler={addPageHandler} />
     </ul>
   );
 
@@ -173,14 +186,7 @@ const DocumentTree: React.FC<DocumentTreeProps> = ({ documentId = "" }) => {
             )[0];
 
             const newAddPage = (
-              <li
-                className={styles.addDocument}
-                onClick={() => addPageHandler(item.id)}
-              >
-                <span>
-                  <i className="ph-plus-thin"></i> Add Document
-                </span>
-              </li>
+              <AddDocumentMenu id={item.id} addPageHandler={addPageHandler} />
             );
 
             return (

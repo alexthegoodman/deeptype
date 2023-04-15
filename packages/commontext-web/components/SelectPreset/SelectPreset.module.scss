@@ -1,1 +1,10 @@
+@import "../../app/variables.scss";
 @import "../../app/shared.scss";
+
+.basicBox {
+  .basicBoxInner {
+    > span {
+      color: $blackish;
+    }
+  }
+}
