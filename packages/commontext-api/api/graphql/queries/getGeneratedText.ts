@@ -21,8 +21,8 @@ export const GetGeneratedTextQuery = extendType({
         const response = await openai.createCompletion({
           model: "text-davinci-003",
           prompt: contextText,
-          max_tokens: 7,
-          temperature: 0,
+          max_tokens: 50,
+          temperature: 0.2,
         });
 
         console.info("openai response", response);

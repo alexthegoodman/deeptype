@@ -41,7 +41,7 @@ const Sidebars: React.FC<SidebarsProps> = ({
   const debouncedPlaintext = useDebounce(editorPlaintext, 500);
 
   const contextText = debouncedPlaintext.substring(
-    debouncedPlaintext.length - 500
+    debouncedPlaintext.length - 240
   );
 
   const { data, error, isLoading, mutate } = useSWR(
