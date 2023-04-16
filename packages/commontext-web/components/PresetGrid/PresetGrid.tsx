@@ -10,7 +10,7 @@ const PresetGrid: React.FC<PresetGridProps> = ({
   return (
     <section className={styles.presetGrid}>
       <div className={styles.presetGridInner}>
-        <h1>Available Presets</h1>
+        <h1>Available Formats</h1>
         <ul>
           <li onClick={() => onSelectPreset("cover")}>
             <i className="ph-file"></i>Cover
