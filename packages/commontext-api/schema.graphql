@@ -48,6 +48,7 @@ type Query {
   authenticate: String
   document(documentId: String!): Document
   getCurrentUser: User
+  getGeneratedText(contextText: String!): String
   getPortalUrl: String
   myDocuments: [Document]
 }

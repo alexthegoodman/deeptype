@@ -19,7 +19,7 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
   const [text3, setText3] = React.useState<string | null>(null);
 
   const recentText = debouncedPlaintext.substring(
-    debouncedPlaintext.length - 240
+    debouncedPlaintext.length - 500
   );
 
   React.useEffect(
@@ -74,7 +74,7 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
 
   const displayText1 = (
     <>
-      {/* <em>{recentText}</em> */}
+      <em>{recentText}</em>
       {text1Parts[1]}
     </>
   );
@@ -90,6 +90,8 @@ const Suggestions: React.FC<SuggestionsProps> = () => {
       {text3Parts[1]}
     </>
   );
+
+  console.info("render suggestions");
 
   return (
     <section className={styles.suggestions}>

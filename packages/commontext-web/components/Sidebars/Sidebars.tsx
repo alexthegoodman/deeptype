@@ -16,6 +16,9 @@ import DeepSearch from "../DeepSearch/DeepSearch";
 import EmptyNotice from "../EmptyNotice/EmptyNotice";
 import Format from "../Format/Format";
 import SelectPreset from "../SelectPreset/SelectPreset";
+import Suggestion from "../Suggestion/Suggestion";
+import { useEditorContext } from "../../context/EditorContext/EditorContext";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const getUserData = async (token: string) => {
   graphClient.setupClient(token);
@@ -33,6 +36,13 @@ const Sidebars: React.FC<SidebarsProps> = ({
 }) => {
   const [cookies, setCookie] = useCookies(["coUserToken"]);
   const token = cookies.coUserToken;
+
+  const [{ editorPlaintext }, dispatch] = useEditorContext();
+  const debouncedPlaintext = useDebounce(editorPlaintext, 500);
+
+  const contextText = debouncedPlaintext.substring(
+    debouncedPlaintext.length - 500
+  );
 
   const { data, error, isLoading, mutate } = useSWR(
     "settings",
@@ -85,8 +95,13 @@ const Sidebars: React.FC<SidebarsProps> = ({
 
       <TabPanel>
         {data.subscription === "PRO" ? (
-          <Suggestions />
+          <>
+            <Suggestion contextText={contextText} />
+            <Suggestion contextText={contextText} />
+            <Suggestion contextText={contextText} />
+          </>
         ) : (
+          // <Suggestions />
           <EmptyNotice message="Please upgrade to a Pro subscription to use AI Text Suggestions" />
         )}
       </TabPanel>

@@ -132,6 +132,7 @@ export interface NexusGenFieldTypes {
     authenticate: string | null; // String
     document: NexusGenRootTypes['Document'] | null; // Document
     getCurrentUser: NexusGenRootTypes['User'] | null; // User
+    getGeneratedText: string | null; // String
     getPortalUrl: string | null; // String
     myDocuments: Array<NexusGenRootTypes['Document'] | null> | null; // [Document]
   }
@@ -189,6 +190,7 @@ export interface NexusGenFieldTypeNames {
     authenticate: 'String'
     document: 'Document'
     getCurrentUser: 'User'
+    getGeneratedText: 'String'
     getPortalUrl: 'String'
     myDocuments: 'Document'
   }
@@ -246,6 +248,9 @@ export interface NexusGenArgTypes {
   Query: {
     document: { // args
       documentId: string; // String!
+    }
+    getGeneratedText: { // args
+      contextText: string; // String!
     }
   }
 }
